@@ -1,0 +1,37 @@
+/* NORMAL=================================================================*/
+.navIcon {
+  position: absolute;
+  top: 6px;
+  left: 30px;
+  width: 25px;
+  height: 25px;
+  vertical-align: bottom;
+  opacity: 0.5;
+}
+.navTag {
+  position: absolute;
+  top: 9px;
+  left: 65px;
+  font-size: 14px;
+  padding-left: 20px;
+  color: #000000bb;
+}
+
+/* ACTIVE=================================================================*/
+.activeButton .activeColor {
+  transition: background-color 0.4s ease-in;
+  background-color: #ecf8ff6c;
+}
+.activeButton .navIcon {
+  filter: invert(10%) sepia(100%) saturate(5000%) hue-rotate(210deg)
+    brightness(130%) contrast(90%);
+  opacity: 0.7;
+  top: 4px;
+  left: 27px;
+  width: 30px;
+  height: 30px;
+}
+.activeButton .navTag {
+  filter: invert(10%) sepia(100%) saturate(5000%) hue-rotate(210deg)
+    brightness(130%) contrast(90%);
+}

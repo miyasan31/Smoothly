@@ -1,0 +1,100 @@
+.my_entry_number {
+  position: fixed;
+  top: 10px;
+  left: 50px;
+  font-size: 30px;
+}
+.top_main {
+  position: relative;
+  display: flex;
+  height: 100vh;
+}
+.signin_theme {
+  color: #ffffff;
+  background-color: #62b1ff;
+  box-shadow: 10px 10px 0px 0px #0080ff;
+}
+.signup_theme {
+  background-color: #ffcc73;
+  box-shadow: 10px 10px 0px 0px #ffb23e;
+}
+.reissue_theme {
+  background-color: #5cffb0;
+  box-shadow: 10px 10px 0px 0px #11c46d;
+}
+.top_layout {
+  display: flex;
+
+  width: 100%;
+  padding-top: 30px;
+  margin-left: 10px;
+  margin-bottom: 10px;
+  border-left: 20px solid #ffffff;
+  border-bottom: 20px solid #ffffff;
+}
+.comment {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: left;
+
+  width: 50%;
+  padding-left: 80px;
+}
+.comment h2 {
+  font-size: 40px;
+}
+.comment h2 span {
+  font-size: 60px;
+  text-decoration: underline;
+}
+
+.form_box {
+  display: flex;
+  align-items: center;
+
+  width: 40%;
+  min-width: 450px;
+  height: calc(100vh - 90px);
+  margin-right: 30px;
+
+  background-color: #ffffff;
+}
+
+.form {
+  width: 90%;
+  margin: 0 auto;
+}
+.form h1 {
+  font-size: 50px;
+  text-align: center;
+  line-height: 1em;
+  color: #62b1ff;
+}
+
+/* responsive================================================== */
+@media screen and (max-width: 1024px) {
+  .top_layout {
+    padding: 0;
+    margin: 0;
+    border: none;
+  }
+  .comment {
+    display: none;
+  }
+  .form_box {
+    width: 100%;
+    padding: 0px;
+    margin: 0;
+    height: 100vh;
+    box-shadow: none;
+  }
+  .form {
+    width: 60%;
+  }
+}
+@media screen and (max-width: 600px) {
+  .form {
+    width: 90%;
+  }
+}

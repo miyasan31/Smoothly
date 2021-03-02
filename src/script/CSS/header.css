@@ -1,0 +1,69 @@
+.header {
+  position: fixed;
+  top: 0;
+  z-index: 50;
+  width: 100%;
+}
+/*PROF ===================================================================== */
+.prof {
+  display: flex;
+  background-color: #ffffff;
+}
+.profbox {
+  position: fixed;
+  top: -7px;
+  right: -85px;
+  display: flex;
+  width: 200px;
+  height: 50px;
+}
+.profbox figure {
+  display: block;
+  width: 65px;
+  height: 50px;
+  cursor: pointer;
+}
+.profbox figure img {
+  width: 50px;
+  margin-left: 10px;
+}
+
+/* MODAL================================================================== */
+.prof_modal {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 1000px;
+  height: 450px;
+  padding: 30px;
+  border-radius: 10px;
+  background-color: #ffffff;
+  transform: translate(-50%, -50%);
+}
+.prof_modal h1 {
+  margin: 0 0 0 40px;
+}
+.prof_item {
+  display: flex;
+}
+.prof_figure {
+  display: block;
+  width: 400px;
+}
+.prof_figure img {
+  width: 350px;
+  margin: 0 auto;
+}
+.prof_item p {
+  display: block;
+  width: 600px;
+  height: 300px;
+  margin: 25px 0 0 0;
+  font-size: 20px;
+  overflow: scroll;
+  box-sizing: border-box;
+}
+.closeBtn {
+  width: 100px;
+  margin-left: auto;
+}

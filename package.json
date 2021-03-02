@@ -3,19 +3,63 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@date-io/date-fns": "1.x",
+    "@date-io/jalaali": "^2.10.6",
+    "@date-io/moment": "1.x",
+    "@devexpress/dx-react-core": "^2.7.4",
+    "@devexpress/dx-react-scheduler": "^2.7.4",
+    "@devexpress/dx-react-scheduler-material-ui": "^2.7.4",
+    "@google-cloud/firestore": "^4.9.2",
+    "@material-ui/core": "^4.11.2",
+    "@material-ui/icons": "^4.11.2",
+    "@material-ui/lab": "^4.0.0-alpha.57",
+    "@material-ui/pickers": "3.2.9",
+    "@material-ui/styles": "^4.11.2",
     "@testing-library/jest-dom": "^5.11.4",
     "@testing-library/react": "^11.1.0",
     "@testing-library/user-event": "^12.1.10",
+    "connected-react-router": "^6.8.0",
+    "date-fns": "^2.16.1",
+    "express": "^4.17.1",
+    "firebase": "^8.2.1",
+    "firebase-admin": "^9.4.2",
+    "get-orientation": "^1.1.2",
+    "history": "4.10.1",
+    "html-react-parser": "^1.1.1",
+    "material-ui-icons": "^1.0.0-beta.36",
+    "moment": "^2.29.1",
     "react": "^17.0.1",
+    "react-cropper": "^2.1.4",
     "react-dom": "^17.0.1",
+    "react-easy-crop": "^3.3.1",
+    "react-finder": "^0.2.0",
+    "react-modal": "^3.12.1",
+    "react-native": "^0.63.4",
+    "react-redux": "^7.2.2",
+    "react-responsive": "^8.2.0",
+    "react-router-dom": "^5.2.0",
+    "react-router-redux": "^4.0.8",
+    "react-router-scroll": "^0.4.4",
     "react-scripts": "4.0.1",
+    "react-scroll": "^1.8.1",
+    "react-sidebar": "^3.0.2",
+    "redux": "^4.0.5",
+    "redux-actions": "^2.6.5",
+    "redux-logger": "^3.0.6",
+    "redux-thunk": "^2.3.0",
+    "reselect": "^4.0.0",
+    "rxjs": "^6.6.3",
+    "styled-components": "^5.2.1",
     "web-vitals": "^0.2.4"
   },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "format": "prettier --write \"./src/**/*.{js,jsx}\"",
+    "firebasedeploy": "firebase deploy",
+    "firebaserules": "firebase deploy --only firestore:rules"
   },
   "eslintConfig": {
     "extends": [
@@ -34,5 +78,12 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "eslint-config-prettier": "^7.1.0",
+    "eslint-plugin-prettier": "^3.3.0",
+    "eslint-plugin-react": "^7.22.0",
+    "nodemon": "^2.0.6",
+    "prettier": "^2.2.1"
   }
 }
