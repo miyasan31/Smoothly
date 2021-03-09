@@ -179,23 +179,20 @@ export const createChatRoomIcon = (rid, blob) => {
 
 export const deleteChatRoom = (rid) => {
   return async (dispatch, getState) => {
-    const check = window.confirm('ルームを削除してよろしいですか？')
-    if (check) {
-      chatsRef
-        .doc(rid)
-        .delete()
-        .then(() => {
-          const prevRooms = getState().rooms.list
-          const nextRooms = prevRooms.filter((room) => room.rid !== rid)
-          dispatch(deleteChatRoomAction(nextRooms))
+    chatsRef
+      .doc(rid)
+      .delete()
+      .then(() => {
+        const prevRooms = getState().rooms.list
+        const nextRooms = prevRooms.filter((room) => room.rid !== rid)
+        dispatch(deleteChatRoomAction(nextRooms))
 
-          storage.ref('room_icons').child(rid).delete()
-          dispatch(push('/chat'))
-        })
-        .catch((error) => {
-          throw new Error(error)
-        })
-    }
+        storage.ref('room_icons').child(rid).delete()
+        dispatch(push('/chat'))
+      })
+      .catch((error) => {
+        throw new Error(error)
+      })
   }
 }
 

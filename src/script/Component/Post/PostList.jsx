@@ -52,9 +52,8 @@ const PostList = (props) => {
   const [openDialog, setOpenDialog] = useState(false)
 
   // 時間を正規表現
-  const updateTime = props.updateTime
-  const date = updateTime.toDate()
-  const DateTime = format(date, 'yyyy年M月dd日 H:mm', { locale: ja })
+  const time = props.updateTime.toDate()
+  const updateTime = format(time, 'yyyy年M月dd日 H:mm', { locale: ja })
   // プロフの表示
   const IconViewHandleClick = () => {
     setOpenDialog(true)
@@ -92,19 +91,19 @@ const PostList = (props) => {
   }, [])
 
   return (
-    <div>
-      <Card className="margin_btm_20px">
+    <>
+      <Card className="mg_btm_20px">
         <CardHeader
           avatar={
             icon ? (
               <Avatar
+                alt="userIcon"
+                src={icon}
                 className={
                   props.currentUid === props.createrUid
                     ? 'pointer icon_circle_blue'
                     : 'pointer'
                 }
-                alt="userIcon"
-                src={icon}
                 onClick={IconViewHandleClick}
               />
             ) : (
@@ -125,35 +124,30 @@ const PostList = (props) => {
               {className} ｜ {name}
             </Typography>
           }
-          subheader={`更新日時：${DateTime}`}
+          subheader={`更新日時：${updateTime}`}
         />
 
         <CardContent>
           <Typography variant="body2" className="label">
             タイトル
           </Typography>
-          <div className="space_5px"></div>
-
-          <Typography variant="body1" className="padding_10px">
+          <Typography variant="body1" className="pd_10px">
             {props.title}
           </Typography>
-          <div className="space_10px"></div>
 
           <Typography variant="body2" className="label">
             内容
           </Typography>
-          <div className="space_5px"></div>
-
           <Typography
             variant="body1"
-            className="padding_10px"
+            className="pd_10px"
             style={{ whiteSpace: 'pre-wrap' }}
           >
             {props.item}
           </Typography>
         </CardContent>
 
-        <CardActions className="margin_10px">
+        <CardActions className="mg_10px">
           {props.currentUid === props.createrUid && (
             <>
               <BlueButtonNomal label={'編集'} onClick={editHandleClick} />
@@ -195,7 +189,7 @@ const PostList = (props) => {
         openDialog={openDialog}
         setOpenDialog={setOpenDialog}
       />
-    </div>
+    </>
   )
 }
 export default PostList

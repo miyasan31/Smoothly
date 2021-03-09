@@ -32,10 +32,6 @@ const SignIn = () => {
     },
     [setPassword]
   )
-  //　ログインボタンクリック
-  const handleClick = () => {
-    dispatch(push('./reissue'))
-  }
 
   return (
     <section className="top_main signin_theme">
@@ -111,7 +107,7 @@ const SignIn = () => {
             <GreenButton
               fullWidth
               label={'パスワード再発行'}
-              onClick={handleClick}
+              onClick={() => dispatch(push('./reissue'))}
             />
           </div>
         </div>

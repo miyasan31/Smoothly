@@ -54,7 +54,7 @@ const AnalyticsList = (props) => {
   const classes = useStyles()
 
   return (
-    <TableContainer className="margin_btm_20px" component={Paper}>
+    <TableContainer className="mg_btm_20px" component={Paper}>
       <Table>
         <TableHead>
           <TableRow>

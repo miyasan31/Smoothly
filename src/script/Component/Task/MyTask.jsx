@@ -63,7 +63,7 @@ const MyTask = () => {
               />
             }
             label={state.doing ? '実行中タスク' : '実行済タスク'}
-            className="padding_left_10px"
+            className="pd_left_10px"
           />
 
           <MyTaskList

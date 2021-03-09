@@ -12,15 +12,9 @@ import Typography from '@material-ui/core/Typography'
 
 const useStyles = makeStyles((theme) => ({
   dialog: {
-    width: 250,
+    width: 'inherit',
     margin: '0 auto',
-    padding: 25,
-    [theme.breakpoints.up('sm')]: {
-      width: 400,
-    },
-    [theme.breakpoints.up('md')]: {
-      width: 500,
-    },
+    padding: 20,
   },
 }))
 
@@ -69,6 +63,8 @@ const ProfDialog = (props) => {
     <div>
       <Dialog
         keepMounted
+        fullWidth
+        maxWidth={'sm'}
         TransitionComponent={Transition}
         open={props.openDialog}
         onClose={handleClose}
@@ -80,7 +76,7 @@ const ProfDialog = (props) => {
 
           <Typography
             variant="body1"
-            className="padding_top_20px"
+            className="pd_top_20px"
             style={{ whiteSpace: 'pre-wrap' }}
           >
             {prof}

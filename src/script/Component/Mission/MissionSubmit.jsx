@@ -45,15 +45,6 @@ const MissionSubmit = () => {
           setFileName(mission.file.file_name)
           setPreview(mission.file.path)
         })
-
-      // db.collection('missions')
-      //   .doc(mid)
-      //   .collection('submits')
-      //   .doc(current_uid)
-      //   .get()
-      //   .then(() => {
-      //     console.log(true)
-      //   })
     }
   }, [mid])
 
@@ -108,16 +99,16 @@ const MissionSubmit = () => {
 
           {fileName && checkExt(fileName) ? (
             <div>
-              <div className="padding_20px">{fileName}</div>
+              <div className="pd_20px">{fileName}</div>
               <img src={preview} alt="ファイル" className="full_width" />
             </div>
           ) : (
             <div>
-              <div className="padding_20px">{fileName}</div>
+              <div className="pd_20px">{fileName}</div>
             </div>
           )}
 
-          <div className="right margin_top_20px">
+          <div className="right mg_top_20px">
             <span>
               <BlueButtonNomal label={'キャンセル'} onClick={backHandleClick} />
               <BlueButton label={'提出'} onClick={finishHnadleClick} />

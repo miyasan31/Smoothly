@@ -2,7 +2,7 @@ import React, { useState, useCallback, useEffect } from 'react'
 import { useDispatch } from 'react-redux'
 import { push } from 'connected-react-router'
 
-import { QuestionComponent } from '../render'
+import { QuestionComponent, CheckViewDialog } from '../render'
 import {
   AppBarSubHeader,
   BlueButton,
@@ -29,6 +29,7 @@ const QuestionEdit = () => {
   const [item, setItem] = useState('')
   const [limitTime, setLimitTime] = useState('')
   const [questionData, setQuestionData] = useState('')
+  const [openDialog, setOpenDialog] = useState(false)
 
   useEffect(() => {
     // URLからqidを取得
@@ -75,6 +76,10 @@ const QuestionEdit = () => {
   const backHandleClick = () => {
     dispatch(push('/question'))
   }
+  // 確認ダイアログ表示
+  const checkHandleClick = () => {
+    setOpenDialog(true)
+  }
   // 投稿ボタンクリック
   const updateHandleClick = () => {
     dispatch(
@@ -92,15 +97,14 @@ const QuestionEdit = () => {
 
       <div className="contents_style">
         <Paper className="paper">
-          <Typography className="label">投稿先</Typography>
+          <Typography className="label pd_y_10px">投稿先</Typography>
           <SelectBox
             options={send}
             value={destination}
             select={setDestination}
           />
-          <div className="space_15px"></div>
 
-          <Typography className="label">タイトル</Typography>
+          <Typography className="label pd_top_10px">タイトル</Typography>
           <BlueInput
             label={null}
             type={'text'}
@@ -110,9 +114,8 @@ const QuestionEdit = () => {
             defaultValue={title}
             onChange={inputTitle}
           />
-          <div className="space_15px"></div>
 
-          <Typography className="label">内容</Typography>
+          <Typography className="label pd_top_10px">内容</Typography>
           <BlueInput
             label={null}
             type={'text'}
@@ -122,32 +125,36 @@ const QuestionEdit = () => {
             defaultValue={item}
             onChange={inputItem}
           />
-          <div className="space_15px"></div>
 
-          <Typography className="label">回答期限</Typography>
+          <Typography className="label pd_top_10px">回答期限</Typography>
           <DateTimePicker
             ampm={false}
             fullWidth={true}
             value={limitTime}
             onChange={inputDate}
           />
-          <div className="space_15px"></div>
 
-          <Typography className="label">質問作成</Typography>
+          <Typography className="label pd_top_10px">質問作成</Typography>
 
           <QuestionComponent setQuestionData={setQuestionData} />
 
-          <div className="right">
-            <span>
-              <BlueButtonNomal label={'キャンセル'} onClick={backHandleClick} />
-              <BlueButton
-                label={qid === '' ? '投稿' : '変更'}
-                onClick={updateHandleClick}
-              />
-            </span>
+          <div className="right mg_top_20px">
+            <BlueButtonNomal label={'キャンセル'} onClick={backHandleClick} />
+            <BlueButton label="確認" onClick={checkHandleClick} />
           </div>
         </Paper>
       </div>
+
+      <CheckViewDialog
+        destination={destination}
+        title={title}
+        item={item}
+        questionData={questionData}
+        limitTime={limitTime}
+        openDialog={openDialog}
+        setOpenDialog={setOpenDialog}
+        updateHandleClick={updateHandleClick}
+      />
     </section>
   )
 }

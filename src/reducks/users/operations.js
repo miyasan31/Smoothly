@@ -68,18 +68,15 @@ export const signIn = (email, password) => {
 
 export const signOut = () => {
   return async (dispatch) => {
-    const check = window.confirm('サインアウトしてよろしいですか？')
-    if (check) {
-      auth
-        .signOut()
-        .then(() => {
-          dispatch(signOutAction())
-          dispatch(push('./signin'))
-        })
-        .catch(() => {
-          throw new Error('サインアウトに失敗しました。')
-        })
-    }
+    auth
+      .signOut()
+      .then(() => {
+        dispatch(signOutAction())
+        dispatch(push('./signin'))
+      })
+      .catch(() => {
+        throw new Error('サインアウトに失敗しました。')
+      })
   }
 }
 
@@ -304,43 +301,37 @@ export const updateEmail = (email, password, newEmail) => {
   return async (dispatch, getState) => {
     const state = getState()
     const userId = state.users.uid
-    const check = window.confirm('メールアドレスを変更してよろしいですか？')
-    if (check) {
-      const data = {
-        email: newEmail,
-      }
-      return auth
-        .signInWithEmailAndPassword(email, password)
-        .then((userCredential) => {
-          userCredential.user.updateEmail(newEmail)
-          usersRef.doc(userId).set(data, { merge: true })
-          dispatch(push('/setting'))
-        })
-        .catch((error) => {
-          var errorCode = error.code
-          const errmsg = ErrorMessage(errorCode)
-          alert(errorCode + ' : ' + errmsg)
-        })
+    const data = {
+      email: newEmail,
     }
+    return auth
+      .signInWithEmailAndPassword(email, password)
+      .then((userCredential) => {
+        userCredential.user.updateEmail(newEmail)
+        usersRef.doc(userId).set(data, { merge: true })
+        dispatch(push('/setting'))
+      })
+      .catch((error) => {
+        var errorCode = error.code
+        const errmsg = ErrorMessage(errorCode)
+        alert(errorCode + ' : ' + errmsg)
+      })
   }
 }
 
 export const updatePassword = (email, password, newPassword) => {
   return async (dispatch) => {
-    const check = window.confirm('パスワードを変更してよろしいですか？')
-    if (check) {
-      return auth
-        .signInWithEmailAndPassword(email, password)
-        .then(function (userCredential) {
-          userCredential.user.updatePassword(newPassword)
-          dispatch(push('/setting'))
-        })
-        .catch((error) => {
-          var errorCode = error.code
-          const errmsg = ErrorMessage(errorCode)
-          alert(errorCode + ' : ' + errmsg)
-        })
-    }
+    return auth
+      .signInWithEmailAndPassword(email, password)
+      .then(function (userCredential) {
+        userCredential.user.updatePassword(newPassword)
+        dispatch(push('/setting'))
+      })
+      .catch((error) => {
+        var errorCode = error.code
+        const errmsg = ErrorMessage(errorCode)
+        alert(errorCode + ' : ' + errmsg)
+      })
   }
 }
 

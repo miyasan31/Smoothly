@@ -70,72 +70,66 @@ export const createQuestions = (
       return false
     }
 
-    const check = window.confirm('投稿してよろしいですか？')
-    if (check) {
-      const state = getState()
-      const userId = state.users.uid
-      const timestamp = FirebaseTimestamp.now()
-      const data = {
-        destination: destination,
-        title: title,
-        item: item,
-        limit_time: limitTime,
-        question_data: questionData,
-        creater_uid: userId,
-        update_time: timestamp,
-      }
-      if (qid === '') {
-        const ref = questionsRef.doc()
-        data.created_time = timestamp
-        // 要注意！！ドキュメントのIDだよ！
-        qid = ref.id
-        data.qid = qid
-      }
-
-      const task = {
-        doc: qid,
-        title: title,
-        startDate: timestamp,
-        endDate: limitTime,
-        tag: '3',
-        destination: destination,
-        creater_uid: userId,
-      }
-
-      return questionsRef
-        .doc(qid)
-        .set(data, { merge: true })
-        .then(() => {
-          schedulesRef
-            .doc(qid)
-            .set(task, { merge: true })
-            .then(() => {
-              dispatch(push('/question'))
-            })
-        })
-        .catch((error) => {
-          throw new Error(error)
-        })
+    const state = getState()
+    const userId = state.users.uid
+    const timestamp = FirebaseTimestamp.now()
+    const data = {
+      destination: destination,
+      title: title,
+      item: item,
+      limit_time: limitTime,
+      question_data: questionData,
+      creater_uid: userId,
+      update_time: timestamp,
     }
+    if (qid === '') {
+      const ref = questionsRef.doc()
+      data.created_time = timestamp
+      // 要注意！！ドキュメントのIDだよ！
+      qid = ref.id
+      data.qid = qid
+    }
+
+    const task = {
+      doc: qid,
+      title: title,
+      startDate: timestamp,
+      endDate: limitTime,
+      tag: '3',
+      destination: destination,
+      creater_uid: userId,
+    }
+
+    return questionsRef
+      .doc(qid)
+      .set(data, { merge: true })
+      .then(() => {
+        schedulesRef
+          .doc(qid)
+          .set(task, { merge: true })
+          .then(() => {
+            dispatch(push('/question'))
+          })
+      })
+      .catch((error) => {
+        throw new Error(error)
+      })
   }
 }
 
 export const deleteQuestions = (qid) => {
   return async (dispatch, getState) => {
-    const check = window.confirm('削除してよろしいですか？')
-    if (check) {
-      questionsRef
-        .doc(qid)
-        .delete()
-        .then(() => {
-          schedulesRef
-            .doc(qid)
-            .delete()
-            .then(() => {
-              dispatch(push('/question'))
-            })
-        })
-    }
+    questionsRef
+      .doc(qid)
+      .delete()
+      .then(() => {
+        schedulesRef
+          .doc(qid)
+          .delete()
+          .then(() => {
+            dispatch(push('/question'))
+          })
+      })
   }
 }
 
@@ -193,35 +187,31 @@ export const createAnswers = (qid, answerData) => {
     const userNumber = state.users.user_number
     const className = state.users.class_name
 
-    const check = window.confirm('終了してよろしいですか？')
+    const timestamp = FirebaseTimestamp.now()
+    const ref = questionsRef.doc().collection('answers').doc()
+    const aid = ref.id
 
-    if (check) {
-      const timestamp = FirebaseTimestamp.now()
-      const ref = questionsRef.doc().collection('answers').doc()
-      const aid = ref.id
-
-      const data = {
-        aid: aid,
-        answer_uid: userId,
-        answer_name: userName,
-        answer_value: userValue,
-        answer_number: userNumber,
-        answer_class: className,
-        answer_data: answerData,
-        answer_time: timestamp,
-      }
-
-      return questionsRef
-        .doc(qid)
-        .collection('answers')
-        .doc(userId)
-        .set(data)
-        .then(() => {
-          dispatch(push('/question'))
-        })
-        .catch((error) => {
-          throw new Error(error)
-        })
+    const data = {
+      aid: aid,
+      answer_uid: userId,
+      answer_name: userName,
+      answer_value: userValue,
+      answer_number: userNumber,
+      answer_class: className,
+      answer_data: answerData,
+      answer_time: timestamp,
     }
+
+    return questionsRef
+      .doc(qid)
+      .collection('answers')
+      .doc(userId)
+      .set(data)
+      .then(() => {
+        dispatch(push('/question'))
+      })
+      .catch((error) => {
+        throw new Error(error)
+      })
   }
 }

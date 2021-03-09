@@ -68,7 +68,7 @@ const QuestionComponent = (props) => {
   }
 
   return (
-    <div>
+    <>
       {datas.length !== 0 &&
         datas.map((data, index) => (
           <Card key={index} className={classes.card}>
@@ -112,14 +112,13 @@ const QuestionComponent = (props) => {
         <QuestionInput value={questionItem} onChange={inputItem} />
         <QuestionSelect value={questionType} select={setQuestionType} />
       </div>
-      <div className="space_10px"></div>
 
       <GreyButton
         size={'small'}
         label={'作成 ＋ '}
         onClick={questionAddHnadleClick}
       />
-    </div>
+    </>
   )
 }
 export default QuestionComponent

@@ -104,7 +104,7 @@ const MyTaskEdit = () => {
 
       <div className="contents_style">
         <Paper className="paper">
-          <Typography className="label">タスク名</Typography>
+          <Typography className="label pd_top_10px">タスク名</Typography>
           <BlueInput
             label={null}
             type={'text'}
@@ -114,11 +114,10 @@ const MyTaskEdit = () => {
             defaultValue={title}
             onChange={inputTitle}
           />
-          <div className="space_15px"></div>
 
           <div className={classes.picker}>
             <div className="flex_10">
-              <Typography className="label">開始時刻</Typography>
+              <Typography className="label pd_top_10px">開始時刻</Typography>
               <DateTimePicker
                 fullWidth={true}
                 ampm={false}
@@ -128,7 +127,7 @@ const MyTaskEdit = () => {
             </div>
             <div className="flex_1"></div>
             <div className="flex_10">
-              <Typography className="label">終了時刻</Typography>
+              <Typography className="label pd_top_10px">終了時刻</Typography>
               <DateTimePicker
                 fullWidth={true}
                 ampm={false}
@@ -146,7 +145,7 @@ const MyTaskEdit = () => {
             </div>
           </div>
 
-          <div className="right margin_top_20px">
+          <div className="right mg_top_20px">
             <BlueButtonNomal label={'キャンセル'} onClick={handleClose} />
             <BlueButton
               label={tid === '' ? '追加' : '保存'}

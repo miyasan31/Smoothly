@@ -72,17 +72,18 @@ const AnswerEdit = () => {
     <section className="main">
       <AppBarSubHeader subtitle={'アンケート　ー回答ー'} />
       <div className="contents_style">
-        <Paper className="paper margin_btm_20px">
+        <Paper className="paper mg_btm_20px">
           <Typography variant="h5">{title}</Typography>
-          <div className="space_15px"></div>
 
           {questionData.map((data, index) => (
             <Paper key={index} className={classes.item}>
-              <Typography className="label">質問 {index + 1}</Typography>
-              <div className="space_10px"></div>
+              <Typography className="label pd_top_10px">
+                質問 {index + 1}
+              </Typography>
 
-              <Typography variant="h6">{data.item}</Typography>
-              <div className="space_10px"></div>
+              <Typography variant="h6" className="pd_top_10px">
+                {data.item}
+              </Typography>
 
               {data.type === '1' ? (
                 <AnswerText1
@@ -112,7 +113,7 @@ const AnswerEdit = () => {
             </Paper>
           ))}
 
-          <div className="right margin_top_20px">
+          <div className="right mg_top_20px">
             <span>
               <BlueButtonNomal label={'キャンセル'} onClick={backHandleClick} />
               <BlueButton label={'回答'} onClick={finishHnadleClick} />

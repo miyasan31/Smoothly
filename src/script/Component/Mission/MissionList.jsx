@@ -53,12 +53,12 @@ const MissionList = (props) => {
   const [submitCheck, setSubmitCheck] = useState(false)
 
   // 時間を正規表現
-  const updateTime = props.updateTime
-  const u_date = updateTime.toDate()
-  const updateDateTime = format(u_date, 'yyyy年M月dd日 H:mm', { locale: ja })
-  const limitTime = props.limitTime
-  const l_date = limitTime.toDate()
-  const limitDateTime = format(l_date, 'yyyy年M月dd日 H:mm', { locale: ja })
+  const updateTime = props.updateTime.toDate()
+  const updateDateTime = format(updateTime, 'yyyy年M月dd日 H:mm', {
+    locale: ja,
+  })
+  const limitTime = props.limitTime.toDate()
+  const limitDateTime = format(limitTime, 'yyyy年M月dd日 H:mm', { locale: ja })
   // プロフの表示
   const IconViewHandleClick = () => {
     setOpenDialog(true)
@@ -101,7 +101,6 @@ const MissionList = (props) => {
           }
         })
     }
-
     db.collection('missions')
       .doc(props.mid)
       .collection('submits')
@@ -116,8 +115,8 @@ const MissionList = (props) => {
   }, [])
 
   return (
-    <div>
-      <Card className="margin_btm_20px">
+    <>
+      <Card className="mg_btm_20px">
         <CardHeader
           avatar={
             icon ? (
@@ -156,33 +155,27 @@ const MissionList = (props) => {
           <Typography variant="body2" className="label">
             タイトル
           </Typography>
-          <div className="space_5px"></div>
-
-          <Typography variant="body1" className="padding_10px">
+          <Typography variant="body1" className="pd_10px">
             {props.title}
           </Typography>
-          <div className="space_10px"></div>
 
           <Typography variant="body2" className="label">
             内容
           </Typography>
-          <div className="space_5px"></div>
-
           <Typography
             variant="body1"
-            className="padding_10px"
+            className="pd_10px"
             style={{ whiteSpace: 'pre-wrap' }}
           >
             {props.item}
           </Typography>
-          <div className="space_10px"></div>
 
-          <Typography variant="body1" className="red_center">
+          <Typography variant="body1" className="red_center pd_top_10px">
             提出期限：{limitDateTime}
           </Typography>
         </CardContent>
 
-        <CardActions className="margin_10px">
+        <CardActions className="mg_10px">
           {props.currentUid === props.createrUid && (
             <>
               <BlueButtonNomal label={'編集'} onClick={editHandleClick} />
@@ -238,7 +231,7 @@ const MissionList = (props) => {
         openDialog={openDialog}
         setOpenDialog={setOpenDialog}
       />
-    </div>
+    </>
   )
 }
 export default MissionList

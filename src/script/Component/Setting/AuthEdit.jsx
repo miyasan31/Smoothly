@@ -72,11 +72,12 @@ const AuthEdit = () => {
       <AppBarSubHeader subtitle={'メールアドレス・パスワード変更'} />
       <div className="contents_style">
         <Paper className="paper">
-          <Typography className="label">変更項目</Typography>
+          <Typography className="label pd_y_10px">変更項目</Typography>
           <SelectBox options={choiceData} value={choice} select={setChoice} />
-          <div className="space_20px"></div>
 
-          <Typography className="label">現在のメールアドレス</Typography>
+          <Typography className="label pd_top_10px">
+            現在のメールアドレス
+          </Typography>
           <BlueInput
             type={'email'}
             fullWidth={true}
@@ -86,11 +87,12 @@ const AuthEdit = () => {
             value={email}
             onChange={inputEmail}
           />
-          <div className="space_20px"></div>
 
           {choice === 'email' && (
             <>
-              <Typography className="label">新しいメールアドレス</Typography>
+              <Typography className="label pd_top_10px">
+                新しいメールアドレス
+              </Typography>
               <BlueInput
                 type={'email'}
                 fullWidth={true}
@@ -100,11 +102,12 @@ const AuthEdit = () => {
                 value={newEmail}
                 onChange={inputNewEmail}
               />
-              <div className="space_20px"></div>
             </>
           )}
 
-          <Typography className="label">現在のパスワード</Typography>
+          <Typography className="label pd_top_10px">
+            現在のパスワード
+          </Typography>
           <BlueInput
             type={'password'}
             fullWidth={true}
@@ -114,11 +117,12 @@ const AuthEdit = () => {
             value={password}
             onChange={inputPassword}
           />
-          <div className="space_20px"></div>
 
           {choice === 'password' && (
             <>
-              <Typography className="label">新しいパスワード</Typography>
+              <Typography className="label pd_top_10px">
+                新しいパスワード
+              </Typography>
               <BlueInput
                 type={'password'}
                 fullWidth={true}
@@ -128,11 +132,10 @@ const AuthEdit = () => {
                 value={newPassword}
                 onChange={inputNewPassword}
               />
-              <div className="space_20px"></div>
             </>
           )}
 
-          <div className="right margin_top_20px">
+          <div className="right mg_top_20px">
             <BlueButtonNomal label={'キャンセル'} onClick={backHandleClick} />
             <BlueButton label={'変更'} onClick={authUpdateHandleClick} />
           </div>

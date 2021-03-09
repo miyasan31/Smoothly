@@ -111,9 +111,8 @@ const RoomEdit = () => {
         <AppBarSubHeader subtitle={'ルーム　ー作成ー'} />
       )}
       <div className="contents_style">
-        <Paper className="paper">
-          <Typography className="label">ルームアイコン</Typography>
-          <div className="space_15px"></div>
+        <Paper className="paper mg_btm_20px">
+          <Typography className="label pd_y_10px">ルームアイコン</Typography>
           <div className="image">
             {inputImg === '' ? (
               <IconUpload
@@ -125,9 +124,8 @@ const RoomEdit = () => {
               <IconCropper getBlob={getBlob} inputImg={inputImg} />
             )}
           </div>
-          <div className="space_15px"></div>
 
-          <Typography className="label">ルーム名</Typography>
+          <Typography className="label pd_top_10px">ルーム名</Typography>
 
           <BlueInput
             label={null}
@@ -140,18 +138,18 @@ const RoomEdit = () => {
             defaultValue={roomName}
             onChange={inputRoomName}
           />
-          <div className="space_15px"></div>
 
-          <Typography className="label">選択中のユーザー</Typography>
+          <Typography className="label pd_top_10px">
+            選択中のユーザー
+          </Typography>
           <RoomCheckedList
             checked={checked}
             setChecked={setChecked}
             userName={userName}
             setUserName={setUserName}
           />
-          <div className="space_10px"></div>
 
-          <div className="flex">
+          <div className="flex pd_top_10px">
             {checked.length !== 0 && (
               <PinkButton label={'全選択解除'} onClick={clearHandleClick} />
             )}
@@ -161,11 +159,10 @@ const RoomEdit = () => {
           </div>
         </Paper>
 
-        <Paper className="paper margin_top_20px">
-          <Typography variant="h6" className="title">
+        <Paper className="paper">
+          <Typography variant="h6" className="title pd_btm_10px">
             ユーザー一覧
           </Typography>
-          <div className="space_20px"></div>
 
           {userValue.map((e, index) => (
             <Accordion

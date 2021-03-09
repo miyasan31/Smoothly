@@ -47,7 +47,9 @@ const AuthEdit = () => {
       <AppBarSubHeader subtitle={'退会'} />
       <div className="contents_style">
         <Paper className="paper">
-          <Typography className="label">現在のメールアドレス</Typography>
+          <Typography className="label pd_top_10px">
+            現在のメールアドレス
+          </Typography>
           <BlueInput
             type={'email'}
             fullWidth={true}
@@ -57,9 +59,10 @@ const AuthEdit = () => {
             value={email}
             onChange={inputEmail}
           />
-          <div className="space_20px"></div>
 
-          <Typography className="label">現在のパスワード</Typography>
+          <Typography className="label pd_top_10px">
+            現在のパスワード
+          </Typography>
           <BlueInput
             type={'password'}
             fullWidth={true}
@@ -70,7 +73,7 @@ const AuthEdit = () => {
             onChange={inputPassword}
           />
 
-          <div className="flex margin_top_20px">
+          <div className="flex mg_top_20px">
             <div className="flex_grow"></div>
             <PinkButtonNomal label={'キャンセル'} onClick={backHandleClick} />
             <PinkButton label={'退会する'} onClick={handleUserDelete} />

@@ -42,6 +42,7 @@ const Schedule = () => {
   const [completedTasks, setCompletedTasks] = useState('')
   const [allTasks, setAllTasks] = useState('')
   const [createdTasks, setCreatedTasks] = useState('')
+
   const userSchedule = schoolevent.concat(
     doingTasks,
     completedTasks,

@@ -85,8 +85,8 @@ const QuestionList = (props) => {
   }, [])
 
   return (
-    <div>
-      <Card className="margin_btm_20px">
+    <>
+      <Card className="mg_btm_20px">
         <CardHeader
           avatar={
             icon ? (
@@ -125,33 +125,27 @@ const QuestionList = (props) => {
           <Typography variant="body2" className="label">
             タイトル
           </Typography>
-          <div className="space_5px"></div>
-
-          <Typography variant="body1" className="padding_10px">
+          <Typography variant="body1" className="pd_10px">
             {props.title}
           </Typography>
-          <div className="space_10px"></div>
 
           <Typography variant="body2" className="label">
             内容
           </Typography>
-          <div className="space_5px"></div>
-
           <Typography
             variant="body1"
-            className="padding_10px"
+            className="pd_10px"
             style={{ whiteSpace: 'pre-wrap' }}
           >
             {props.item}
           </Typography>
-          <div className="space_10px"></div>
 
-          <Typography variant="body1" className="red_center">
+          <Typography variant="body1" className="red_center pd_top_10px">
             回答期限：{limitDateTime}
           </Typography>
         </CardContent>
 
-        <CardActions className="margin_10px">
+        <CardActions className="mg_10px">
           {props.currentUid === props.createrUid && (
             <>
               <BlueButtonNomal label={'編集'} onClick={editHandleClick} />
@@ -179,7 +173,7 @@ const QuestionList = (props) => {
         openDialog={openDialog}
         setOpenDialog={setOpenDialog}
       />
-    </div>
+    </>
   )
 }
 export default QuestionList

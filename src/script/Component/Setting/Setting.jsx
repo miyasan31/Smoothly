@@ -31,6 +31,7 @@ const useStyles = makeStyles((theme) => ({
   },
   flex: {
     display: 'block',
+    padding: '25px 0',
     [theme.breakpoints.up('sm')]: {
       display: 'flex',
     },
@@ -66,33 +67,27 @@ const Setting = () => {
       <AppBarSubHeader subtitle={'設定'} />
 
       <div className="contents_style">
-        <Paper className="paper margin_btm_20px">
+        <Paper className="paper mg_btm_20px">
           <Typography variant="h6" className="title_underline">
             プロフィール
           </Typography>
-          <div className="space_25px"></div>
-
           <div className={classes.flex}>
             <div>
-              <Typography variant="body2" className="title">
+              <Typography variant="body2" className="label pd_btm_10px">
                 アイコン
               </Typography>
-              <div className="space_10px"></div>
               <Avatar className={classes.icon} src={icon} />
-              <div className="space_20px"></div>
             </div>
-
             <div>
-              <Typography variant="body2" className="title">
+              <Typography variant="body2" className="label pd_y_10px">
                 自己紹介文
               </Typography>
-              <div className="space_10px"></div>
               <Typography variant="body2" style={{ whiteSpace: 'pre-wrap' }}>
                 {prof !== '' ? prof : 'プロフィールを登録しましょう！'}
               </Typography>
             </div>
           </div>
-          <div className="right">
+          <div className="right pd_top_10px">
             <BlueButton
               label={'編集'}
               onClick={() => dispatch(push('/setting/prof'))}
@@ -100,19 +95,16 @@ const Setting = () => {
           </div>
         </Paper>
 
-        <Paper className="paper margin_btm_20px">
+        <Paper className="paper mg_btm_20px">
           <Typography variant="h6" className="title_underline">
             メールアドレス・パスワード
           </Typography>
-          <div className="space_25px"></div>
-
-          <Typography variant="body2" className="title">
+          <Typography variant="body2" className="label pd_top_10px">
             登録中のメールアドレス
           </Typography>
-          <div className="space_10px"></div>
-
-          <Typography variant="body1">{mail}</Typography>
-
+          <Typography variant="body1" className="pd_top_10px">
+            {mail}
+          </Typography>
           <div className="right">
             <BlueButton
               label={'変更'}
@@ -121,13 +113,11 @@ const Setting = () => {
           </div>
         </Paper>
 
-        <Paper className="paper margin_btm_20px">
+        <Paper className="paper mg_btm_20px">
           <Typography variant="h6" className="title_underline">
             サインアウト
           </Typography>
-          <div className="space_15px"></div>
-
-          <div className="right">
+          <div className="right pd_top_10px">
             <BlueButton
               label={'サインアウト'}
               onClick={() => dispatch(signOut())}
@@ -135,13 +125,11 @@ const Setting = () => {
           </div>
         </Paper>
 
-        <Paper className="paper margin_btm_20px">
+        <Paper className="paper mg_btm_20px">
           <Typography variant="h6" className="title_underline">
             退会
           </Typography>
-          <div className="space_15px"></div>
-
-          <div className="right">
+          <div className="right pd_top_10px">
             <PinkButton
               label={'退会手続きへ'}
               onClick={() => dispatch(push('/setting/delete'))}

@@ -137,23 +137,20 @@ export const createMissison = (
 
 export const deleteMission = (mid) => {
   return async (dispatch, getState) => {
-    const check = window.confirm('削除してよろしいですか？')
-    if (check) {
-      missionsRef
-        .doc(mid)
-        .delete()
-        .then(() => {
-          storage.ref('mission_files').child(mid).delete()
-          const prevMissions = getState().missions.list
-          const nextMissions = prevMissions.filter(
-            (mission) => mission.mid !== mid
-          )
-          dispatch(deleteMissionsAction(nextMissions))
-        })
-        .catch((error) => {
-          throw new Error(error)
-        })
-    }
+    missionsRef
+      .doc(mid)
+      .delete()
+      .then(() => {
+        storage.ref('mission_files').child(mid).delete()
+        const prevMissions = getState().missions.list
+        const nextMissions = prevMissions.filter(
+          (mission) => mission.mid !== mid
+        )
+        dispatch(deleteMissionsAction(nextMissions))
+      })
+      .catch((error) => {
+        throw new Error(error)
+      })
   }
 }
 

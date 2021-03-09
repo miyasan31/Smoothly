@@ -106,21 +106,18 @@ export const createPost = (pid, destination, title, item, file, fileName) => {
 
 export const deletePost = (pid) => {
   return async (dispatch, getState) => {
-    const check = window.confirm('削除してよろしいですか？')
-    if (check) {
-      postsRef
-        .doc(pid)
-        .delete()
-        .then(() => {
-          storage.ref('post_files').child(pid).delete()
-          const prevPosts = getState().posts.list
-          const nextPosts = prevPosts.filter((post) => post.pid !== pid)
-          dispatch(deletePostsAction(nextPosts))
-        })
-        .catch((error) => {
-          throw new Error(error)
-        })
-    }
+    postsRef
+      .doc(pid)
+      .delete()
+      .then(() => {
+        storage.ref('post_files').child(pid).delete()
+        const prevPosts = getState().posts.list
+        const nextPosts = prevPosts.filter((post) => post.pid !== pid)
+        dispatch(deletePostsAction(nextPosts))
+      })
+      .catch((error) => {
+        throw new Error(error)
+      })
   }
 }
 

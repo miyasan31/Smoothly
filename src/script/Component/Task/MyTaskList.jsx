@@ -66,7 +66,7 @@ const MyTaskList = (props) => {
               </ListItemIcon>
               <ListItemText
                 primary={task.title}
-                secondary={`${timeChange(task.startDate)}-${timeChange(
+                secondary={`${timeChange(task.startDate)} ー ${timeChange(
                   task.endDate
                 )}`}
               />
@@ -80,7 +80,7 @@ const MyTaskList = (props) => {
                   <EditSharpIcon />
                 </IconButton>
               )}
-              <div className="padding_left_10px">
+              <div className="pd_left_10px">
                 <IconButton
                   edge="end"
                   aria-label="comments"

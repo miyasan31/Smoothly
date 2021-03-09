@@ -2,6 +2,7 @@ import React, { useState, useCallback, useEffect } from 'react'
 import { useDispatch } from 'react-redux'
 import { push } from 'connected-react-router'
 
+import { CheckViewDialog } from '../render'
 import {
   AppBarSubHeader,
   BlueButton,
@@ -28,6 +29,7 @@ const PostEdit = () => {
   const [file, setFile] = useState('')
   const [fileName, setFileName] = useState('')
   const [preview, setPreview] = useState('')
+  const [openDialog, setOpenDialog] = useState(false)
 
   useEffect(() => {
     // URLからpidを取得
@@ -94,6 +96,10 @@ const PostEdit = () => {
   const updateHandleClick = () => {
     dispatch(createPost(pid, destination, title, item, file, fileName))
   }
+  // 確認ダイアログ表示
+  const checkHandleClick = () => {
+    setOpenDialog(true)
+  }
 
   return (
     <section className="main">
@@ -105,15 +111,14 @@ const PostEdit = () => {
 
       <div className="contents_style">
         <Paper className="paper">
-          <Typography className="label">投稿先</Typography>
+          <Typography className="label pd_y_10px">投稿先</Typography>
           <SelectBox
             options={send}
             value={destination}
             select={setDestination}
           />
-          <div className="space_15px"></div>
 
-          <Typography className="label">タイトル</Typography>
+          <Typography className="label pd_top_10px">タイトル</Typography>
           <BlueInput
             label={null}
             type={'text'}
@@ -123,9 +128,8 @@ const PostEdit = () => {
             defaultValue={title}
             onChange={inputTitle}
           />
-          <div className="space_15px"></div>
 
-          <Typography className="label">内容</Typography>
+          <Typography className="label pd_top_10px">内容</Typography>
           <BlueInput
             label={null}
             type={'text'}
@@ -135,10 +139,9 @@ const PostEdit = () => {
             defaultValue={item}
             onChange={inputItem}
           />
-          <div className="space_15px"></div>
 
-          <Typography className="label">添付ファイル</Typography>
-          <div className="space_10px"></div>
+          <Typography className="label pd_y_10px">添付ファイル</Typography>
+
           {fileName ? (
             <FileDelete onClick={deleteFile} label={'ファイルを削除'} />
           ) : (
@@ -150,27 +153,32 @@ const PostEdit = () => {
           )}
 
           {fileName && checkExt(fileName) ? (
-            <div>
-              <div className="padding_20px">{fileName}</div>
+            <>
+              <div className="pd_20px">{fileName}</div>
               <img src={preview} alt="ファイル" className="full_width" />
-            </div>
+            </>
           ) : (
-            <div>
-              <div className="padding_20px">{fileName}</div>
-            </div>
+            <div className="pd_20px">{fileName}</div>
           )}
 
-          <div className="right margin_top_20px">
-            <span>
-              <BlueButtonNomal label={'キャンセル'} onClick={backHandleClick} />
-              <BlueButton
-                label={pid === '' ? '投稿' : '変更'}
-                onClick={updateHandleClick}
-              />
-            </span>
+          <div className="right mg_top_20px">
+            <BlueButtonNomal label={'キャンセル'} onClick={backHandleClick} />
+            <BlueButton label="確認" onClick={checkHandleClick} />
           </div>
         </Paper>
       </div>
+
+      <CheckViewDialog
+        destination={destination}
+        title={title}
+        item={item}
+        file={file}
+        fileName={fileName}
+        preview={preview}
+        openDialog={openDialog}
+        setOpenDialog={setOpenDialog}
+        updateHandleClick={updateHandleClick}
+      />
     </section>
   )
 }

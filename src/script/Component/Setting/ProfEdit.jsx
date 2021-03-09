@@ -68,10 +68,9 @@ const ProfEdit = () => {
       <AppBarSubHeader subtitle={'プロフィール編集'} />
       <div className="contents_style">
         <Paper className="paper">
-          <Typography variant="body1" className="label">
+          <Typography variant="body1" className="label pd_y_10px">
             アイコン
           </Typography>
-          <div className="space_15px"></div>
           <div className="image">
             {inputImg === '' ? (
               <IconUpload
@@ -83,12 +82,10 @@ const ProfEdit = () => {
               <IconCropper getBlob={getBlob} inputImg={inputImg} />
             )}
           </div>
-          <div className="space_15px"></div>
 
-          <Typography variant="body1" className="label">
+          <Typography variant="body1" className="label pd_y_10px">
             自己紹介文
           </Typography>
-          <div className="space_15px"></div>
           <BlueInputOutlined
             fullWidth={true}
             required={true}
@@ -98,7 +95,7 @@ const ProfEdit = () => {
             onChange={inputProf}
           />
 
-          <div className="right margin_top_20px">
+          <div className="right mg_top_20px">
             <BlueButtonNomal label={'キャンセル'} onClick={backHandleClick} />
             <BlueButton label={'保存'} onClick={updateHandleClick} />
           </div>
