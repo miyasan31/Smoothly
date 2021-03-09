@@ -5,7 +5,7 @@ import clsx from 'clsx'
 import { format } from 'date-fns'
 import { ja } from 'date-fns/locale'
 
-import { ProfDialog } from '../render'
+import { ProfDialog, ActionCheckDialog } from '../render'
 import { BlueButtonNomal } from '../../MaterialUi/materialui'
 import { checkExt } from '../../../functions/function'
 import { db } from '../../../firebase/firebase'
@@ -49,15 +49,14 @@ const PostList = (props) => {
   const [className, setClassName] = useState('')
   const [icon, setIcon] = useState('')
   const [expanded, setExpanded] = useState(false)
-  const [openDialog, setOpenDialog] = useState(false)
+  const [openProfDialog, setOpenProfDialog] = useState(false)
+  const [openDeleteCheckDialog, setOpenDeleteCheckDialog] = useState(false)
 
   // 時間を正規表現
-  const time = props.updateTime.toDate()
-  const updateTime = format(time, 'yyyy年M月dd日 H:mm', { locale: ja })
-  // プロフの表示
-  const IconViewHandleClick = () => {
-    setOpenDialog(true)
-  }
+  const updateTime = props.updateTime.toDate()
+  const updateDateTime = format(updateTime, 'yyyy年M月dd日 H:mm', {
+    locale: ja,
+  })
   // 編集ボタンクリック
   const editHandleClick = () => {
     dispatch(push('/post/edit/' + props.pid))
@@ -65,6 +64,15 @@ const PostList = (props) => {
   // 削除ボタンクリック
   const deleteHandleClick = () => {
     dispatch(deletePost(props.pid))
+    setOpenDeleteCheckDialog(false)
+  }
+  // プロフの表示
+  const IconViewHandleClick = () => {
+    setOpenProfDialog(true)
+  }
+  // 確認ダイアログ表示
+  const deleteCheckHandleClick = () => {
+    setOpenDeleteCheckDialog(true)
   }
   // ファイル表示ボタンクリック&矢印アイコンの向き変更
   const expandHandleClick = () => {
@@ -124,7 +132,7 @@ const PostList = (props) => {
               {className} ｜ {name}
             </Typography>
           }
-          subheader={`更新日時：${updateTime}`}
+          subheader={`更新日時：${updateDateTime}`}
         />
 
         <CardContent>
@@ -151,7 +159,10 @@ const PostList = (props) => {
           {props.currentUid === props.createrUid && (
             <>
               <BlueButtonNomal label={'編集'} onClick={editHandleClick} />
-              <BlueButtonNomal label={'削除'} onClick={deleteHandleClick} />
+              <BlueButtonNomal
+                label={'削除'}
+                onClick={deleteCheckHandleClick}
+              />
             </>
           )}
 
@@ -186,8 +197,15 @@ const PostList = (props) => {
 
       <ProfDialog
         uid={props.createrUid}
-        openDialog={openDialog}
-        setOpenDialog={setOpenDialog}
+        openDialog={openProfDialog}
+        setOpenDialog={setOpenProfDialog}
+      />
+
+      <ActionCheckDialog
+        text={'削除してもよろしいですか？'}
+        openDialog={openDeleteCheckDialog}
+        setOpenDialog={setOpenDeleteCheckDialog}
+        actionHandleClick={deleteHandleClick}
       />
     </>
   )

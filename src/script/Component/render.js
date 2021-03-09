@@ -4,11 +4,12 @@ export { default as ReIssue } from './Top/ReIssue.jsx'
 
 export { default as Header } from './Layout/Header.jsx'
 export { default as Nav } from './Layout/Nav.jsx'
+export { default as CheckViewDialog } from './Layout/CheckViewDialog.jsx'
+export { default as ActionCheckDialog } from './Layout/ActionCheckDialog.jsx'
 
 export { default as Post } from './Post/Post.jsx'
 export { default as PostList } from './Post/PostList.jsx'
 export { default as PostEdit } from './Post/PostEdit.jsx'
-export { default as CheckViewDialog } from './Layout/CheckViewDialog.jsx'
 
 export { default as Chat } from './Chat/Chat.jsx'
 export { default as ChatRoomList } from './Chat/ChatRoomList.jsx'

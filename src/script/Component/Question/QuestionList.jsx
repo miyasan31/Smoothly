@@ -4,7 +4,7 @@ import { useDispatch } from 'react-redux'
 import { format } from 'date-fns'
 import { ja } from 'date-fns/locale'
 
-import { ProfDialog } from '../render'
+import { ProfDialog, ActionCheckDialog } from '../render'
 import { PinkButton, BlueButtonNomal } from '../../MaterialUi/materialui'
 import { db } from '../../../firebase/firebase'
 import { deleteQuestions } from '../../../reducks/questions/operations'
@@ -22,20 +22,17 @@ const QuestionList = (props) => {
   const [name, setName] = useState('')
   const [className, setClassName] = useState('')
   const [icon, setIcon] = useState('')
-  const [openDialog, setOpenDialog] = useState(false)
   const [submitCheck, setSubmitCheck] = useState(false)
+  const [openProfDialog, setOpenProfDialog] = useState(false)
+  const [openDeleteCheckDialog, setOpenDeleteCheckDialog] = useState(false)
 
   // 時間を正規表現
-  const updateTime = props.updateTime
-  const u_date = updateTime.toDate()
-  const updateDateTime = format(u_date, 'yyyy年M月dd日 H:mm', { locale: ja })
-  const limitTime = props.limitTime
-  const l_date = limitTime.toDate()
-  const limitDateTime = format(l_date, 'yyyy年M月dd日 H:mm', { locale: ja })
-  // プロフの表示
-  const IconViewHandleClick = () => {
-    setOpenDialog(true)
-  }
+  const updateTime = props.updateTime.toDate()
+  const updateDateTime = format(updateTime, 'yyyy年M月dd日 H:mm', {
+    locale: ja,
+  })
+  const limitTime = props.limitTime.toDate()
+  const limitDateTime = format(limitTime, 'yyyy年M月dd日 H:mm', { locale: ja })
   // 編集ボタンクリック
   const editHandleClick = () => {
     dispatch(push('/question/edit/' + props.qid))
@@ -51,6 +48,14 @@ const QuestionList = (props) => {
   // 結果ボタンクリック
   const analyticsHandleClick = () => {
     dispatch(push('/question/analytics/' + props.qid))
+  }
+  // プロフの表示
+  const IconViewHandleClick = () => {
+    setOpenProfDialog(true)
+  }
+  // 確認ダイアログ表示
+  const deleteCheckHandleClick = () => {
+    setOpenDeleteCheckDialog(true)
   }
   // 投稿者の情報を取得
   useEffect(() => {
@@ -70,7 +75,6 @@ const QuestionList = (props) => {
           }
         })
     }
-
     db.collection('questions')
       .doc(props.qid)
       .collection('answers')
@@ -149,7 +153,10 @@ const QuestionList = (props) => {
           {props.currentUid === props.createrUid && (
             <>
               <BlueButtonNomal label={'編集'} onClick={editHandleClick} />
-              <BlueButtonNomal label={'削除'} onClick={deleteHandleClick} />
+              <BlueButtonNomal
+                label={'削除'}
+                onClick={deleteCheckHandleClick}
+              />
             </>
           )}
           <div className="flex_grow"></div>
@@ -170,8 +177,15 @@ const QuestionList = (props) => {
 
       <ProfDialog
         uid={props.createrUid}
-        openDialog={openDialog}
-        setOpenDialog={setOpenDialog}
+        openDialog={openProfDialog}
+        setOpenDialog={setOpenProfDialog}
+      />
+
+      <ActionCheckDialog
+        text={'削除してもよろしいですか？'}
+        openDialog={openDeleteCheckDialog}
+        setOpenDialog={setOpenDeleteCheckDialog}
+        actionHandleClick={deleteHandleClick}
       />
     </>
   )

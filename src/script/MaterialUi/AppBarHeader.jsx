@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { push } from 'connected-react-router'
 import { Link } from 'react-router-dom'
 
+import { ActionCheckDialog } from '../Component/render'
 import { ClosableDrawer } from './materialui.js'
 import { db } from '../../firebase/firebase'
 import { getUserId } from '../../reducks/users/selectors'
@@ -96,6 +97,7 @@ const AppBarHeader = (props) => {
   const [icon, setIcon] = useState('')
   const [anchorEl, setAnchorEl] = useState(null)
   const [sideBarOpen, setSideBarOpen] = useState(false)
+  const [openCheckDialog, setOpenCheckDialog] = useState(false)
 
   const isMenuOpen = Boolean(anchorEl)
 
@@ -119,7 +121,13 @@ const AppBarHeader = (props) => {
 
   const handleSignOut = () => {
     handleMenuClose()
+    setOpenCheckDialog(false)
     dispatch(signOut())
+  }
+
+  const checkHandleClick = () => {
+    handleMenuClose()
+    setOpenCheckDialog(true)
   }
 
   const handleDrawerToggle = useCallback(
@@ -162,7 +170,7 @@ const AppBarHeader = (props) => {
     >
       <MenuItem onClick={handleProfEditPush}>プロフィール編集</MenuItem>
       <MenuItem onClick={handleSettingPush}>ユーザー設定</MenuItem>
-      <MenuItem onClick={handleSignOut}>サインアウト</MenuItem>
+      <MenuItem onClick={checkHandleClick}>サインアウト</MenuItem>
     </Menu>
   )
 
@@ -217,6 +225,14 @@ const AppBarHeader = (props) => {
       </AppBar>
       <ClosableDrawer open={sideBarOpen} onClose={handleDrawerToggle} />
       {renderMenu}
+
+      <ActionCheckDialog
+        text={'サインアウトしてもよろしいですか？'}
+        buttonLabel={'サインアウト'}
+        openDialog={openCheckDialog}
+        setOpenDialog={setOpenCheckDialog}
+        actionHandleClick={handleSignOut}
+      />
     </>
   )
 }

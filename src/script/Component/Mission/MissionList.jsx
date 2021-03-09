@@ -5,7 +5,7 @@ import clsx from 'clsx'
 import { format } from 'date-fns'
 import { ja } from 'date-fns/locale'
 
-import { ProfDialog } from '../render'
+import { ProfDialog, ActionCheckDialog } from '../render'
 import { PinkButton, BlueButtonNomal } from '../../MaterialUi/materialui'
 import { checkExt } from '../../../functions/function'
 import { db } from '../../../firebase/firebase'
@@ -49,8 +49,9 @@ const MissionList = (props) => {
   const [className, setClassName] = useState('')
   const [icon, setIcon] = useState('')
   const [expanded, setExpanded] = useState(false)
-  const [openDialog, setOpenDialog] = useState(false)
   const [submitCheck, setSubmitCheck] = useState(false)
+  const [openProfDialog, setOpenProfDialog] = useState(false)
+  const [openDeleteCheckDialog, setOpenDeleteCheckDialog] = useState(false)
 
   // 時間を正規表現
   const updateTime = props.updateTime.toDate()
@@ -59,10 +60,6 @@ const MissionList = (props) => {
   })
   const limitTime = props.limitTime.toDate()
   const limitDateTime = format(limitTime, 'yyyy年M月dd日 H:mm', { locale: ja })
-  // プロフの表示
-  const IconViewHandleClick = () => {
-    setOpenDialog(true)
-  }
   // 編集ボタンクリック
   const editHandleClick = () => {
     dispatch(push('/mission/edit/' + props.mid))
@@ -70,10 +67,7 @@ const MissionList = (props) => {
   // 削除ボタンクリック
   const deleteHandleClick = () => {
     dispatch(deleteMission(props.mid))
-  }
-  // ファイル表示ボタンクリック&矢印アイコンの向き変更
-  const expandHandleClick = () => {
-    setExpanded(!expanded)
+    setOpenDeleteCheckDialog(false)
   }
   // 提出ボタンクリック
   const answerHandleClick = () => {
@@ -82,6 +76,18 @@ const MissionList = (props) => {
   // 集計ボタンクリック
   const analyticsHandleClick = () => {
     dispatch(push('/mission/collect/' + props.mid))
+  }
+  // プロフの表示
+  const IconViewHandleClick = () => {
+    setOpenProfDialog(true)
+  }
+  // 確認ダイアログ表示
+  const deleteCheckHandleClick = () => {
+    setOpenDeleteCheckDialog(true)
+  }
+  // ファイル表示ボタンクリック&矢印アイコンの向き変更
+  const expandHandleClick = () => {
+    setExpanded(!expanded)
   }
   // 投稿者の情報を取得
   useEffect(() => {
@@ -179,7 +185,10 @@ const MissionList = (props) => {
           {props.currentUid === props.createrUid && (
             <>
               <BlueButtonNomal label={'編集'} onClick={editHandleClick} />
-              <BlueButtonNomal label={'削除'} onClick={deleteHandleClick} />
+              <BlueButtonNomal
+                label={'削除'}
+                onClick={deleteCheckHandleClick}
+              />
             </>
           )}
 
@@ -228,8 +237,15 @@ const MissionList = (props) => {
 
       <ProfDialog
         uid={props.createrUid}
-        openDialog={openDialog}
-        setOpenDialog={setOpenDialog}
+        openDialog={openProfDialog}
+        setOpenDialog={setOpenProfDialog}
+      />
+
+      <ActionCheckDialog
+        text={'削除してもよろしいですか？'}
+        openDialog={openDeleteCheckDialog}
+        setOpenDialog={setOpenDeleteCheckDialog}
+        actionHandleClick={deleteHandleClick}
       />
     </>
   )

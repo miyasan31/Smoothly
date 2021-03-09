@@ -76,15 +76,16 @@ const QuestionEdit = () => {
   const backHandleClick = () => {
     dispatch(push('/question'))
   }
-  // 確認ダイアログ表示
-  const checkHandleClick = () => {
-    setOpenDialog(true)
-  }
   // 投稿ボタンクリック
   const updateHandleClick = () => {
     dispatch(
       createQuestions(qid, destination, title, item, limitTime, questionData)
     )
+    setOpenDialog(false)
+  }
+  // 確認ダイアログ表示
+  const checkHandleClick = () => {
+    setOpenDialog(true)
   }
 
   return (

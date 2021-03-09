@@ -257,7 +257,7 @@ export const createProf = (uid, prof, blob) => {
       .set(data, { merge: true })
       .then(() => {
         if (blob === null) {
-          dispatch(push('setting'))
+          dispatch(push('/setting'))
         } else {
           dispatch(createIcon(uid, blob))
         }

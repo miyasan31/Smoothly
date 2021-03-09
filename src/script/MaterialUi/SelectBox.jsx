@@ -19,10 +19,9 @@ const SelectBox = (props) => {
   const classes = useStyles()
 
   return (
-    <>
-      <InputLabel>{props.label}</InputLabel>
+    <FormControl fullWidth>
+      {props.label && <InputLabel>{props.label}</InputLabel>}
       <Select
-        fullWidth
         value={props.value}
         required={props.required}
         onChange={(e) => props.select(e.target.value)}
@@ -35,7 +34,7 @@ const SelectBox = (props) => {
           )
         })}
       </Select>
-    </>
+    </FormControl>
   )
 }
 

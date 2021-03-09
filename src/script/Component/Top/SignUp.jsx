@@ -121,6 +121,7 @@ const SignUp = () => {
               value={userName}
               onChange={inputUserName}
             />
+            <div className="pd_top_10px"></div>
             <SelectBox
               options={genders}
               label={'性別'}
@@ -138,12 +139,15 @@ const SignUp = () => {
               onChange={inputUserNumber}
             />
             {userValue !== 'teacher' ? (
-              <SelectBox
-                options={class_name}
-                label={'クラス記号'}
-                value={className}
-                select={setClassName}
-              />
+              <>
+                <div className="pd_top_10px"></div>
+                <SelectBox
+                  options={class_name}
+                  label={'クラス記号'}
+                  value={className}
+                  select={setClassName}
+                />
+              </>
             ) : null}
             <BlueInput
               fullWidth
@@ -169,6 +173,7 @@ const SignUp = () => {
               value={confirmPassword}
               onChange={inputConfirmPassword}
             />
+
             <div className="space_25px"></div>
 
             <OrangeButton fullWidth label={'新規登録'} onClick={handleClick} />

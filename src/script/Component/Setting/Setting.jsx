@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { push } from 'connected-react-router'
 import { useDispatch, useSelector } from 'react-redux'
 
+import { ActionCheckDialog } from '../render'
 import { db } from '../../../firebase/firebase'
 import { getUserId } from '../../../reducks/users/selectors'
 import {
@@ -46,7 +47,17 @@ const Setting = () => {
   const [prof, setProf] = useState('')
   const [icon, setIcon] = useState('')
   const [mail, setMail] = useState('')
+  const [openCheckDialog, setOpenCheckDialog] = useState(false)
 
+  // サインアウトボタンクリック
+  const signOutHandleClick = () => {
+    setOpenCheckDialog(false)
+    dispatch(signOut())
+  }
+  // 確認ダイアログ表示
+  const checkHandleClick = () => {
+    setOpenCheckDialog(true)
+  }
   // ユーザー情報を取得
   useEffect(() => {
     db.collection('users')
@@ -118,10 +129,7 @@ const Setting = () => {
             サインアウト
           </Typography>
           <div className="right pd_top_10px">
-            <BlueButton
-              label={'サインアウト'}
-              onClick={() => dispatch(signOut())}
-            />
+            <BlueButton label={'サインアウト'} onClick={checkHandleClick} />
           </div>
         </Paper>
 
@@ -137,6 +145,14 @@ const Setting = () => {
           </div>
         </Paper>
       </div>
+
+      <ActionCheckDialog
+        text={'サインアウトしてもよろしいですか？'}
+        buttonLabel={'サインアウト'}
+        openDialog={openCheckDialog}
+        setOpenDialog={setOpenCheckDialog}
+        actionHandleClick={signOutHandleClick}
+      />
     </section>
   )
 }

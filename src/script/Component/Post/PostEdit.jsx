@@ -95,6 +95,7 @@ const PostEdit = () => {
   // 投稿ボタンクリック
   const updateHandleClick = () => {
     dispatch(createPost(pid, destination, title, item, file, fileName))
+    setOpenDialog(false)
   }
   // 確認ダイアログ表示
   const checkHandleClick = () => {
