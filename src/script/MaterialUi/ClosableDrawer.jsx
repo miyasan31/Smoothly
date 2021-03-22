@@ -158,14 +158,15 @@ const ClosableDrawer = (props) => {
                 <ListItemText className={classes.item} primary={menu.label} />
               </ListItem>
             ))}
+            <Divider />
             <ListItem button key="logout" onClick={() => dispatch(signOut())}>
               <ListItemIcon>
                 <Exit className={classes.icon} />
               </ListItemIcon>
               <ListItemText className={classes.item} primary="ログアウト" />
+              <Divider />
             </ListItem>
           </List>
-          <Divider />
         </div>
       </Drawer>
     </nav>

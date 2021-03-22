@@ -15,6 +15,7 @@ const BlueInput = (props) => {
 
   return (
     <TextField
+      error={props.error}
       className={classes.input}
       label={props.label}
       type={props.type}

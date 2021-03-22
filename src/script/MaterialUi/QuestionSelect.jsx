@@ -22,6 +22,7 @@ const QuestionSelect = (props) => {
     <FormControl className={classes.formControl}>
       <InputLabel>タイプ</InputLabel>
       <Select
+        error={props.error}
         required
         value={props.value}
         onChange={(e) => props.select(e.target.value)}

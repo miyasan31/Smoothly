@@ -23,6 +23,7 @@ const DateTimePicker = (props) => {
     <MuiPickersUtilsProvider utils={DateFnsUtils} locale={jaLocale}>
       <Grid container justify="space-around">
         <KeyboardDateTimePicker
+          error={props.error}
           className={classes.date}
           disablePast={true}
           minDate={props.minDate}

@@ -16,6 +16,7 @@ const QuestionInput = (props) => {
 
   return (
     <TextField
+      error={props.error}
       className={classes.input}
       multiline
       label="質問内容"

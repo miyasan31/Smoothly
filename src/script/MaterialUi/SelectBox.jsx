@@ -22,6 +22,7 @@ const SelectBox = (props) => {
     <FormControl fullWidth>
       {props.label && <InputLabel>{props.label}</InputLabel>}
       <Select
+        error={props.error}
         value={props.value}
         required={props.required}
         onChange={(e) => props.select(e.target.value)}

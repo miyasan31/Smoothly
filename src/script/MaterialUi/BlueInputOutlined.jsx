@@ -16,6 +16,7 @@ const BlueInputOutlined = (props) => {
       rowsMax={props.rowMax}
       value={props.value}
       defaultValue={props.defaultValue}
+      error={props.error}
       onChange={props.onChange}
       placeholder={props.placeholder}
     />
