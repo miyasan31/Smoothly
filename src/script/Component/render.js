@@ -4,6 +4,7 @@ export { default as ReIssue } from './Top/ReIssue.jsx'
 
 export { default as Header } from './Layout/Header.jsx'
 export { default as Nav } from './Layout/Nav.jsx'
+export { default as ProfDialog } from './Layout/ProfDialog.jsx'
 export { default as CheckViewDialog } from './Layout/CheckViewDialog.jsx'
 export { default as ActionCheckDialog } from './Layout/ActionCheckDialog.jsx'
 
@@ -24,6 +25,7 @@ export { default as Schedule } from './Schedule/Schedule.jsx'
 
 export { default as MyTask } from './Task/MyTask.jsx'
 export { default as MyTaskList } from './Task/MyTaskList.jsx'
+export { default as TaskTab } from './Task/TaskTab.jsx'
 export { default as MyTaskEdit } from './Task/MyTaskEdit.jsx'
 
 export { default as Mission } from './Mission/Mission.jsx'
@@ -44,7 +46,6 @@ export { default as AnalyticsList } from './Question/AnalyticsList.jsx'
 export { default as Setting } from './Setting/Setting.jsx'
 export { default as IconCropper } from './Setting/IconCropper.jsx'
 export { default as ProfEdit } from './Setting/ProfEdit.jsx'
-export { default as ProfDialog } from './Setting/ProfDialog.jsx'
 export { default as AuthEdit } from './Setting/AuthEdit.jsx'
 export { default as UserDelete } from './Setting/UserDelete.jsx'
 
