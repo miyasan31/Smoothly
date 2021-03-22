@@ -109,8 +109,16 @@ const QuestionComponent = (props) => {
         ))}
 
       <div className={classes.flex}>
-        <QuestionInput value={questionItem} onChange={inputItem} />
-        <QuestionSelect value={questionType} select={setQuestionType} />
+        <QuestionInput
+          error={props.error}
+          value={questionItem}
+          onChange={inputItem}
+        />
+        <QuestionSelect
+          error={props.error}
+          value={questionType}
+          select={setQuestionType}
+        />
       </div>
 
       <GreyButton

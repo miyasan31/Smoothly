@@ -77,6 +77,14 @@ const Setting = () => {
     <section className="main">
       <AppBarSubHeader subtitle={'設定'} />
 
+      <ActionCheckDialog
+        text={'サインアウトしてもよろしいですか？'}
+        buttonLabel={'サインアウト'}
+        openDialog={openCheckDialog}
+        setOpenDialog={setOpenCheckDialog}
+        actionHandleClick={signOutHandleClick}
+      />
+
       <div className="contents_style">
         <Paper className="paper mg_btm_20px">
           <Typography variant="h6" className="title_underline">
@@ -145,14 +153,6 @@ const Setting = () => {
           </div>
         </Paper>
       </div>
-
-      <ActionCheckDialog
-        text={'サインアウトしてもよろしいですか？'}
-        buttonLabel={'サインアウト'}
-        openDialog={openCheckDialog}
-        setOpenDialog={setOpenCheckDialog}
-        actionHandleClick={signOutHandleClick}
-      />
     </section>
   )
 }

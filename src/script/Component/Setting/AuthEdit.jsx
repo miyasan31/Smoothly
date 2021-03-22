@@ -8,6 +8,7 @@ import {
   BlueButtonNomal,
   BlueInput,
   SelectBox,
+  ErrorAlert,
 } from '../../MaterialUi/materialui'
 import { updateEmail, updatePassword } from '../../../reducks/users/operations'
 
@@ -22,6 +23,7 @@ const AuthEdit = () => {
   const [newEmail, setNewEmail] = useState('')
   const [password, setePassword] = useState('')
   const [newPassword, setNewPassword] = useState('')
+  const [openAlert, setOpenAlert] = useState(false)
 
   // 登録メールアドレス入力イベント
   const inputEmail = useCallback(
@@ -57,20 +59,26 @@ const AuthEdit = () => {
   }
   // 変更ボタンクリック
   const authUpdateHandleClick = () => {
-    if (choice === 'email') {
-      dispatch(updateEmail(email, password, newEmail))
+    if (choice === 'password' && !(email && password && newPassword)) {
+      setOpenAlert(true)
     } else if (choice === 'password') {
+      setOpenAlert(false)
       dispatch(updatePassword(email, password, newPassword))
-    } else {
-      alert('変更項目を選択して下さい。')
-      return
+    } else if (choice === 'email' && !(email && newEmail && password)) {
+      setOpenAlert(true)
+    } else if (choice === 'email') {
+      setOpenAlert(false)
+      dispatch(updateEmail(email, password, newEmail))
     }
   }
 
   return (
     <section className="main">
       <AppBarSubHeader subtitle={'メールアドレス・パスワード変更'} />
+
       <div className="contents_style">
+        {openAlert ? <ErrorAlert setOpenAlert={setOpenAlert} /> : null}
+
         <Paper className="paper">
           <Typography className="label pd_y_10px">変更項目</Typography>
           <SelectBox options={choiceData} value={choice} select={setChoice} />
@@ -85,6 +93,7 @@ const AuthEdit = () => {
             multiline={true}
             autoFocus={false}
             value={email}
+            error={!email && openAlert ? true : false}
             onChange={inputEmail}
           />
 
@@ -100,6 +109,7 @@ const AuthEdit = () => {
                 multiline={true}
                 autoFocus={false}
                 value={newEmail}
+                error={!newEmail && openAlert ? true : false}
                 onChange={inputNewEmail}
               />
             </>
@@ -115,6 +125,7 @@ const AuthEdit = () => {
             multiline={true}
             autoFocus={false}
             value={password}
+            error={!password && openAlert ? true : false}
             onChange={inputPassword}
           />
 
@@ -130,6 +141,7 @@ const AuthEdit = () => {
                 multiline={true}
                 autoFocus={false}
                 value={newPassword}
+                error={!newPassword && openAlert ? true : false}
                 onChange={inputNewPassword}
               />
             </>

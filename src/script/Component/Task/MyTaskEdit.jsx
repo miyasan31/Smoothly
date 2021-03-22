@@ -8,6 +8,7 @@ import {
   DateTimePicker,
   BlueButton,
   BlueButtonNomal,
+  ErrorAlert,
 } from '../../MaterialUi/materialui'
 import { db } from '../../../firebase/firebase'
 import { getUserId } from '../../../reducks/users/selectors'
@@ -37,6 +38,7 @@ const MyTaskEdit = () => {
   const [title, setTitle] = useState('')
   const [startDate, setStartDate] = useState(null)
   const [endDate, setEndeDate] = useState(null)
+  const [openAlert, setOpenAlert] = useState(false)
 
   useEffect(() => {
     // URLからtidを取得
@@ -90,19 +92,23 @@ const MyTaskEdit = () => {
   }
   // 保存ボタンクリック
   const createHandleClick = () => {
-    dispatch(addTask(tid, title, startDate, endDate))
+    if (title && startDate && endDate) {
+      setOpenAlert(false)
+      dispatch(addTask(tid, title, startDate, endDate))
+    } else {
+      setOpenAlert(true)
+    }
   }
-  console.log(tid)
 
   return (
     <section className="main">
-      {tid === '' ? (
-        <AppBarSubHeader subtitle={'タスク ー新規ー'} />
-      ) : (
-        <AppBarSubHeader subtitle={'タスク ー編集ー'} />
-      )}
+      <AppBarSubHeader
+        subtitle={tid ? 'タスク　ー編集ー' : 'タスク　ー新規ー'}
+      />
 
       <div className="contents_style">
+        {openAlert ? <ErrorAlert setOpenAlert={setOpenAlert} /> : null}
+
         <Paper className="paper">
           <Typography className="label pd_top_10px">タスク名</Typography>
           <BlueInput
@@ -112,6 +118,7 @@ const MyTaskEdit = () => {
             multiline={true}
             value={title}
             defaultValue={title}
+            error={!title && openAlert ? true : false}
             onChange={inputTitle}
           />
 
@@ -122,6 +129,7 @@ const MyTaskEdit = () => {
                 fullWidth={true}
                 ampm={false}
                 value={startDate}
+                error={!startDate && openAlert ? true : false}
                 onChange={inputStartDate}
               />
             </div>
@@ -133,6 +141,7 @@ const MyTaskEdit = () => {
                 ampm={false}
                 value={endDate}
                 minDate={startDate}
+                error={!endDate && openAlert ? true : false}
                 onChange={inputEndDate}
               />
               <Typography

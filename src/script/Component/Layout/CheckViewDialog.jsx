@@ -107,6 +107,9 @@ const CheckViewDialog = (props) => {
       onClose={handleClose}
     >
       <div className={classes.dialog}>
+        <Typography variant="h6" className="pd_y_10px error_message">
+          この内容で投稿しますか？
+        </Typography>
         <Card className="mg_btm_10px">
           <CardHeader
             avatar={

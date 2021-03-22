@@ -12,6 +12,7 @@ import {
   FileDelete,
   SelectBox,
   DateTimePicker,
+  ErrorAlert,
 } from '../../MaterialUi/materialui'
 import { checkExt } from '../../../functions/function'
 import { db } from '../../../firebase/firebase'
@@ -32,6 +33,7 @@ const MissionEdit = () => {
   const [fileName, setFileName] = useState('')
   const [preview, setPreview] = useState('')
   const [openDialog, setOpenDialog] = useState(false)
+  const [openAlert, setOpenAlert] = useState(false)
 
   useEffect(() => {
     // URLからmidを取得
@@ -100,27 +102,48 @@ const MissionEdit = () => {
   const backHandleClick = () => {
     dispatch(push('/mission'))
   }
-  // 確認ダイアログ表示
-  const checkHandleClick = () => {
-    setOpenDialog(true)
-  }
   // 投稿ボタンクリック
   const updateHandleClick = () => {
     dispatch(
       createMissison(mid, destination, title, item, limitTime, file, fileName)
     )
   }
+  // 確認ダイアログ表示
+  const checkHandleClick = () => {
+    if (title && item && destination && limitTime) {
+      setOpenAlert(false)
+      setOpenDialog(true)
+    } else {
+      setOpenAlert(true)
+    }
+  }
 
   return (
     <section className="main">
-      <AppBarSubHeader subtitle={'課題作成'} />
+      <AppBarSubHeader subtitle={mid ? '課題　ー編集ー' : '課題　ー新規ー'} />
+
+      <CheckViewDialog
+        destination={destination}
+        title={title}
+        item={item}
+        limitTime={limitTime}
+        file={file}
+        fileName={fileName}
+        preview={preview}
+        openDialog={openDialog}
+        setOpenDialog={setOpenDialog}
+        updateHandleClick={updateHandleClick}
+      />
 
       <div className="contents_style">
+        {openAlert ? <ErrorAlert setOpenAlert={setOpenAlert} /> : null}
+
         <Paper className="paper">
           <Typography className="label pd_y_10px">投稿先</Typography>
           <SelectBox
             options={send}
             value={destination}
+            error={!destination && openAlert ? true : false}
             select={setDestination}
           />
 
@@ -131,6 +154,7 @@ const MissionEdit = () => {
             multiline={true}
             type={'text'}
             value={title}
+            error={!title && openAlert ? true : false}
             defaultValue={mid === '' ? mission_title : title}
             onChange={inputTitle}
           />
@@ -143,6 +167,7 @@ const MissionEdit = () => {
             type={'text'}
             value={item}
             defaultValue={mid === '' ? mission_item : item}
+            error={!item && openAlert ? true : false}
             onChange={inputItem}
           />
 
@@ -151,6 +176,7 @@ const MissionEdit = () => {
             fullWidth={true}
             value={limitTime}
             ampm={false}
+            error={!limitTime && openAlert ? true : false}
             onChange={inputDate}
           />
 
@@ -181,19 +207,6 @@ const MissionEdit = () => {
           </div>
         </Paper>
       </div>
-
-      <CheckViewDialog
-        destination={destination}
-        title={title}
-        item={item}
-        limitTime={limitTime}
-        file={file}
-        fileName={fileName}
-        preview={preview}
-        openDialog={openDialog}
-        setOpenDialog={setOpenDialog}
-        updateHandleClick={updateHandleClick}
-      />
     </section>
   )
 }

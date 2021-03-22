@@ -9,6 +9,7 @@ import {
   BlueButton,
   BlueButtonNomal,
   BlueInputOutlined,
+  ErrorAlert,
 } from '../../MaterialUi/materialui'
 import { db } from '../../../firebase/firebase'
 import { getUserId } from '../../../reducks/users/selectors'
@@ -25,6 +26,7 @@ const ProfEdit = () => {
   const [prof, setProf] = useState('')
   const [blob, setBlob] = useState(null)
   const [inputImg, setInputImg] = useState('')
+  const [openAlert, setOpenAlert] = useState(false)
 
   // ユーザーの自己紹介文を取得
   useEffect(() => {
@@ -60,13 +62,21 @@ const ProfEdit = () => {
   }
   // 保存ボタンクリック
   const updateHandleClick = () => {
-    dispatch(createProf(current_uid, prof, blob))
+    if (prof) {
+      setOpenAlert(false)
+      dispatch(createProf(current_uid, prof, blob))
+    } else {
+      setOpenAlert(true)
+    }
   }
 
   return (
     <section className="main">
       <AppBarSubHeader subtitle={'プロフィール編集'} />
+
       <div className="contents_style">
+        {openAlert ? <ErrorAlert setOpenAlert={setOpenAlert} /> : null}
+
         <Paper className="paper">
           <Typography variant="body1" className="label pd_y_10px">
             アイコン
@@ -92,6 +102,7 @@ const ProfEdit = () => {
             multiline={true}
             autoFocus={false}
             value={prof}
+            error={!prof && openAlert ? true : false}
             onChange={inputProf}
           />
 

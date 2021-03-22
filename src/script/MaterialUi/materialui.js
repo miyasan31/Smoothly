@@ -31,3 +31,4 @@ export { default as AddButton } from './AddButton.jsx'
 
 export { default as ToolTip } from './ToolTip.jsx'
 export { default as ToolTipTime } from './ToolTipTime.jsx'
+export { default as ErrorAlert } from './ErrorAlert.jsx'

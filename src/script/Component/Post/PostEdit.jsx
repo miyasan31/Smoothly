@@ -11,6 +11,7 @@ import {
   FileUpload,
   FileDelete,
   SelectBox,
+  ErrorAlert,
 } from '../../MaterialUi/materialui'
 import { checkExt } from '../../../functions/function'
 import { db } from '../../../firebase/firebase'
@@ -30,6 +31,7 @@ const PostEdit = () => {
   const [fileName, setFileName] = useState('')
   const [preview, setPreview] = useState('')
   const [openDialog, setOpenDialog] = useState(false)
+  const [openAlert, setOpenAlert] = useState(false)
 
   useEffect(() => {
     // URLからpidを取得
@@ -99,23 +101,39 @@ const PostEdit = () => {
   }
   // 確認ダイアログ表示
   const checkHandleClick = () => {
-    setOpenDialog(true)
+    if (title && item && destination) {
+      setOpenAlert(false)
+      setOpenDialog(true)
+    } else {
+      setOpenAlert(true)
+    }
   }
 
   return (
     <section className="main">
-      {pid ? (
-        <AppBarSubHeader subtitle={'連絡　ー編集ー'} />
-      ) : (
-        <AppBarSubHeader subtitle={'連絡　ー新規ー'} />
-      )}
+      <AppBarSubHeader subtitle={pid ? '連絡　ー編集ー' : '連絡　ー新規ー'} />
+
+      <CheckViewDialog
+        destination={destination}
+        title={title}
+        item={item}
+        file={file}
+        fileName={fileName}
+        preview={preview}
+        openDialog={openDialog}
+        setOpenDialog={setOpenDialog}
+        updateHandleClick={updateHandleClick}
+      />
 
       <div className="contents_style">
+        {openAlert ? <ErrorAlert setOpenAlert={setOpenAlert} /> : null}
+
         <Paper className="paper">
           <Typography className="label pd_y_10px">投稿先</Typography>
           <SelectBox
             options={send}
             value={destination}
+            error={!destination && openAlert ? true : false}
             select={setDestination}
           />
 
@@ -127,6 +145,7 @@ const PostEdit = () => {
             multiline={true}
             value={title}
             defaultValue={title}
+            error={!title && openAlert ? true : false}
             onChange={inputTitle}
           />
 
@@ -138,6 +157,7 @@ const PostEdit = () => {
             multiline={true}
             value={item}
             defaultValue={item}
+            error={!item && openAlert ? true : false}
             onChange={inputItem}
           />
 
@@ -168,18 +188,6 @@ const PostEdit = () => {
           </div>
         </Paper>
       </div>
-
-      <CheckViewDialog
-        destination={destination}
-        title={title}
-        item={item}
-        file={file}
-        fileName={fileName}
-        preview={preview}
-        openDialog={openDialog}
-        setOpenDialog={setOpenDialog}
-        updateHandleClick={updateHandleClick}
-      />
     </section>
   )
 }

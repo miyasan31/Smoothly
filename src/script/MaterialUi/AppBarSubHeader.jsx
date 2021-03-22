@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { useDispatch } from 'react-redux'
 import { push } from 'connected-react-router'
 
+import { ActionCheckDialog } from '../Component/render'
 import { deleteChatRoom } from '../../reducks/chats/operations.js'
 
 import { makeStyles } from '@material-ui/core/styles'
@@ -81,6 +82,9 @@ const AppBarSubHeader = (props) => {
   const classes = useStyles()
   const dispatch = useDispatch()
   const [rid, setRid] = useState('')
+  const [anchorEl, setAnchorEl] = useState(null)
+  const [openCheckDialog, setOpenCheckDialog] = useState(false)
+  const open = Boolean(anchorEl)
 
   useEffect(() => {
     if (props.view === true) {
@@ -91,9 +95,6 @@ const AppBarSubHeader = (props) => {
       }
     }
   }, [rid])
-
-  const [anchorEl, setAnchorEl] = useState(null)
-  const open = Boolean(anchorEl)
 
   const handleMenu = (event) => {
     setAnchorEl(event.currentTarget)
@@ -109,9 +110,20 @@ const AppBarSubHeader = (props) => {
     setAnchorEl(null)
     dispatch(deleteChatRoom(rid))
   }
+  const checkHandleClick = () => {
+    handleClose()
+    setOpenCheckDialog(true)
+  }
 
   return (
     <AppBar position="static" className={classes.appbar}>
+      <ActionCheckDialog
+        text={'ルームを削除してもよろしいですか？'}
+        buttonLabel={'削除'}
+        openDialog={openCheckDialog}
+        setOpenDialog={setOpenCheckDialog}
+        actionHandleClick={handleRoomDelete}
+      />
       <Toolbar variant="dense">
         <Typography className={classes.title} variant="h6" color="inherit">
           {props.subtitle}
@@ -131,7 +143,6 @@ const AppBarSubHeader = (props) => {
             aria-label="menu"
             onClick={handleMenu}
           >
-            {/* <MoreIcon className={classes.icon} /> */}
             <SettingsIcon className={classes.icon} />
           </IconButton>
           <Menu
@@ -150,7 +161,7 @@ const AppBarSubHeader = (props) => {
             onClose={handleClose}
           >
             <MenuItem onClick={() => handleRoomEdit(rid)}>ルーム編集</MenuItem>
-            <MenuItem onClick={() => handleRoomDelete(rid)}>
+            <MenuItem onClick={() => checkHandleClick(rid)}>
               ルーム削除
             </MenuItem>
           </Menu>

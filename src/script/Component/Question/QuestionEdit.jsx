@@ -10,6 +10,7 @@ import {
   BlueButtonNomal,
   SelectBox,
   DateTimePicker,
+  ErrorAlert,
 } from '../../MaterialUi/materialui'
 import { db } from '../../../firebase/firebase'
 import {
@@ -30,6 +31,7 @@ const QuestionEdit = () => {
   const [limitTime, setLimitTime] = useState('')
   const [questionData, setQuestionData] = useState('')
   const [openDialog, setOpenDialog] = useState(false)
+  const [openAlert, setOpenAlert] = useState(false)
 
   useEffect(() => {
     // URLからqidを取得
@@ -85,66 +87,25 @@ const QuestionEdit = () => {
   }
   // 確認ダイアログ表示
   const checkHandleClick = () => {
-    setOpenDialog(true)
+    if (
+      title &&
+      item &&
+      destination &&
+      limitTime &&
+      questionData.length !== 0
+    ) {
+      setOpenAlert(false)
+      setOpenDialog(true)
+    } else {
+      setOpenAlert(true)
+    }
   }
 
   return (
     <section className="main">
-      {qid === '' ? (
-        <AppBarSubHeader subtitle={'アンケート　ー新規ー'} />
-      ) : (
-        <AppBarSubHeader subtitle={'アンケート　ー編集ー'} />
-      )}
-
-      <div className="contents_style">
-        <Paper className="paper">
-          <Typography className="label pd_y_10px">投稿先</Typography>
-          <SelectBox
-            options={send}
-            value={destination}
-            select={setDestination}
-          />
-
-          <Typography className="label pd_top_10px">タイトル</Typography>
-          <BlueInput
-            label={null}
-            type={'text'}
-            fullWidth={true}
-            multiline={true}
-            value={title}
-            defaultValue={title}
-            onChange={inputTitle}
-          />
-
-          <Typography className="label pd_top_10px">内容</Typography>
-          <BlueInput
-            label={null}
-            type={'text'}
-            fullWidth={true}
-            multiline={true}
-            value={item}
-            defaultValue={item}
-            onChange={inputItem}
-          />
-
-          <Typography className="label pd_top_10px">回答期限</Typography>
-          <DateTimePicker
-            ampm={false}
-            fullWidth={true}
-            value={limitTime}
-            onChange={inputDate}
-          />
-
-          <Typography className="label pd_top_10px">質問作成</Typography>
-
-          <QuestionComponent setQuestionData={setQuestionData} />
-
-          <div className="right mg_top_20px">
-            <BlueButtonNomal label={'キャンセル'} onClick={backHandleClick} />
-            <BlueButton label="確認" onClick={checkHandleClick} />
-          </div>
-        </Paper>
-      </div>
+      <AppBarSubHeader
+        subtitle={qid ? 'アンケート　ー編集ー' : 'アンケート　ー新規ー'}
+      />
 
       <CheckViewDialog
         destination={destination}
@@ -156,6 +117,65 @@ const QuestionEdit = () => {
         setOpenDialog={setOpenDialog}
         updateHandleClick={updateHandleClick}
       />
+
+      <div className="contents_style">
+        {openAlert ? <ErrorAlert setOpenAlert={setOpenAlert} /> : null}
+
+        <Paper className="paper">
+          <Typography className="label pd_y_10px">投稿先</Typography>
+          <SelectBox
+            options={send}
+            value={destination}
+            error={!destination && openAlert ? true : false}
+            select={setDestination}
+          />
+
+          <Typography className="label pd_top_10px">タイトル</Typography>
+          <BlueInput
+            label={null}
+            type={'text'}
+            fullWidth={true}
+            multiline={true}
+            value={title}
+            defaultValue={title}
+            error={!title && openAlert ? true : false}
+            onChange={inputTitle}
+          />
+
+          <Typography className="label pd_top_10px">内容</Typography>
+          <BlueInput
+            label={null}
+            type={'text'}
+            fullWidth={true}
+            multiline={true}
+            value={item}
+            defaultValue={item}
+            error={!item && openAlert ? true : false}
+            onChange={inputItem}
+          />
+
+          <Typography className="label pd_top_10px">回答期限</Typography>
+          <DateTimePicker
+            ampm={false}
+            fullWidth={true}
+            value={limitTime}
+            error={!limitTime && openAlert ? true : false}
+            onChange={inputDate}
+          />
+
+          <Typography className="label pd_top_10px">質問作成</Typography>
+
+          <QuestionComponent
+            error={questionData.length === 0 && openAlert ? true : false}
+            setQuestionData={setQuestionData}
+          />
+
+          <div className="right mg_top_20px">
+            <BlueButtonNomal label={'キャンセル'} onClick={backHandleClick} />
+            <BlueButton label="確認" onClick={checkHandleClick} />
+          </div>
+        </Paper>
+      </div>
     </section>
   )
 }

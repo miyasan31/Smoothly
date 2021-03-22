@@ -177,6 +177,14 @@ const AppBarHeader = (props) => {
   return (
     <>
       <AppBar className={classes.appbar} position="static">
+        <ActionCheckDialog
+          text={'サインアウトしてもよろしいですか？'}
+          buttonLabel={'サインアウト'}
+          openDialog={openCheckDialog}
+          setOpenDialog={setOpenCheckDialog}
+          actionHandleClick={handleSignOut}
+        />
+
         <Toolbar>
           <IconButton
             edge="start"
@@ -191,7 +199,7 @@ const AppBarHeader = (props) => {
           <div className={classes.grow_sm} />
 
           <Typography className={classes.title} noWrap>
-            <Link to="/post">{props.title}</Link>
+            <a href="/post">{props.title}</a>
           </Typography>
 
           <div className={classes.grow} />
@@ -225,14 +233,6 @@ const AppBarHeader = (props) => {
       </AppBar>
       <ClosableDrawer open={sideBarOpen} onClose={handleDrawerToggle} />
       {renderMenu}
-
-      <ActionCheckDialog
-        text={'サインアウトしてもよろしいですか？'}
-        buttonLabel={'サインアウト'}
-        openDialog={openCheckDialog}
-        setOpenDialog={setOpenCheckDialog}
-        actionHandleClick={handleSignOut}
-      />
     </>
   )
 }

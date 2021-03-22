@@ -10,6 +10,7 @@ import {
   BlueButtonNomal,
   PinkButton,
   BlueInput,
+  ErrorAlert,
 } from '../../MaterialUi/materialui'
 import { db } from '../../../firebase/firebase'
 import { createChatRoom, editChatRoom } from '../../../reducks/chats/operations'
@@ -40,6 +41,7 @@ const RoomEdit = () => {
   const [expanded, setExpanded] = useState(false)
   const [blob, setBlob] = useState(null)
   const [inputImg, setInputImg] = useState('')
+  const [openAlert, setOpenAlert] = useState(false)
 
   useEffect(() => {
     // URLからridを取得
@@ -96,21 +98,26 @@ const RoomEdit = () => {
   }
   // 保存ボタンクリック
   const createHandleClick = () => {
-    if (rid === '') {
+    if (!(roomName && checked.length !== 0)) {
+      setOpenAlert(true)
+    } else if (rid === '') {
+      setOpenAlert(false)
       dispatch(createChatRoom(roomName, userName, checked, blob))
     } else if (rid !== '') {
+      setOpenAlert(false)
       dispatch(editChatRoom(rid, roomName, userName, checked, blob))
     }
   }
 
   return (
     <section className="main">
-      {rid ? (
-        <AppBarSubHeader subtitle={'ルーム　ー編集ー'} />
-      ) : (
-        <AppBarSubHeader subtitle={'ルーム　ー作成ー'} />
-      )}
+      <AppBarSubHeader
+        subtitle={rid ? 'ルーム　ー編集ー' : 'ルーム　ー新規ー'}
+      />
+
       <div className="contents_style">
+        {openAlert ? <ErrorAlert setOpenAlert={setOpenAlert} /> : null}
+
         <Paper className="paper mg_btm_20px">
           <Typography className="label pd_y_10px">ルームアイコン</Typography>
           <div className="image">
@@ -136,6 +143,7 @@ const RoomEdit = () => {
             type={'text'}
             value={roomName}
             defaultValue={roomName}
+            error={!roomName && openAlert ? true : false}
             onChange={inputRoomName}
           />
 

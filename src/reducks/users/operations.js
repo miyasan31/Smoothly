@@ -339,23 +339,20 @@ export const userDelete = (email, password) => {
   return async (dispatch, getState) => {
     const state = getState()
     const userId = state.users.uid
-    const check = window.confirm('本当に退会してもよろしいですか？')
-    if (check) {
-      return auth
-        .signInWithEmailAndPassword(email, password)
-        .then(function (userCredential) {
-          userCredential.user.delete()
-          usersRef.doc(userId).delete()
-          storage.ref('icons').child(userId).delete()
-          dispatch(push('/signin'))
-          alert('Smoothlyをご利用いただき ありがとうございました。')
-        })
-        .catch((error) => {
-          var errorCode = error.code
-          const errmsg = ErrorMessage(errorCode)
-          alert(errorCode + ' : ' + errmsg)
-        })
-    }
+    return auth
+      .signInWithEmailAndPassword(email, password)
+      .then(function (userCredential) {
+        userCredential.user.delete()
+        usersRef.doc(userId).delete()
+        storage.ref('icons').child(userId).delete()
+        dispatch(push('/signin'))
+        alert('Smoothlyをご利用いただき ありがとうございました。')
+      })
+      .catch((error) => {
+        var errorCode = error.code
+        const errmsg = ErrorMessage(errorCode)
+        alert(errorCode + ' : ' + errmsg)
+      })
   }
 }
 
