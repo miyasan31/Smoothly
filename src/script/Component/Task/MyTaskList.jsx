@@ -32,7 +32,7 @@ const MyTaskList = (props) => {
   }
   // チェックボックスボタンクリック
   const checkHandleClick = (tid) => {
-    if (props.state.doing) {
+    if (props.state === 0) {
       dispatch(updateDoingTask(tid))
     } else {
       dispatch(updateCompletedTask(tid))
@@ -52,7 +52,7 @@ const MyTaskList = (props) => {
   }
 
   return (
-    <List component="nav">
+    <>
       {props.myTasks.length > 0 ? (
         props.myTasks.map((task, index) => (
           <>
@@ -71,7 +71,7 @@ const MyTaskList = (props) => {
                 )}`}
               />
 
-              {props.state.doing && (
+              {props.state === 0 && (
                 <IconButton
                   edge="end"
                   aria-label="comments"
@@ -98,7 +98,7 @@ const MyTaskList = (props) => {
           <ListItemText primary={'タスクがありません'} />
         </ListItem>
       )}
-    </List>
+    </>
   )
 }
 export default MyTaskList

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { push } from 'connected-react-router'
 
-import { MyTaskList } from '../render'
+import { MyTaskList, TaskTab } from '../render'
 import { AppBarSubHeader, ToolTip } from '../../MaterialUi/materialui'
 import { readTasks } from '../../../reducks/tasks/operations'
 import {
@@ -52,24 +52,27 @@ const MyTask = () => {
       </div>
 
       <div className="contents_style">
-        <Paper className="paper_sub">
+        {/* <Paper className="paper_sub">
           <FormControlLabel
-            control={
-              <Switch
-                color="primary"
-                checked={state.doing}
-                onChange={handleChange}
-                name="doing"
-              />
-            }
-            label={state.doing ? '実行中タスク' : '実行済タスク'}
-            className="pd_left_10px"
+          control={
+            <Switch
+            color="primary"
+            checked={state.doing}
+            onChange={handleChange}
+            name="doing"
+            />
+          }
+          label={state.doing ? '実行中タスク' : '実行済タスク'}
+          className="pd_left_10px"
           />
-
           <MyTaskList
-            state={state}
-            myTasks={state.doing ? doingTasks : completedTasks}
+          state={state}
+          myTasks={state.doing ? doingTasks : completedTasks}
           />
+        </Paper> */}
+
+        <Paper>
+          <TaskTab doingTasks={doingTasks} completedTasks={completedTasks} />
         </Paper>
       </div>
     </section>
