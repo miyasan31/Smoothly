@@ -141,6 +141,7 @@ export const deleteMission = (mid) => {
       .doc(mid)
       .delete()
       .then(() => {
+        schedulesRef.doc(mid).delete()
         storage.ref('mission_files').child(mid).delete()
         const prevMissions = getState().missions.list
         const nextMissions = prevMissions.filter(
