@@ -2,6 +2,7 @@ import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { getIsLogin } from './reducks/users/selectors.js'
 import { listenAuthState } from './reducks/users/operations.js'
+import CircularProgress from '@material-ui/core/CircularProgress'
 /* ===================================================================== */
 
 const Auth = ({ children }) => {
@@ -17,7 +18,11 @@ const Auth = ({ children }) => {
   }, [])
 
   if (!isSignedIn) {
-    return <></>
+    return (
+      <div className="flex_center pd_top_30px">
+        <CircularProgress />
+      </div>
+    )
   } else {
     return children
   }
