@@ -5,7 +5,7 @@ import {
   db,
   FirebaseTimestamp,
 } from '../../firebase/firebase.js'
-import { signInAction, signOutAction } from './actions'
+import { signInAction, signOutAction, updateThemeAction } from './actions'
 import {
   isValidEmailFormat,
   isValidRequiredInput,
@@ -53,6 +53,7 @@ export const signIn = (email, password) => {
                 user_value: data.user_value,
                 user_number: data.user_number,
                 class_name: data.class_name,
+                dark_mode: data.dark_mode,
               })
             )
             dispatch(push('/post'))
@@ -172,6 +173,7 @@ export const signUp = (
             icon: '',
             update_time: timeStamp,
             create_time: timeStamp,
+            dark_mode: false,
           }
           if (userInitialData.class_name === '') {
             userInitialData.class_name = '教官'
@@ -217,6 +219,7 @@ export const listenAuthState = () => {
                 user_value: data.user_value,
                 user_number: data.user_number,
                 class_name: data.class_name,
+                dark_mode: data.dark_mode,
               })
             )
             dispatch(push('/post'))
@@ -261,6 +264,24 @@ export const createProf = (uid, prof, blob) => {
         } else {
           dispatch(createIcon(uid, blob))
         }
+      })
+      .catch((error) => {
+        throw new Error(error)
+      })
+  }
+}
+
+export const updateTheme = (uid, type) => {
+  return async (dispatch) => {
+    const data = {
+      dark_mode: type,
+    }
+    usersRef
+      .doc(uid)
+      .set(data, { merge: true })
+      .then(() => {
+        console.log('テーマを切り替えました！')
+        dispatch(updateThemeAction(data))
       })
       .catch((error) => {
         throw new Error(error)

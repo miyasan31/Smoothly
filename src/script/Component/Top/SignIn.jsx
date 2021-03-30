@@ -37,7 +37,7 @@ const SignIn = () => {
     <section className="top_main signin_theme">
       <div className="top_layout">
         <div className="my_entry_number">
-          <h3>出品番号：名古屋PI011</h3>
+          <h3>出品番号：名古屋PI011宮原将太</h3>
         </div>
         <div className="comment">
           <h2>
@@ -56,7 +56,7 @@ const SignIn = () => {
 
         <div className="flex_grow"></div>
 
-        <div className="form_box signin_theme">
+        <div className="form_box signin_form">
           <div className="form">
             <h1>Smoothly</h1>
             <Grid container spacing={1} alignItems="flex-end">

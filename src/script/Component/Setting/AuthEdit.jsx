@@ -80,10 +80,12 @@ const AuthEdit = () => {
         {openAlert ? <ErrorAlert setOpenAlert={setOpenAlert} /> : null}
 
         <Paper className="paper">
-          <Typography className="label pd_y_10px">変更項目</Typography>
+          <Typography className="pd_y_10px" color="textSecondary">
+            変更項目
+          </Typography>
           <SelectBox options={choiceData} value={choice} select={setChoice} />
 
-          <Typography className="label pd_top_10px">
+          <Typography className="pd_top_10px" color="textSecondary">
             現在のメールアドレス
           </Typography>
           <BlueInput
@@ -99,7 +101,7 @@ const AuthEdit = () => {
 
           {choice === 'email' && (
             <>
-              <Typography className="label pd_top_10px">
+              <Typography className="pd_top_10px" color="textSecondary">
                 新しいメールアドレス
               </Typography>
               <BlueInput
@@ -115,7 +117,7 @@ const AuthEdit = () => {
             </>
           )}
 
-          <Typography className="label pd_top_10px">
+          <Typography className="pd_top_10px" color="textSecondary">
             現在のパスワード
           </Typography>
           <BlueInput
@@ -131,7 +133,7 @@ const AuthEdit = () => {
 
           {choice === 'password' && (
             <>
-              <Typography className="label pd_top_10px">
+              <Typography className="pd_top_10px" color="textSecondary">
                 新しいパスワード
               </Typography>
               <BlueInput

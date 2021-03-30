@@ -11,30 +11,33 @@ import TableCell from '@material-ui/core/TableCell'
 import TableContainer from '@material-ui/core/TableContainer'
 import TableHead from '@material-ui/core/TableHead'
 import TableRow from '@material-ui/core/TableRow'
+import Typography from '@material-ui/core/Typography'
 import Paper from '@material-ui/core/Paper'
 /* ===================================================================== */
 
-const StyledTableCell = withStyles({
+const StyledTableCell = withStyles((theme) => ({
   head: {
-    backgroundColor: '#bbdefb',
-    color: '000000de',
+    backgroundColor: theme.palette.primary,
+    color: theme.palette.text,
     fontWeight: 'bold',
   },
   body: {
     fontSize: 14,
   },
-})(TableCell)
+}))(TableCell)
 
-const StyledTableRow = withStyles({
+const StyledTableRow = withStyles((theme) => ({
   root: {
+    backgroundColor: theme.palette.action.selected,
     '&:nth-of-type(odd)': {
-      backgroundColor: '#f8f8f8',
+      backgroundColor: theme.palette.action.hover,
     },
   },
-})(TableRow)
+}))(TableRow)
 
-const useStyles = makeStyles({
+const useStyles = makeStyles((theme) => ({
   title: {
+    backgroundColor: theme.palette.action.disabled,
     fontSize: 15,
   },
   name: {
@@ -52,7 +55,7 @@ const useStyles = makeStyles({
     paddingLeft: '0',
     fontSize: 12,
   },
-})
+}))
 
 const CollectList = (props) => {
   const classes = useStyles()
@@ -81,10 +84,16 @@ const CollectList = (props) => {
                     component="th"
                     scope="row"
                   >
-                    {data.creater_name}
+                    <Typography variant="caption" color="textPrimary">
+                      {data.creater_name}
+                    </Typography>
                   </StyledTableCell>
                   <StyledTableCell className={classes.item} align="left">
-                    <a href={data.file.path}>{data.file.file_name}</a>
+                    <a href={data.file.path}>
+                      <Typography variant="caption" color="primary">
+                        {data.file.file_name}
+                      </Typography>
+                    </a>
                   </StyledTableCell>
                 </StyledTableRow>
               ))

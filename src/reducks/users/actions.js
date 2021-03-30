@@ -13,3 +13,11 @@ export const signOutAction = () => {
     payload: '',
   }
 }
+
+export const THEME_CHANGE = 'THEME_CHANGE'
+export const updateThemeAction = (userState) => {
+  return {
+    type: 'THEME_CHANGE',
+    payload: userState,
+  }
+}

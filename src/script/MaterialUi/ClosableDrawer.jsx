@@ -1,25 +1,8 @@
-import React, { useCallback, useEffect, useState } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
+import React from 'react'
+import { useDispatch } from 'react-redux'
 import { push } from 'connected-react-router'
 
-import { db } from '../../firebase/firebase.js'
 import { signOut } from '../../reducks/users/operations'
-import {
-  Post,
-  Chat,
-  Question,
-  Schedule,
-  Mission,
-  Setting,
-  Task,
-  Exit,
-} from '../Images/image.js'
-
-import SchoolSharpIcon from '@material-ui/icons/SchoolSharp'
-import TuneSharpIcon from '@material-ui/icons/TuneSharp'
-import AppsSharpIcon from '@material-ui/icons/AppsSharp'
-import ShuffleSharpIcon from '@material-ui/icons/ShuffleSharp'
-import VerticalSplitSharpIcon from '@material-ui/icons/VerticalSplitSharp'
 
 import { makeStyles, createStyles } from '@material-ui/core/styles'
 import Divider from '@material-ui/core/Divider'
@@ -28,10 +11,26 @@ import List from '@material-ui/core/List'
 import ListItem from '@material-ui/core/ListItem'
 import ListItemIcon from '@material-ui/core/ListItemIcon'
 import ListItemText from '@material-ui/core/ListItemText'
-import AddCircleIcon from '@material-ui/icons/AddCircle'
-import HistoryIcon from '@material-ui/icons/History'
-import PersonIcon from '@material-ui/icons/Person'
-import ExitToAppIcon from '@material-ui/icons/ExitToApp'
+import Typography from '@material-ui/core/Typography'
+
+import SchoolRoundedIcon from '@material-ui/icons/SchoolRounded'
+import AppsRoundedIcon from '@material-ui/icons/AppsRounded'
+import DescriptionRoundedIcon from '@material-ui/icons/DescriptionRounded'
+import ForumRoundedIcon from '@material-ui/icons/ForumRounded'
+import FormatListBulletedRoundedIcon from '@material-ui/icons/FormatListBulletedRounded'
+import CategoryRoundedIcon from '@material-ui/icons/CategoryRounded'
+import TuneRoundedIcon from '@material-ui/icons/TuneRounded'
+import ExitToAppRoundedIcon from '@material-ui/icons/ExitToAppRounded'
+
+// import SchoolSharpIcon from '@material-ui/icons/SchoolSharp'
+// import AppsSharpIcon from '@material-ui/icons/AppsSharp'
+// import DescriptionSharpIcon from '@material-ui/icons/DescriptionSharp'
+// import ForumSharpIcon from '@material-ui/icons/ForumSharp'
+// import FormatListBulletedSharpIcon from '@material-ui/icons/FormatListBulletedSharp';
+// import BorderColorRoundedIcon from '@material-ui/icons/BorderColorRounded'
+// import CategorySharpIcon from '@material-ui/icons/CategorySharp'
+// import TuneSharpIcon from '@material-ui/icons/TuneSharp'
+// import ExitToAppSharpIcon from '@material-ui/icons/ExitToAppSharp';
 /* ===================================================================== */
 
 const useStyles = makeStyles((theme) =>
@@ -54,12 +53,6 @@ const useStyles = makeStyles((theme) =>
       display: 'flex',
       marginLeft: 32,
     },
-    icon: {
-      opacity: 0.5,
-    },
-    item: {
-      color: '#000000bb',
-    },
   })
 )
 
@@ -77,49 +70,49 @@ const ClosableDrawer = (props) => {
     {
       func: selectMenu,
       label: '掲示板',
-      icon: <Post />,
+      icon: <SchoolRoundedIcon />,
       id: 'post',
       value: '/post',
     },
     {
       func: selectMenu,
       label: '課題',
-      icon: <Mission />,
+      icon: <DescriptionRoundedIcon />,
       id: 'mission',
       value: '/mission',
     },
     {
       func: selectMenu,
       label: 'チャット',
-      icon: <Chat />,
+      icon: <ForumRoundedIcon />,
       id: 'chat',
       value: '/chat',
     },
     {
       func: selectMenu,
       label: 'タスク',
-      icon: <Task />,
+      icon: <FormatListBulletedRoundedIcon />,
       id: 'task',
       value: '/task',
     },
     {
       func: selectMenu,
       label: 'アンケート',
-      icon: <Question />,
+      icon: <CategoryRoundedIcon />,
       id: 'question',
       value: '/question',
     },
     {
       func: selectMenu,
       label: 'スケジュール',
-      icon: <Schedule />,
+      icon: <AppsRoundedIcon />,
       id: 'schedule',
       value: '/schedule',
     },
     {
       func: selectMenu,
       label: '設定',
-      icon: <Setting />,
+      icon: <TuneRoundedIcon />,
       id: 'setting',
       value: '/setting',
     },
@@ -152,18 +145,20 @@ const ClosableDrawer = (props) => {
                 key={menu.id}
                 onClick={(e) => menu.func(e, menu.value)}
               >
-                <ListItemIcon className={classes.icon}>
-                  {menu.icon}
-                </ListItemIcon>
-                <ListItemText className={classes.item} primary={menu.label} />
+                <ListItemIcon>{menu.icon}</ListItemIcon>
+                <Typography variant="body2" color="textPrimary">
+                  <ListItemText primary={menu.label} />
+                </Typography>
               </ListItem>
             ))}
             <Divider />
             <ListItem button key="logout" onClick={() => dispatch(signOut())}>
               <ListItemIcon>
-                <Exit className={classes.icon} />
+                <ExitToAppRoundedIcon />
               </ListItemIcon>
-              <ListItemText className={classes.item} primary="ログアウト" />
+              <Typography variant="body2" color="textPrimary">
+                <ListItemText primary="ログアウト" />
+              </Typography>
               <Divider />
             </ListItem>
           </List>

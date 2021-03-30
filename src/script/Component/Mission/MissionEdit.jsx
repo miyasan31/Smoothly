@@ -139,7 +139,9 @@ const MissionEdit = () => {
         {openAlert ? <ErrorAlert setOpenAlert={setOpenAlert} /> : null}
 
         <Paper className="paper">
-          <Typography className="label pd_y_10px">投稿先</Typography>
+          <Typography className="pd_y_10px" color="textSecondary">
+            投稿先
+          </Typography>
           <SelectBox
             options={send}
             value={destination}
@@ -147,7 +149,9 @@ const MissionEdit = () => {
             select={setDestination}
           />
 
-          <Typography className="label pd_top_10px">タイトル</Typography>
+          <Typography className="pd_top_10px" color="textSecondary">
+            タイトル
+          </Typography>
           <BlueInput
             fullWidth={true}
             required={true}
@@ -159,7 +163,9 @@ const MissionEdit = () => {
             onChange={inputTitle}
           />
 
-          <Typography className="label pd_top_10px">内容</Typography>
+          <Typography className="pd_top_10px" color="textSecondary">
+            内容
+          </Typography>
           <BlueInput
             fullWidth={true}
             required={true}
@@ -171,7 +177,9 @@ const MissionEdit = () => {
             onChange={inputItem}
           />
 
-          <Typography className="label pd_top_10px">提出期限</Typography>
+          <Typography className="pd_top_10px" color="textSecondary">
+            提出期限
+          </Typography>
           <DateTimePicker
             fullWidth={true}
             value={limitTime}
@@ -180,7 +188,9 @@ const MissionEdit = () => {
             onChange={inputDate}
           />
 
-          <Typography className="label pd_y_10px">添付ファイル</Typography>
+          <Typography className="pd_y_10px" color="textSecondary">
+            添付ファイル
+          </Typography>
 
           {fileName ? (
             <FileDelete onClick={deleteFile} label={'ファイルを削除'} />

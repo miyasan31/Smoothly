@@ -12,7 +12,6 @@ import Typography from '@material-ui/core/Typography'
 import MenuItem from '@material-ui/core/MenuItem'
 import Menu from '@material-ui/core/Menu'
 import IconButton from '@material-ui/core/IconButton'
-import MoreIcon from '@material-ui/icons/MoreVert'
 import SettingsIcon from '@material-ui/icons/Settings'
 /* ===================================================================== */
 
@@ -20,14 +19,12 @@ const useStyles = makeStyles((theme) => ({
   appbar: {
     top: '55px',
     height: '35px',
-
     position: 'fixed',
     display: 'flex',
     zIndex: 50,
     width: '100%',
     boxShadow: 'none',
-    backgroundColor: 'white',
-    borderBottom: '1px solid #00000022',
+    borderBottom: `1px solid ${theme.palette.divider}`,
     [theme.breakpoints.up('sm')]: {
       height: '48px',
       top: '70px',
@@ -37,7 +34,7 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   title: {
-    color: '#000000de',
+    color: theme.palette.text.primary,
     fontSize: 16,
     marginBottom: 14,
     [theme.breakpoints.up('sm')]: {
@@ -61,6 +58,7 @@ const useStyles = makeStyles((theme) => ({
     display: 'none',
   },
   icon: {
+    color: theme.palette.common,
     width: theme.spacing(2.8),
     height: theme.spacing(2.8),
     [theme.breakpoints.up('sm')]: {
@@ -113,7 +111,7 @@ const AppBarSubHeader = (props) => {
   }
 
   return (
-    <AppBar position="static" className={classes.appbar}>
+    <AppBar position="static" className={classes.appbar} color="inherit">
       <ActionCheckDialog
         text={'ルームを削除してもよろしいですか？'}
         buttonLabel={'削除'}
@@ -123,9 +121,10 @@ const AppBarSubHeader = (props) => {
       />
 
       <Toolbar variant="dense">
-        <Typography className={classes.title} variant="h6" color="inherit">
+        <Typography className={classes.title} variant="h6">
           {props.subtitle}
         </Typography>
+
         <div className={classes.grow} />
 
         <div

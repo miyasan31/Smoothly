@@ -73,15 +73,21 @@ const AnswerEdit = () => {
       <AppBarSubHeader subtitle={'アンケート　ー回答ー'} />
       <div className="contents_style">
         <Paper className="paper mg_btm_20px">
-          <Typography variant="h5">{title}</Typography>
+          <Typography variant="h5" color="textPrimary">
+            {title}
+          </Typography>
 
           {questionData.map((data, index) => (
             <Paper key={index} className={classes.item}>
-              <Typography className="label pd_top_10px">
+              <Typography className="pd_top_10px" color="textSecondary">
                 質問 {index + 1}
               </Typography>
 
-              <Typography variant="h6" className="pd_top_10px">
+              <Typography
+                variant="h6"
+                className="pd_top_10px"
+                color="textPrimary"
+              >
                 {data.item}
               </Typography>
 

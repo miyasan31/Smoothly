@@ -10,16 +10,21 @@
   height: 100vh;
 }
 .signin_theme {
-  color: #ffffff;
   background-color: #62b1ff;
-  box-shadow: 10px 10px 0px 0px #0080ff;
 }
 .signup_theme {
   background-color: #ffcc73;
-  box-shadow: 10px 10px 0px 0px #ffb23e;
 }
 .reissue_theme {
   background-color: #5cffb0;
+}
+.signin_form {
+  box-shadow: 10px 10px 0px 0px #0080ff;
+}
+.signup_form {
+  box-shadow: 10px 10px 0px 0px #ffb23e;
+}
+.reissue_form {
   box-shadow: 10px 10px 0px 0px #11c46d;
 }
 .top_layout {
@@ -58,7 +63,7 @@
   height: calc(100vh - 90px);
   margin-right: 30px;
 
-  background-color: #ffffff;
+  background-color: #fff;
 }
 
 .form {

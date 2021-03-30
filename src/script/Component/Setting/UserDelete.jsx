@@ -72,7 +72,7 @@ const AuthEdit = () => {
         {openAlert ? <ErrorAlert setOpenAlert={setOpenAlert} /> : null}
 
         <Paper className="paper">
-          <Typography className="label pd_top_10px">
+          <Typography className="pd_top_10px" color="textSecondary">
             現在のメールアドレス
           </Typography>
           <BlueInput
@@ -86,7 +86,7 @@ const AuthEdit = () => {
             onChange={inputEmail}
           />
 
-          <Typography className="label pd_top_10px">
+          <Typography className="pd_top_10px" color="textSecondary">
             現在のパスワード
           </Typography>
           <BlueInput

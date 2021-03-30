@@ -25,6 +25,9 @@ import { makeStyles } from '@material-ui/core/styles'
 /* ===================================================================== */
 
 const useStyles = makeStyles((theme) => ({
+  root: {
+    backgroundColor: theme.palette.background,
+  },
   media: {
     height: '0',
     padding: '50%',
@@ -100,7 +103,7 @@ const PostList = (props) => {
 
   return (
     <>
-      <Card className="mg_btm_20px">
+      <Card className="mg_btm_20px" className={classes.root}>
         <CardHeader
           avatar={
             icon ? (
@@ -136,19 +139,20 @@ const PostList = (props) => {
         />
 
         <CardContent>
-          <Typography variant="body2" className="label">
+          <Typography variant="body2" color="textSecondary">
             タイトル
           </Typography>
-          <Typography variant="body1" className="pd_10px">
+          <Typography variant="body1" className="pd_10px" color="textPrimary">
             {props.title}
           </Typography>
 
-          <Typography variant="body2" className="label">
+          <Typography variant="body2" color="textSecondary">
             内容
           </Typography>
           <Typography
             variant="body1"
             className="pd_10px"
+            color="textPrimary"
             style={{ whiteSpace: 'pre-wrap' }}
           >
             {props.item}

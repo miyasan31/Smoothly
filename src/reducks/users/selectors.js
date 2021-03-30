@@ -33,3 +33,8 @@ export const getClassName = createSelector(
   [usersSelector],
   (state) => state.class_name
 )
+
+export const getTheme = createSelector(
+  [usersSelector],
+  (state) => state.dark_mode
+)

@@ -8,29 +8,32 @@ import TableContainer from '@material-ui/core/TableContainer'
 import TableHead from '@material-ui/core/TableHead'
 import TableRow from '@material-ui/core/TableRow'
 import Paper from '@material-ui/core/Paper'
+import Typography from '@material-ui/core/Typography'
 /* ===================================================================== */
 
-const StyledTableCell = withStyles({
+const StyledTableCell = withStyles((theme) => ({
   head: {
-    backgroundColor: '#bbdefb',
-    color: '000000de',
+    backgroundColor: theme.palette.primary,
+    color: theme.palette.text,
     fontWeight: 'bold',
   },
   body: {
     fontSize: 14,
   },
-})(TableCell)
+}))(TableCell)
 
-const StyledTableRow = withStyles({
+const StyledTableRow = withStyles((theme) => ({
   root: {
+    backgroundColor: theme.palette.action.selected,
     '&:nth-of-type(odd)': {
-      backgroundColor: '#f8f8f8',
+      backgroundColor: theme.palette.action.hover,
     },
   },
-})(TableRow)
+}))(TableRow)
 
-const useStyles = makeStyles({
+const useStyles = makeStyles((theme) => ({
   title: {
+    backgroundColor: theme.palette.action.disabled,
     fontSize: 15,
   },
   name: {
@@ -48,7 +51,7 @@ const useStyles = makeStyles({
     paddingLeft: '0',
     fontSize: 12,
   },
-})
+}))
 
 const AnalyticsList = (props) => {
   const classes = useStyles()
@@ -58,7 +61,7 @@ const AnalyticsList = (props) => {
       <Table>
         <TableHead>
           <TableRow>
-            <StyledTableCell className={classes.title} size="small" colSpan={3}>
+            <StyledTableCell className={classes.title} colSpan={3}>
               {props.item}
             </StyledTableCell>
           </TableRow>
@@ -73,15 +76,19 @@ const AnalyticsList = (props) => {
                   component="th"
                   scope="answer"
                 >
-                  {answer.answer_name}
+                  <Typography variant="caption" color="textPrimary">
+                    {answer.answer_name}
+                  </Typography>
                 </TableCell>
                 <TableCell className={classes.item} size="small" align="left">
-                  {props.type === '1' && answer.answer_data[props.id]}
-                  {answer.answer_data[props.id] === '1' && 'はい'}
-                  {answer.answer_data[props.id] === '2' && 'いいえ'}
-                  {answer.answer_data[props.id] === '10' && 'そう思わない'}
-                  {answer.answer_data[props.id] === '20' && 'どちらでもない'}
-                  {answer.answer_data[props.id] === '30' && 'そう思う'}
+                  <Typography variant="caption" color="textPrimary">
+                    {props.type === '1' && answer.answer_data[props.id]}
+                    {answer.answer_data[props.id] === '1' && 'はい'}
+                    {answer.answer_data[props.id] === '2' && 'いいえ'}
+                    {answer.answer_data[props.id] === '10' && 'そう思わない'}
+                    {answer.answer_data[props.id] === '20' && 'どちらでもない'}
+                    {answer.answer_data[props.id] === '30' && 'そう思う'}
+                  </Typography>
                 </TableCell>
                 <TableCell
                   className={classes.symbol}
@@ -105,7 +112,9 @@ const AnalyticsList = (props) => {
                 component="th"
                 scope="answer"
               >
-                <p>回答はまだありません。</p>
+                <Typography variant="caption" color="textPrimary">
+                  回答はまだありません
+                </Typography>
               </TableCell>
             </StyledTableRow>
           )}

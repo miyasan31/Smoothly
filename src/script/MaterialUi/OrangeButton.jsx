@@ -12,7 +12,6 @@ const useStyles = makeStyles({
     color: orange[500],
     border: '1px solid #ff9800',
     '&:hover': {
-      fontWeight: 'bold',
       color: 'white',
       backgroundColor: orange[500],
     },

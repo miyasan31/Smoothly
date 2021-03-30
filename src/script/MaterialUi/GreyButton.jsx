@@ -10,13 +10,13 @@ const useStyles = makeStyles({
     boxShadow: 'none',
     fontWeight: 'bold',
 
-    color: '#00000099',
-    border: '1px solid #00000044',
-    backgroundColor: 'white',
+    color: '#9e9e9e',
+    border: '1px solid #9e9e9e',
+    backgroundColor: '#00000000',
     '&:hover': {
       color: 'white',
-      backgroundColor: '#00000066',
-      border: '1px solid #00000000',
+      backgroundColor: '#616161',
+      border: '1px solid #616161',
     },
   },
 })

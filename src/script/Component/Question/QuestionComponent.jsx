@@ -82,29 +82,29 @@ const QuestionComponent = (props) => {
                 </IconButton>
               }
               title={
-                <Typography variant="h6" className="label">
+                <Typography variant="h6" color="textSecondary">
                   質問 {`${index + 1}`}
                 </Typography>
               }
             />
-            <Typography variant="h6">{data.item}</Typography>
-            <Typography variant="body1">
-              {data.type === '1' ? (
-                <AnswerText1
-                  id={index}
-                  label={'テキストを入力'}
-                  type={'text'}
-                  fullWidth={true}
-                  disabled={true}
-                  multiline={false}
-                  value={null}
-                />
-              ) : data.type === '2' ? (
-                <AnswerRadio2 id={index} disabled={true} />
-              ) : (
-                <AnswerRadio3 id={index} disabled={true} fullWidth />
-              )}
+            <Typography variant="h6" color="textSecondary">
+              {data.item}
             </Typography>
+            {data.type === '1' ? (
+              <AnswerText1
+                id={index}
+                label={'テキストを入力'}
+                type={'text'}
+                fullWidth={true}
+                disabled={true}
+                multiline={false}
+                value={null}
+              />
+            ) : data.type === '2' ? (
+              <AnswerRadio2 id={index} disabled={true} />
+            ) : (
+              <AnswerRadio3 id={index} disabled={true} fullWidth />
+            )}
           </Card>
         ))}
 

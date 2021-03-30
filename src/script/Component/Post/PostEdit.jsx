@@ -129,7 +129,9 @@ const PostEdit = () => {
         {openAlert ? <ErrorAlert setOpenAlert={setOpenAlert} /> : null}
 
         <Paper className="paper">
-          <Typography className="label pd_y_10px">投稿先</Typography>
+          <Typography className="pd_y_10px" color="textSecondary">
+            投稿先
+          </Typography>
           <SelectBox
             options={send}
             value={destination}
@@ -137,7 +139,9 @@ const PostEdit = () => {
             select={setDestination}
           />
 
-          <Typography className="label pd_top_10px">タイトル</Typography>
+          <Typography className="pd_top_10px" color="textSecondary">
+            タイトル
+          </Typography>
           <BlueInput
             label={null}
             type={'text'}
@@ -149,7 +153,9 @@ const PostEdit = () => {
             onChange={inputTitle}
           />
 
-          <Typography className="label pd_top_10px">内容</Typography>
+          <Typography className="pd_top_10px" color="textSecondary">
+            内容
+          </Typography>
           <BlueInput
             label={null}
             type={'text'}
@@ -161,7 +167,9 @@ const PostEdit = () => {
             onChange={inputItem}
           />
 
-          <Typography className="label pd_y_10px">添付ファイル</Typography>
+          <Typography className="pd_y_10px" color="textSecondary">
+            添付ファイル
+          </Typography>
 
           {fileName ? (
             <FileDelete onClick={deleteFile} label={'ファイルを削除'} />

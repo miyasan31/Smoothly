@@ -1,13 +1,12 @@
 import React, { useState, useCallback, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { push } from 'connected-react-router'
-import { Link } from 'react-router-dom'
 
 import { ActionCheckDialog } from '../Component/render'
 import { ClosableDrawer } from './materialui.js'
 import { db } from '../../firebase/firebase'
 import { getUserId } from '../../reducks/users/selectors'
-import { signOut } from '../../reducks/users/operations'
+import { signOut, updateTheme } from '../../reducks/users/operations'
 
 import { makeStyles } from '@material-ui/core/styles'
 import AppBar from '@material-ui/core/AppBar'
@@ -17,24 +16,23 @@ import Typography from '@material-ui/core/Typography'
 import MenuItem from '@material-ui/core/MenuItem'
 import Menu from '@material-ui/core/Menu'
 import MenuIcon from '@material-ui/icons/Menu'
-import { blue } from '@material-ui/core/colors'
 import Avatar from '@material-ui/core/Avatar'
+import Switch from '@material-ui/core/Switch'
 /* ===================================================================== */
 
 const useStyles = makeStyles((theme) => ({
   appbar: {
     boxShadow: 'none',
-    backgroundColor: 'white',
-    borderBottom: '1px solid #00000022',
+    borderBottom: `1px solid ${theme.palette.divider}`,
     height: '55px',
     [theme.breakpoints.up('sm')]: {
       height: '70px',
     },
   },
   title: {
-    color: blue[500],
     fontWeight: 'bold',
     fontSize: '25px',
+    color: '#2196f3',
     [theme.breakpoints.up('sm')]: {
       fontSize: '30px',
       paddingLeft: '25px',
@@ -45,17 +43,17 @@ const useStyles = makeStyles((theme) => ({
     height: theme.spacing(5),
     color: '#ffffff',
     backgroundColor: '#2196f3',
-    border: '3px solid #90caf9',
+    // border: '2px solid #90caf9',
     boxSizing: 'border-box',
     [theme.breakpoints.up('sm')]: {
-      width: theme.spacing(6),
-      height: theme.spacing(6),
+      width: theme.spacing(5.5),
+      height: theme.spacing(5.5),
     },
   },
   menu: {
     color: 'white',
     fontSize: '25px',
-    color: blue[500],
+    color: '#2196f3',
     [theme.breakpoints.up('sm')]: {
       fontSize: '30px',
     },
@@ -95,11 +93,17 @@ const AppBarHeader = (props) => {
   const selector = useSelector((state) => state)
   const current_uid = getUserId(selector)
   const [icon, setIcon] = useState('')
+  const [themeType, setThemeType] = useState(false)
   const [anchorEl, setAnchorEl] = useState(null)
   const [sideBarOpen, setSideBarOpen] = useState(false)
   const [openCheckDialog, setOpenCheckDialog] = useState(false)
 
   const isMenuOpen = Boolean(anchorEl)
+
+  const handleToggle = () => {
+    // setThemeType(true)
+    dispatch(updateTheme(current_uid, !themeType))
+  }
 
   const handleProfileMenuOpen = (event) => {
     setAnchorEl(event.currentTarget)
@@ -151,7 +155,9 @@ const AppBarHeader = (props) => {
         const userData = snapshots.data()
         if (userData.icon) {
           const icon = userData.icon.path
+          const theme = userData.dark_mode
           setIcon(icon)
+          setThemeType(theme)
         }
       })
     return () => unsubscribe()
@@ -176,7 +182,7 @@ const AppBarHeader = (props) => {
 
   return (
     <>
-      <AppBar className={classes.appbar} position="static">
+      <AppBar className={classes.appbar} position="static" color="inherit">
         <ActionCheckDialog
           text={'サインアウトしてもよろしいですか？'}
           buttonLabel={'サインアウト'}
@@ -189,20 +195,23 @@ const AppBarHeader = (props) => {
           <IconButton
             edge="start"
             className={classes.menuButton}
-            color="inherit"
             aria-label="open drawer"
             onClick={(e) => handleDrawerToggle(e, true)}
           >
             <MenuIcon className={classes.menu} />
           </IconButton>
 
-          <div className={classes.grow_sm} />
+          {/* <div className={classes.grow_sm} /> */}
 
-          <Typography className={classes.title} noWrap>
-            <a href="/post">{props.title}</a>
-          </Typography>
+          <a href="/post">
+            <Typography className={classes.title} noWrap>
+              Smoothly
+            </Typography>
+          </a>
 
           <div className={classes.grow} />
+
+          <Switch color="default" onChange={handleToggle} />
 
           <div className={classes.sectionDesktop}>
             <IconButton

@@ -8,7 +8,6 @@ import { blue } from '@material-ui/core/colors'
 const useStyles = makeStyles((theme) => ({
   blue: {
     boxShadow: 'none',
-    backgroundColor: 'white',
     margin: '0 15px 0 0',
     paddingLeft: 15,
     paddingRight: 15,
@@ -22,8 +21,9 @@ const BlueButtonNomal = (props) => {
     <Button
       fullWidth={props.fullWidth}
       size={props.size}
-      color="default"
       className={classes.blue}
+      // color="default"
+      color="primary"
       onClick={() => props.onClick()}
     >
       {props.label}

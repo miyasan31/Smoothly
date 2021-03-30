@@ -5,18 +5,17 @@ import CloudUploadIcon from '@material-ui/icons/CloudUpload'
 /* ===================================================================== */
 
 const useStyles = makeStyles({
-  flexbox: { display: 'flex', height: '40px', boxSizing: 'border-box' },
   button: {
     boxShadow: 'none',
     fontWeight: 'bold',
 
-    color: '#00000099',
-    border: '1px solid #00000044',
-    backgroundColor: 'white',
+    color: '#9e9e9e',
+    border: '1px solid #9e9e9e',
+    backgroundColor: '#00000000',
     '&:hover': {
       color: 'white',
-      backgroundColor: '#00000066',
-      border: '#00000066',
+      backgroundColor: '#616161',
+      border: '1px solid #616161',
     },
   },
   label: {
@@ -33,31 +32,28 @@ const useStyles = makeStyles({
     width: '145px',
     opacity: 0,
   },
-  fileName: { lineHeight: '0em', padding: '20px' },
 })
 
 const FileUpload = (props) => {
   const classes = useStyles()
 
   return (
-    <div className={classes.flexbox}>
-      <Button
-        variant="contained"
-        className={classes.button}
-        startIcon={<CloudUploadIcon />}
-      >
-        <label className={classes.label}>
-          <input
-            className={classes.input}
-            type="file"
-            value={props.file}
-            onChange={props.setFile}
-            accept=".pdf, image/*, .doc/, .xls"
-          />
-          {props.label}
-        </label>
-      </Button>
-    </div>
+    <Button
+      variant="contained"
+      className={classes.button}
+      startIcon={<CloudUploadIcon />}
+    >
+      <label className={classes.label}>
+        <input
+          className={classes.input}
+          type="file"
+          value={props.file}
+          onChange={props.setFile}
+          accept=".pdf, image/*, .doc/, .xls"
+        />
+        {props.label}
+      </label>
+    </Button>
   )
 }
 export default FileUpload

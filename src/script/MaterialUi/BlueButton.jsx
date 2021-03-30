@@ -8,13 +8,12 @@ import { blue } from '@material-ui/core/colors'
 const useStyles = makeStyles((theme) => ({
   blue: {
     boxShadow: 'none',
-    backgroundColor: 'white',
-    color: blue[500],
+    backgroundColor: '#00000000',
+    color: '#2196f3',
     border: '1px solid #2196f3',
     '&:hover': {
-      fontWeight: 'bold',
       color: 'white',
-      backgroundColor: blue[500],
+      backgroundColor: '#2196f3',
     },
   },
 }))

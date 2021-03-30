@@ -122,7 +122,9 @@ const QuestionEdit = () => {
         {openAlert ? <ErrorAlert setOpenAlert={setOpenAlert} /> : null}
 
         <Paper className="paper">
-          <Typography className="label pd_y_10px">投稿先</Typography>
+          <Typography className="pd_y_10px" color="textSecondary">
+            投稿先
+          </Typography>
           <SelectBox
             options={send}
             value={destination}
@@ -130,7 +132,9 @@ const QuestionEdit = () => {
             select={setDestination}
           />
 
-          <Typography className="label pd_top_10px">タイトル</Typography>
+          <Typography className="pd_top_10px" color="textSecondary">
+            タイトル
+          </Typography>
           <BlueInput
             label={null}
             type={'text'}
@@ -142,7 +146,9 @@ const QuestionEdit = () => {
             onChange={inputTitle}
           />
 
-          <Typography className="label pd_top_10px">内容</Typography>
+          <Typography className="pd_top_10px" color="textSecondary">
+            内容
+          </Typography>
           <BlueInput
             label={null}
             type={'text'}
@@ -154,7 +160,9 @@ const QuestionEdit = () => {
             onChange={inputItem}
           />
 
-          <Typography className="label pd_top_10px">回答期限</Typography>
+          <Typography className="pd_top_10px" color="textSecondary">
+            回答期限
+          </Typography>
           <DateTimePicker
             ampm={false}
             fullWidth={true}
@@ -163,7 +171,9 @@ const QuestionEdit = () => {
             onChange={inputDate}
           />
 
-          <Typography className="label pd_top_10px">質問作成</Typography>
+          <Typography className="pd_top_10px" color="textSecondary">
+            質問作成
+          </Typography>
 
           <QuestionComponent
             error={questionData.length === 0 && openAlert ? true : false}
