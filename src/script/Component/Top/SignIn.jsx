@@ -39,7 +39,7 @@ const SignIn = () => {
         <div className="my_entry_number">
           <h3>出品番号：名古屋PI011宮原将太</h3>
         </div>
-        <div className="comment">
+        <div className="comment signin_comment">
           <h2>
             ようこそ！
             <span
