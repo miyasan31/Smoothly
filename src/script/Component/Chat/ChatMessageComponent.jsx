@@ -8,9 +8,19 @@ import { db } from '../../../firebase/firebase'
 import { getUserId } from '../../../reducks/users/selectors'
 
 import Avatar from '@material-ui/core/Avatar'
+import Typography from '@material-ui/core/Typography'
+import { makeStyles } from '@material-ui/core/styles'
 /* ===================================================================== */
-
+const useStyles = makeStyles((theme) => ({
+  message: {
+    color: theme.palette.text.primary,
+    [theme.breakpoints.up('md')]: {
+      fontSize: '40px',
+    },
+  },
+}))
 const ChatMessageComponent = (props) => {
+  const classes = useStyles()
   const selector = useSelector((state) => state)
   const current_uid = getUserId(selector)
   const [icon, setIcon] = useState('')
@@ -69,24 +79,27 @@ const ChatMessageComponent = (props) => {
       </div>
       <div className="chat_msg">
         <span className="chat_from_name">
-          <p
+          <Typography
+            variant="body2"
+            color="textPrimary"
             className={
               props.createrUid === current_uid && 'chat_from_name_mine'
             }
           >
             {name}
-          </p>
+          </Typography>
         </span>
         <span>
           <ToolTipTime title={timeChange(props.updateTime)}>
-            <p
+            <Typography
+              variant="body2"
               style={{ whiteSpace: 'pre-wrap' }}
               className={
                 props.createrUid === current_uid ? 'message_mine' : ' message'
               }
             >
               {props.message}
-            </p>
+            </Typography>
           </ToolTipTime>
         </span>
       </div>
