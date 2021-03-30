@@ -126,7 +126,6 @@ body {
 .chat_from_name p {
   font-weight: bold;
   font-size: 12px;
-  /* color: #ffffff; */
   padding: 0 0 3px 5px;
 }
 .chat_from_name_mine {
@@ -137,15 +136,14 @@ body {
   max-width: 700px;
   padding: 10px 20px;
   border-radius: 20px;
-  background-color: #ffffff;
-  border: 1px solid #f0f0f0;
+  background-color: rgba(146, 146, 146, 0.164);
 }
 .message_mine {
   width: fit-content;
   max-width: 700px;
   padding: 10px 20px;
   border-radius: 20px;
-  background-color: #d4ecff;
+  background-color: #6bbcffb2;
 }
 .chat_content {
   position: fixed;
@@ -157,13 +155,12 @@ body {
   align-items: flex-end;
 
   width: calc(100% - 231px);
-  background-color: #ffffff;
+  background-color: #ffffff00;
   border-top: 1px solid #00000022;
 }
 .chat_textarea {
   width: 95%;
   padding: 8px 3px 8px 8px;
-  background-color: rgb(255, 255, 255);
 }
 /* height============================================ */
 .space_5px {
