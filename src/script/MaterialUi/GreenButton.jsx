@@ -12,7 +12,6 @@ const useStyles = makeStyles({
     color: green['A400'],
     border: '1px solid #00e676',
     '&:hover': {
-      fontWeight: 'bold',
       color: 'white',
       backgroundColor: green['A400'],
     },

@@ -20,7 +20,7 @@ import { Avatar } from '@material-ui/core'
 const useStyles = makeStyles((theme) => ({
   icon: {
     margin: '0 5px 0 10px',
-    border: '4px solid #90caf9',
+    border: '3px solid #90caf9',
     width: theme.spacing(8),
     height: theme.spacing(8),
     marginRight: 30,
@@ -29,6 +29,9 @@ const useStyles = makeStyles((theme) => ({
       height: theme.spacing(15),
       marginRight: 80,
     },
+  },
+  label: {
+    borderBottom: `1px solid ${theme.palette.divider}`,
   },
   flex: {
     display: 'block',
@@ -87,18 +90,30 @@ const Setting = () => {
 
       <div className="contents_style">
         <Paper className="paper mg_btm_20px">
-          <Typography variant="h6" className="title_underline">
+          <Typography
+            variant="h6"
+            className={classes.label}
+            color="textPrimary"
+          >
             プロフィール
           </Typography>
           <div className={classes.flex}>
             <div>
-              <Typography variant="body2" className="label pd_btm_10px">
+              <Typography
+                variant="body2"
+                className="pd_btm_10px"
+                color="textSecondary"
+              >
                 アイコン
               </Typography>
               <Avatar className={classes.icon} src={icon} />
             </div>
             <div>
-              <Typography variant="body2" className="label pd_y_10px">
+              <Typography
+                variant="body2"
+                className="pd_y_10px"
+                color="textSecondary"
+              >
                 自己紹介文
               </Typography>
               <Typography variant="body2" style={{ whiteSpace: 'pre-wrap' }}>
@@ -115,13 +130,25 @@ const Setting = () => {
         </Paper>
 
         <Paper className="paper mg_btm_20px">
-          <Typography variant="h6" className="title_underline">
+          <Typography
+            variant="h6"
+            className={classes.label}
+            color="textPrimary"
+          >
             メールアドレス・パスワード
           </Typography>
-          <Typography variant="body2" className="label pd_top_10px">
+          <Typography
+            variant="body2"
+            className="pd_top_10px"
+            color="textSecondary"
+          >
             登録中のメールアドレス
           </Typography>
-          <Typography variant="body1" className="pd_top_10px">
+          <Typography
+            variant="body1"
+            className="pd_top_10px"
+            color="textPrimary"
+          >
             {mail}
           </Typography>
           <div className="right">
@@ -133,7 +160,11 @@ const Setting = () => {
         </Paper>
 
         <Paper className="paper mg_btm_20px">
-          <Typography variant="h6" className="title_underline">
+          <Typography
+            variant="h6"
+            className={classes.label}
+            color="textPrimary"
+          >
             サインアウト
           </Typography>
           <div className="right pd_top_10px">
@@ -142,7 +173,11 @@ const Setting = () => {
         </Paper>
 
         <Paper className="paper mg_btm_20px">
-          <Typography variant="h6" className="title_underline">
+          <Typography
+            variant="h6"
+            className={classes.label}
+            color="textPrimary"
+          >
             退会
           </Typography>
           <div className="right pd_top_10px">

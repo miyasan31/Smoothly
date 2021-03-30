@@ -15,11 +15,14 @@ const useStyles = makeStyles((theme) => ({
   dialog: {
     width: 'inherit',
     margin: '0 auto',
-    padding: 20,
+    padding: '20px 0px',
+  },
+  name: {
+    borderBottom: `1px solid ${theme.palette.divider}`,
   },
   icon: {
     margin: '0 5px 0 10px',
-    border: '4px solid #90caf9',
+    border: '3px solid #90caf9',
     width: theme.spacing(8),
     height: theme.spacing(8),
     marginRight: 30,
@@ -92,22 +95,34 @@ const ProfDialog = (props) => {
         onClose={handleClose}
       >
         <div className={classes.dialog}>
-          <Typography variant="h6" className="title_underline">
+          <Typography variant="h6" className={classes.name} color="textPrimary">
             {name}
           </Typography>
 
           <div className={classes.flex}>
             <div>
-              <Typography variant="body2" className="label pd_y_10px">
+              <Typography
+                variant="body2"
+                className="pd_y_10px"
+                color="textSecondary"
+              >
                 アイコン
               </Typography>
               <Avatar className={classes.icon} src={icon} />
             </div>
             <div>
-              <Typography variant="body2" className="label pd_y_10px">
+              <Typography
+                variant="body2"
+                className="pd_y_10px"
+                color="textSecondary"
+              >
                 自己紹介文
               </Typography>
-              <Typography variant="body1" style={{ whiteSpace: 'pre-wrap' }}>
+              <Typography
+                variant="body1"
+                style={{ whiteSpace: 'pre-wrap' }}
+                color="textPrimary"
+              >
                 {prof}
               </Typography>
             </div>

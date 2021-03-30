@@ -78,7 +78,11 @@ const ProfEdit = () => {
         {openAlert ? <ErrorAlert setOpenAlert={setOpenAlert} /> : null}
 
         <Paper className="paper">
-          <Typography variant="body1" className="label pd_y_10px">
+          <Typography
+            variant="body1"
+            className="pd_y_10px"
+            color="textSecondary"
+          >
             アイコン
           </Typography>
           <div className="image">
@@ -93,7 +97,11 @@ const ProfEdit = () => {
             )}
           </div>
 
-          <Typography variant="body1" className="label pd_y_10px">
+          <Typography
+            variant="body1"
+            className="pd_y_10px"
+            color="textSecondary"
+          >
             自己紹介文
           </Typography>
           <BlueInputOutlined

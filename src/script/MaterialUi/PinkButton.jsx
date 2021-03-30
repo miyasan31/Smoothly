@@ -2,17 +2,15 @@ import React from 'react'
 
 import Button from '@material-ui/core/Button'
 import { makeStyles } from '@material-ui/core/styles'
-import { pink } from '@material-ui/core/colors'
 /* ===================================================================== */
 
 const useStyles = makeStyles((theme) => ({
   pink: {
     boxShadow: 'none',
-    backgroundColor: 'white',
+    backgroundColor: '#00000000',
     color: '#e91e63',
     border: '1px solid #e91e63',
     '&:hover': {
-      fontWeight: 'bold',
       color: 'white',
       backgroundColor: '#e91e63',
     },

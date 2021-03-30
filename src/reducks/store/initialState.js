@@ -1,6 +1,7 @@
 export const initialState = {
   users: {
     is_signin: false,
+    dark_mode: false,
     uid: '',
     icon: '',
     user_name: '',

@@ -119,7 +119,9 @@ const RoomEdit = () => {
         {openAlert ? <ErrorAlert setOpenAlert={setOpenAlert} /> : null}
 
         <Paper className="paper mg_btm_20px">
-          <Typography className="label pd_y_10px">ルームアイコン</Typography>
+          <Typography className="pd_y_10px" color="textSecondary">
+            ルームアイコン
+          </Typography>
           <div className="image">
             {inputImg === '' ? (
               <IconUpload
@@ -132,7 +134,9 @@ const RoomEdit = () => {
             )}
           </div>
 
-          <Typography className="label pd_top_10px">ルーム名</Typography>
+          <Typography className="pd_top_10px" color="textSecondary">
+            ルーム名
+          </Typography>
 
           <BlueInput
             label={null}
@@ -147,7 +151,7 @@ const RoomEdit = () => {
             onChange={inputRoomName}
           />
 
-          <Typography className="label pd_top_10px">
+          <Typography className="pd_top_10px" color="textSecondary">
             選択中のユーザー
           </Typography>
           <RoomCheckedList
@@ -168,7 +172,11 @@ const RoomEdit = () => {
         </Paper>
 
         <Paper className="paper">
-          <Typography variant="h6" className="title pd_btm_10px">
+          <Typography
+            variant="h6"
+            className="title pd_btm_10px"
+            color="textPrimary"
+          >
             ユーザー一覧
           </Typography>
 

@@ -102,7 +102,7 @@ const SignUp = () => {
 
         <div className="flex_grow"></div>
 
-        <div className="form_box signup_theme">
+        <div className="form_box signup_form">
           <div className="form">
             <h1 className="pointer" onClick={() => dispatch(push('./signin'))}>
               Smoothly

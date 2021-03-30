@@ -18,11 +18,9 @@ const useStyles = makeStyles((theme) => ({
   appBar: {
     boxShadow: 'none',
     borderRadius: 10,
-    backgroundColor: 'white',
   },
   label: {
     fontWeight: 'bold',
-    // color: '#2196f3',
   },
 }))
 
@@ -36,7 +34,7 @@ const TaskTab = (props) => {
 
   return (
     <div className={classes.root}>
-      <AppBar className={classes.appBar} position="static">
+      <AppBar className={classes.appBar} position="static" color="inherit">
         <Tabs
           value={value}
           onChange={handleChange}

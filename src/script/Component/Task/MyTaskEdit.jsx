@@ -110,7 +110,9 @@ const MyTaskEdit = () => {
         {openAlert ? <ErrorAlert setOpenAlert={setOpenAlert} /> : null}
 
         <Paper className="paper">
-          <Typography className="label pd_top_10px">タスク名</Typography>
+          <Typography className="pd_top_10px" color="textSecondary">
+            タスク名
+          </Typography>
           <BlueInput
             label={null}
             type={'text'}
@@ -124,7 +126,9 @@ const MyTaskEdit = () => {
 
           <div className={classes.picker}>
             <div className="flex_10">
-              <Typography className="label pd_top_10px">開始時刻</Typography>
+              <Typography className="pd_top_10px" color="textSecondary">
+                開始時刻
+              </Typography>
               <DateTimePicker
                 fullWidth={true}
                 ampm={false}
@@ -135,7 +139,9 @@ const MyTaskEdit = () => {
             </div>
             <div className="flex_1"></div>
             <div className="flex_10">
-              <Typography className="label pd_top_10px">終了時刻</Typography>
+              <Typography className="pd_top_10px" color="textSecondary">
+                終了時刻
+              </Typography>
               <DateTimePicker
                 fullWidth={true}
                 ampm={false}
@@ -147,7 +153,6 @@ const MyTaskEdit = () => {
               <Typography
                 variant="body2"
                 style={{ color: '#e91e63', fontSize: '11px' }}
-                className="label"
               >
                 {dateCheck(startDate, endDate)}
               </Typography>

@@ -2,25 +2,17 @@ import React from 'react'
 
 import { makeStyles } from '@material-ui/core/styles'
 import Button from '@material-ui/core/Button'
-import { blue } from '@material-ui/core/colors'
 /* ===================================================================== */
 
 const useStyles = makeStyles((theme) => ({
-  root: {
-    '& > *': {
-      margin: theme.spacing(1),
-    },
-  },
   blue: {
-    marginTop: '15px',
     boxShadow: 'none',
-    backgroundColor: 'white',
-    color: blue[500],
+    backgroundColor: '#00000000',
+    color: '#2196f3',
     border: '1px solid #2196f3',
     '&:hover': {
-      fontWeight: 'bold',
       color: 'white',
-      backgroundColor: blue[500],
+      backgroundColor: '#2196f3',
     },
   },
   input: {

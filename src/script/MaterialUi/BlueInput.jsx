@@ -4,11 +4,12 @@ import TextField from '@material-ui/core/TextField'
 import { makeStyles } from '@material-ui/core/styles'
 /* ===================================================================== */
 
-const useStyles = makeStyles({
+const useStyles = makeStyles((theme) => ({
   input: {
     marginTop: '10px',
+    color: '#000',
   },
-})
+}))
 
 const BlueInput = (props) => {
   const classes = useStyles()

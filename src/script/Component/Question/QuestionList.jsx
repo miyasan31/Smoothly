@@ -126,19 +126,20 @@ const QuestionList = (props) => {
         />
 
         <CardContent>
-          <Typography variant="body2" className="label">
+          <Typography variant="body2" color="textSecondary">
             タイトル
           </Typography>
-          <Typography variant="body1" className="pd_10px">
+          <Typography variant="body1" className="pd_10px" color="textPrimary">
             {props.title}
           </Typography>
 
-          <Typography variant="body2" className="label">
+          <Typography variant="body2" color="textSecondary">
             内容
           </Typography>
           <Typography
             variant="body1"
             className="pd_10px"
+            color="textPrimary"
             style={{ whiteSpace: 'pre-wrap' }}
           >
             {props.item}

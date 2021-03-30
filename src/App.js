@@ -32,7 +32,6 @@ import './script/CSS/nav.css'
 import Auth from './Auth'
 
 import { Route, Switch } from 'react-router-dom'
-
 /* ===================================================================== */
 
 const App = () => {

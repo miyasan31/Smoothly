@@ -42,7 +42,7 @@ export const ReIssue = () => {
 
         <div className="flex_grow"></div>
 
-        <div className="form_box reissue_theme">
+        <div className="form_box reissue_form">
           <div className="form">
             <h1 className="pointer" onClick={() => dispatch(push('./signin'))}>
               Smoothly

@@ -13,6 +13,11 @@ export const UsersReducter = (state = initialState.users, action) => {
       return {
         ...action.payload,
       }
+    case Action.THEME_CHANGE:
+      return {
+        ...state,
+        ...action.payload,
+      }
     default:
       return state
   }
