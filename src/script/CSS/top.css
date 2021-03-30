@@ -3,6 +3,7 @@
   top: 10px;
   left: 50px;
   font-size: 30px;
+  color: #fff;
 }
 .top_main {
   position: relative;
@@ -52,6 +53,9 @@
 .comment h2 span {
   font-size: 60px;
   text-decoration: underline;
+}
+.signin_comment h2 {
+  color: #fff;
 }
 
 .form_box {
