@@ -96,22 +96,19 @@ const AppBarSubHeader = (props) => {
     }
   }, [rid])
 
-  const handleMenu = (event) => {
+  const handleMenuOpen = (event) => {
     setAnchorEl(event.currentTarget)
-  }
-  const handleClose = () => {
-    setAnchorEl(null)
   }
   const handleRoomEdit = (rid) => {
     setAnchorEl(null)
     dispatch(push('/chat/edit/' + rid))
   }
-  const handleRoomDelete = (rid) => {
+  const handleRoomDelete = () => {
     setAnchorEl(null)
     dispatch(deleteChatRoom(rid))
   }
   const checkHandleClick = () => {
-    handleClose()
+    setAnchorEl(null)
     setOpenCheckDialog(true)
   }
 
@@ -124,6 +121,7 @@ const AppBarSubHeader = (props) => {
         setOpenDialog={setOpenCheckDialog}
         actionHandleClick={handleRoomDelete}
       />
+
       <Toolbar variant="dense">
         <Typography className={classes.title} variant="h6" color="inherit">
           {props.subtitle}
@@ -141,7 +139,7 @@ const AppBarSubHeader = (props) => {
             className={classes.menuButton}
             edge="end"
             aria-label="menu"
-            onClick={handleMenu}
+            onClick={handleMenuOpen}
           >
             <SettingsIcon className={classes.icon} />
           </IconButton>
@@ -158,7 +156,7 @@ const AppBarSubHeader = (props) => {
               horizontal: 'right',
             }}
             open={open}
-            onClose={handleClose}
+            onClose={() => setAnchorEl(null)}
           >
             <MenuItem onClick={() => handleRoomEdit(rid)}>ルーム編集</MenuItem>
             <MenuItem onClick={() => checkHandleClick(rid)}>
