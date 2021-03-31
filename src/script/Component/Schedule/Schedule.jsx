@@ -8,7 +8,7 @@ import {
   getUserValue,
 } from '../../../reducks/users/selectors'
 import { schoolevent } from './data/schoolevent'
-import { AppBarSubHeader } from '../../MaterialUi/materialui'
+import { AppBarSubHeader, NativeSelectBox } from '../../MaterialUi/materialui'
 
 import Paper from '@material-ui/core/Paper'
 import { ViewState, EditingState } from '@devexpress/dx-react-scheduler'
@@ -16,6 +16,8 @@ import {
   Scheduler,
   Toolbar,
   MonthView,
+  WeekView,
+  DayView,
   Appointments,
   AppointmentTooltip,
   EditRecurrenceMenu,
@@ -42,6 +44,7 @@ const Schedule = () => {
   const [completedTasks, setCompletedTasks] = useState('')
   const [allTasks, setAllTasks] = useState('')
   const [createdTasks, setCreatedTasks] = useState('')
+  const [choice, setChoice] = useState('month')
 
   const userSchedule = schoolevent.concat(
     doingTasks,
@@ -141,16 +144,32 @@ const Schedule = () => {
   return (
     <section className="schedules_main">
       <AppBarSubHeader subtitle={'スケジュール'} />
+      <div className="schedules_view_switcher">
+        <NativeSelectBox
+          fullWidth={false}
+          options={send}
+          value={choice}
+          variant={'outlined'}
+          select={setChoice}
+        />
+      </div>
 
       <Paper style={{ boxShadow: 'none', borderBottom: '1px solid #00000022' }}>
         <Scheduler data={userSchedule} locale="JA">
           <ViewState />
           <EditingState />
-          <MonthView />
+          {choice === 'month' ? (
+            <MonthView />
+          ) : choice === 'week' ? (
+            <WeekView />
+          ) : (
+            <DayView />
+          )}
           <AllDayPanel />
           <EditRecurrenceMenu />
           <Appointments />
           <AppointmentTooltip showCloseButton />
+
           <Toolbar />
           <DateNavigator />
           <Resources data={resources} />
@@ -175,4 +194,10 @@ const resources = [
       { id: '6', text: '投稿したタスク', color: pink },
     ],
   },
+]
+
+const send = [
+  { id: 'month', name: '月' },
+  { id: 'week', name: '週' },
+  { id: 'day', name: '日' },
 ]
