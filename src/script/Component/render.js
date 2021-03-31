@@ -48,5 +48,3 @@ export { default as IconCropper } from './Setting/IconCropper.jsx'
 export { default as ProfEdit } from './Setting/ProfEdit.jsx'
 export { default as AuthEdit } from './Setting/AuthEdit.jsx'
 export { default as UserDelete } from './Setting/UserDelete.jsx'
-
-export { default as ScrollTop } from './ScrollTop.jsx'

@@ -96,20 +96,23 @@ body {
   padding-top: 48px;
   padding-bottom: 5px;
   box-sizing: border-box;
-  /* background-color: #ffffff; */
 }
 .schedules_contents_style {
   border-bottom: 1px solid #00000022;
+}
+.schedules_view_switcher {
+  position: absolute;
+  top: 54px;
+  right: 10px;
+  z-index: 50;
 }
 /* CHAT================================================================= */
 .chat_contents_style {
   display: flex;
   flex-direction: column;
-  /* width: 95%; */
   margin: 0 auto;
   padding: 20px 2% 30px 2%;
   margin-bottom: 110px;
-  /* background-color: #ffffff; */
 }
 .chat_msg_box {
   display: flex;
@@ -418,6 +421,10 @@ body {
   }
   .schedules_main {
     padding-top: 20px;
+  }
+  .schedules_view_switcher {
+    top: 21px;
+    right: 0px;
   }
   .edit_addbtn {
     bottom: -20px;

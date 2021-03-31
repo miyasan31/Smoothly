@@ -61,58 +61,52 @@ const CollectList = (props) => {
   const classes = useStyles()
 
   return (
-    <>
-      <TableContainer className="mg_btm_20px" component={Paper}>
-        <Table>
-          <TableHead>
-            <TableRow>
-              <StyledTableCell
-                className={classes.title}
-                size="small"
-                colSpan={2}
-              >
-                {props.missions.title}
-              </StyledTableCell>
-            </TableRow>
-          </TableHead>
-          <TableBody>
-            {props.submits.length !== 0 ? (
-              props.submits.map((data, index) => (
-                <StyledTableRow key={index}>
-                  <StyledTableCell
-                    className={classes.name}
-                    component="th"
-                    scope="row"
-                  >
-                    <Typography variant="caption" color="textPrimary">
-                      {data.creater_name}
-                    </Typography>
-                  </StyledTableCell>
-                  <StyledTableCell className={classes.item} align="left">
-                    <a href={data.file.path}>
-                      <Typography variant="caption" color="primary">
-                        {data.file.file_name}
-                      </Typography>
-                    </a>
-                  </StyledTableCell>
-                </StyledTableRow>
-              ))
-            ) : (
-              <StyledTableRow>
-                <TableCell
+    <TableContainer className="mg_btm_20px" component={Paper}>
+      <Table>
+        <TableHead>
+          <TableRow>
+            <StyledTableCell className={classes.title} size="small" colSpan={2}>
+              {props.missions.title}
+            </StyledTableCell>
+          </TableRow>
+        </TableHead>
+        <TableBody>
+          {props.submits.length !== 0 ? (
+            props.submits.map((data, index) => (
+              <StyledTableRow key={index}>
+                <StyledTableCell
                   className={classes.name}
-                  size="small"
                   component="th"
-                  scope="answer"
+                  scope="row"
                 >
-                  <p>提出者はまだいません。</p>
-                </TableCell>
+                  <Typography variant="caption" color="textPrimary">
+                    {data.creater_name}
+                  </Typography>
+                </StyledTableCell>
+                <StyledTableCell className={classes.item} align="left">
+                  <a href={data.file.path}>
+                    <Typography variant="caption" color="primary">
+                      {data.file.file_name}
+                    </Typography>
+                  </a>
+                </StyledTableCell>
               </StyledTableRow>
-            )}
-          </TableBody>
-        </Table>
-      </TableContainer>
-    </>
+            ))
+          ) : (
+            <StyledTableRow>
+              <TableCell
+                className={classes.name}
+                size="small"
+                component="th"
+                scope="answer"
+              >
+                <p>提出者はまだいません。</p>
+              </TableCell>
+            </StyledTableRow>
+          )}
+        </TableBody>
+      </Table>
+    </TableContainer>
   )
 }
 

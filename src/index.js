@@ -7,6 +7,8 @@ import * as History from 'history'
 
 import App from './App.js'
 import reportWebVitals from './reportWebVitals'
+
+import TemplateTheme from './TemplateTheme.js'
 /* ===================================================================== */
 
 export const history = History.createBrowserHistory()
@@ -15,7 +17,9 @@ export const store = createStore(history)
 ReactDOM.render(
   <Provider store={store}>
     <ConnectedRouter history={history}>
-      <App />
+      <TemplateTheme>
+        <App />
+      </TemplateTheme>
     </ConnectedRouter>
   </Provider>,
   document.getElementById('root')

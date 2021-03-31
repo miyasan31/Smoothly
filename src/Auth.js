@@ -21,15 +21,24 @@ const Auth = ({ children }) => {
 
   if (!isSignedIn) {
     return (
-      <TemplateTheme>
-        <div className="flex_center pd_top_30px">
-          <CircularProgress />
-        </div>
-      </TemplateTheme>
+      <div className="flex_center pd_top_30px">
+        <CircularProgress />
+      </div>
     )
   } else {
-    return <TemplateTheme>{children}</TemplateTheme>
+    return <div>{children}</div>
   }
+  // if (!isSignedIn) {
+  //   return (
+  //     <TemplateTheme>
+  //       <div className="flex_center pd_top_30px">
+  //         <CircularProgress />
+  //       </div>
+  //     </TemplateTheme>
+  //   )
+  // } else {
+  //   return <TemplateTheme>{children}</TemplateTheme>
+  // }
 }
 
 export default Auth
