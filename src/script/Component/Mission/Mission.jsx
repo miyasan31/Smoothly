@@ -59,7 +59,7 @@ const Mission = () => {
             />
           ))
         ) : missions.length === 0 ? (
-          <h3>現在出ている課題はありません</h3>
+          <div>現在出ている課題はありません</div>
         ) : null}
       </div>
     </section>

@@ -52,7 +52,7 @@ const MyTaskList = (props) => {
   }
 
   return (
-    <>
+    <div>
       {props.myTasks.length > 0 ? (
         props.myTasks.map((task, index) => (
           <>
@@ -98,7 +98,7 @@ const MyTaskList = (props) => {
           <ListItemText primary={'タスクがありません'} />
         </ListItem>
       )}
-    </>
+    </div>
   )
 }
 export default MyTaskList

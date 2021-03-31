@@ -19,12 +19,6 @@ const useStyles = makeStyles((theme) => ({
 
 const AddButton = () => {
   const classes = useStyles()
-  return (
-    <>
-      {/* <AddIcon className={classes.btn} /> */}
-      <AddCircleIcon className={classes.btn} />
-      {/* <AddCircleOutlineIcon className={classes.btn} /> */}
-    </>
-  )
+  return <AddCircleIcon className={classes.btn} />
 }
 export default AddButton

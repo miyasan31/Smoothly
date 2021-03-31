@@ -25,27 +25,29 @@ const RoomCheckedList = (props) => {
   }
 
   return (
-    <List dense className="fullWidth">
-      {props.checked.length !== 0 ? (
-        props.checked.map((value, index) => {
-          return (
-            <ListItem key={value} button>
-              <ListItemText primary={props.userName[index]} />
-              <ListItemPrimaryAction>
-                <Checkbox
-                  color="primary"
-                  edge="end"
-                  onChange={handleToggle(value)}
-                  checked={props.checked.indexOf(value) !== -1}
-                />
-              </ListItemPrimaryAction>
-            </ListItem>
-          )
-        })
-      ) : (
-        <p style={{ color: '#ef5350' }}>ユーザーを選択してください</p>
-      )}
-    </List>
+    <div>
+      <List dense className="fullWidth">
+        {props.checked.length !== 0 ? (
+          props.checked.map((value, index) => {
+            return (
+              <ListItem key={value} button>
+                <ListItemText primary={props.userName[index]} />
+                <ListItemPrimaryAction>
+                  <Checkbox
+                    color="primary"
+                    edge="end"
+                    onChange={handleToggle(value)}
+                    checked={props.checked.indexOf(value) !== -1}
+                  />
+                </ListItemPrimaryAction>
+              </ListItem>
+            )
+          })
+        ) : (
+          <div style={{ color: '#ef5350' }}>ユーザーを選択してください</div>
+        )}
+      </List>
+    </div>
   )
 }
 

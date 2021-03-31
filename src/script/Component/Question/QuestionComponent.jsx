@@ -68,7 +68,7 @@ const QuestionComponent = (props) => {
   }
 
   return (
-    <>
+    <div>
       {datas.length !== 0 &&
         datas.map((data, index) => (
           <Card key={index} className={classes.card}>
@@ -126,7 +126,7 @@ const QuestionComponent = (props) => {
         label={'作成 ＋ '}
         onClick={questionAddHnadleClick}
       />
-    </>
+    </div>
   )
 }
 export default QuestionComponent

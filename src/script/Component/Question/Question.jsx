@@ -56,7 +56,7 @@ const Question = () => {
             />
           ))
         ) : questions.length === 0 ? (
-          <h3>現在アンケートは実施されてません</h3>
+          <div>現在アンケートは実施されてません</div>
         ) : null}
       </div>
     </section>

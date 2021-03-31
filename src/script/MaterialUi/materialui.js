@@ -4,6 +4,7 @@ export { default as ClosableDrawer } from './ClosableDrawer.jsx'
 
 // export { default as BlueCheckbox } from './BlueCheckbox.jsx'
 export { default as SelectBox } from './SelectBox.jsx'
+export { default as NativeSelectBox } from './NativeSelectBox.jsx'
 export { default as IconUpload } from './IconUpload.jsx'
 export { default as FileUpload } from './FileUpload.jsx'
 export { default as FileDelete } from './FileDelete.jsx'
