@@ -108,6 +108,7 @@ const SignUp = () => {
               Smoothly
             </h1>
             <SelectBox
+              fullWidth={true}
               options={user_value}
               label={'ユーザー属性'}
               value={userValue}
@@ -123,6 +124,7 @@ const SignUp = () => {
             />
             <div className="pd_top_10px"></div>
             <SelectBox
+              fullWidth={true}
               options={genders}
               label={'性別'}
               value={gender}
@@ -142,6 +144,7 @@ const SignUp = () => {
               <>
                 <div className="pd_top_10px"></div>
                 <SelectBox
+                  fullWidth={true}
                   options={class_name}
                   label={'クラス記号'}
                   value={className}

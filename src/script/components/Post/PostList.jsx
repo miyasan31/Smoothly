@@ -25,9 +25,6 @@ import { makeStyles } from '@material-ui/core/styles'
 /* ===================================================================== */
 
 const useStyles = makeStyles((theme) => ({
-  root: {
-    backgroundColor: theme.palette.background,
-  },
   media: {
     height: '0',
     padding: '50%',
@@ -102,8 +99,8 @@ const PostList = (props) => {
   }, [])
 
   return (
-    <div>
-      <Card className="mg_btm_20px" className={classes.root}>
+    <div className="mg_btm_20px">
+      <Card>
         <CardHeader
           avatar={
             icon ? (

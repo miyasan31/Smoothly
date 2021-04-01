@@ -83,7 +83,12 @@ const AuthEdit = () => {
           <Typography className="pd_y_10px" color="textSecondary">
             変更項目
           </Typography>
-          <SelectBox options={choiceData} value={choice} select={setChoice} />
+          <SelectBox
+            fullWidth={true}
+            options={choiceData}
+            value={choice}
+            select={setChoice}
+          />
 
           <Typography className="pd_top_10px" color="textSecondary">
             現在のメールアドレス
@@ -91,9 +96,7 @@ const AuthEdit = () => {
           <BlueInput
             type={'email'}
             fullWidth={true}
-            required={true}
-            multiline={true}
-            autoFocus={false}
+            multiline={false}
             value={email}
             error={!email && openAlert ? true : false}
             onChange={inputEmail}
@@ -107,9 +110,7 @@ const AuthEdit = () => {
               <BlueInput
                 type={'email'}
                 fullWidth={true}
-                required={true}
-                multiline={true}
-                autoFocus={false}
+                multiline={false}
                 value={newEmail}
                 error={!newEmail && openAlert ? true : false}
                 onChange={inputNewEmail}
@@ -123,9 +124,7 @@ const AuthEdit = () => {
           <BlueInput
             type={'password'}
             fullWidth={true}
-            required={true}
-            multiline={true}
-            autoFocus={false}
+            multiline={false}
             value={password}
             error={!password && openAlert ? true : false}
             onChange={inputPassword}
@@ -139,9 +138,7 @@ const AuthEdit = () => {
               <BlueInput
                 type={'password'}
                 fullWidth={true}
-                required={true}
-                multiline={true}
-                autoFocus={false}
+                multiline={false}
                 value={newPassword}
                 error={!newPassword && openAlert ? true : false}
                 onChange={inputNewPassword}

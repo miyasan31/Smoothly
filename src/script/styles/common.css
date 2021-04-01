@@ -10,7 +10,7 @@
   display: none;
 }
 * a {
-  /* color: #2196f3; */
+  color: #2196f3;
 }
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
@@ -403,7 +403,7 @@ body {
 }
 
 /* responsive================================================== */
-@media screen and (max-width: 960px) {
+@media screen and (max-width: 959px) {
   .contents_style {
     margin-bottom: 200px;
   }

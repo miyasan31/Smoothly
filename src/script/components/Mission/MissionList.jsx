@@ -121,8 +121,8 @@ const MissionList = (props) => {
   }, [])
 
   return (
-    <div>
-      <Card className="mg_btm_20px">
+    <div className="mg_btm_20px">
+      <Card>
         <CardHeader
           avatar={
             icon ? (
