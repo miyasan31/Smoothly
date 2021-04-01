@@ -1,11 +1,12 @@
-import React, { useState } from 'react'
+import React from 'react'
 import ReactDOM from 'react-dom'
-import { Provider, useSelector } from 'react-redux'
+import { Provider } from 'react-redux'
 import createStore from './reducks/store/store.js'
 import { ConnectedRouter } from 'connected-react-router'
 import * as History from 'history'
 
 import App from './App.js'
+import TempleteTheme from './TemplateTheme'
 import reportWebVitals from './reportWebVitals'
 /* ===================================================================== */
 
@@ -15,7 +16,9 @@ export const store = createStore(history)
 ReactDOM.render(
   <Provider store={store}>
     <ConnectedRouter history={history}>
-      <App />
+      <TempleteTheme>
+        <App />
+      </TempleteTheme>
     </ConnectedRouter>
   </Provider>,
   document.getElementById('root')
