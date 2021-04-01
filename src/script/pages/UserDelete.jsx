@@ -78,9 +78,7 @@ const AuthEdit = () => {
           <BlueInput
             type={'email'}
             fullWidth={true}
-            required={true}
-            multiline={true}
-            autoFocus={false}
+            multiline={false}
             value={email}
             error={!email && openAlert ? true : false}
             onChange={inputEmail}
@@ -92,9 +90,7 @@ const AuthEdit = () => {
           <BlueInput
             type={'password'}
             fullWidth={true}
-            required={true}
-            multiline={true}
-            autoFocus={false}
+            multiline={false}
             value={password}
             error={!password && openAlert ? true : false}
             onChange={inputPassword}

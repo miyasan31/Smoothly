@@ -7,9 +7,6 @@ import Select from '@material-ui/core/Select'
 /* ===================================================================== */
 
 const useStyles = makeStyles((theme) => ({
-  formControl: {
-    width: '100%',
-  },
   label: {
     paddingLeft: '20px',
   },

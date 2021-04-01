@@ -18,13 +18,13 @@ import Paper from '@material-ui/core/Paper'
 import Typography from '@material-ui/core/Typography'
 /* ===================================================================== */
 
-const useStyles = makeStyles({
+const useStyles = makeStyles((theme) => ({
   item: {
     marginTop: '20px',
     padding: '20px',
-    backgroundColor: '#00000005',
+    backgroundColor: theme.palette.action.hover,
   },
-})
+}))
 
 const AnswerEdit = () => {
   const classes = useStyles()

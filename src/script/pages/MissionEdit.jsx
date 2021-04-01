@@ -58,6 +58,11 @@ const MissionEdit = () => {
             setPreview(mission.file.path)
           }
         })
+    } else {
+      const mission_title = '【科目記号】\t課題No.\t「課題主題」'
+      const mission_item = '課題主題：\n提出方法：\n課題内容：\n課題目的：'
+      setTitle(mission_title)
+      setItem(mission_item)
     }
   }, [mid])
   // タイトル入力イベント
@@ -143,6 +148,7 @@ const MissionEdit = () => {
             投稿先
           </Typography>
           <SelectBox
+            fullWidth={true}
             options={send}
             value={destination}
             error={!destination && openAlert ? true : false}
@@ -158,8 +164,8 @@ const MissionEdit = () => {
             multiline={true}
             type={'text'}
             value={title}
+            defaultValue={title}
             error={!title && openAlert ? true : false}
-            defaultValue={mid === '' ? mission_title : title}
             onChange={inputTitle}
           />
 
@@ -172,7 +178,7 @@ const MissionEdit = () => {
             multiline={true}
             type={'text'}
             value={item}
-            defaultValue={mid === '' ? mission_item : item}
+            defaultValue={item}
             error={!item && openAlert ? true : false}
             onChange={inputItem}
           />
@@ -227,6 +233,3 @@ const send = [
   { id: 'PI-11A-172', name: 'PI-11A-172' },
   { id: 'PW-11A-172', name: 'PW-11A-172' },
 ]
-
-const mission_title = '【科目記号】\t課題No.\t「課題主題」'
-const mission_item = '課題主題：\n提出方法：\n課題内容：\n課題目的：'

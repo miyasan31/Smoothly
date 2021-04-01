@@ -330,9 +330,10 @@ export const updateEmail = (email, password, newEmail) => {
     return auth
       .signInWithEmailAndPassword(email, password)
       .then((userCredential) => {
-        userCredential.user.updateEmail(newEmail)
-        usersRef.doc(userId).set(data, { merge: true })
-        dispatch(push('/setting'))
+        userCredential.user.updateEmail(newEmail).then(() => {
+          usersRef.doc(userId).set(data, { merge: true })
+          dispatch(push('/setting'))
+        })
       })
       .catch((error) => {
         var errorCode = error.code
@@ -347,8 +348,9 @@ export const updatePassword = (email, password, newPassword) => {
     return auth
       .signInWithEmailAndPassword(email, password)
       .then(function (userCredential) {
-        userCredential.user.updatePassword(newPassword)
-        dispatch(push('/setting'))
+        userCredential.user.updatePassword(newPassword).then(() => {
+          dispatch(push('/setting'))
+        })
       })
       .catch((error) => {
         var errorCode = error.code

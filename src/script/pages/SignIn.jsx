@@ -16,8 +16,8 @@ import LockIcon from '@material-ui/icons/Lock'
 /* ===================================================================== */
 const SignIn = () => {
   const dispatch = useDispatch()
-  const [email, setEmail] = useState('')
-  const [password, setPassword] = useState('')
+  const [email, setEmail] = useState('guest@gmail.com')
+  const [password, setPassword] = useState('halnagoya')
 
   // メールアドレス入力イベント
   const inputEmail = useCallback(
@@ -37,9 +37,6 @@ const SignIn = () => {
   return (
     <section className="top_main signin_theme">
       <div className="top_layout">
-        <div className="my_entry_number">
-          <h3>出品番号：名古屋PI011宮原将太</h3>
-        </div>
         <div className="comment signin_comment">
           <h2>
             ようこそ！
@@ -62,31 +59,32 @@ const SignIn = () => {
             <h1>Smoothly</h1>
             <Grid container spacing={1} alignItems="flex-end">
               <Grid item xs={1}>
-                <PersonIcon color="primary" />
+                <PersonIcon color="action" />
               </Grid>
               <Grid item xs={11}>
                 <BlueInput
-                  fullWidth
-                  autoFocus
+                  fullWidth={true}
                   multiline={false}
                   label={'メールアドレス'}
                   type={'email'}
                   value={email}
+                  defaultValue={email}
                   onChange={inputEmail}
                 />
               </Grid>
             </Grid>
             <Grid container spacing={1} alignItems="flex-end">
               <Grid item item xs={1}>
-                <LockIcon color="primary" />
+                <LockIcon color="action" />
               </Grid>
               <Grid item xs={11}>
                 <BlueInput
-                  fullWidth
+                  fullWidth={true}
                   multiline={false}
                   label={'パスワード'}
                   type={'password'}
                   value={password}
+                  defaultValue={password}
                   onChange={inputPassword}
                 />
               </Grid>

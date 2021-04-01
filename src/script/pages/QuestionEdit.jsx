@@ -127,6 +127,7 @@ const QuestionEdit = () => {
             投稿先
           </Typography>
           <SelectBox
+            fullWidth={true}
             options={send}
             value={destination}
             error={!destination && openAlert ? true : false}

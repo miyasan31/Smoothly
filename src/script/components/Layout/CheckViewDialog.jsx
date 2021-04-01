@@ -32,16 +32,20 @@ import { makeStyles } from '@material-ui/core/styles'
 /* ===================================================================== */
 
 const useStyles = makeStyles((theme) => ({
-  card: {
-    marginTop: '20px',
-    padding: '5px 20px 20px 20px',
-    backgroundColor: '#00000005',
+  root: {
+    backgroundColor: theme.palette.text.secondary,
   },
   dialog: {
-    width: 'inherit',
+    width: '100%',
     margin: '0 auto',
     padding: 25,
     paddingBottom: 0,
+    backgroundColor: theme.palette.background.default,
+  },
+  card: {
+    marginTop: '20px',
+    padding: '5px 20px 20px 20px',
+    backgroundColor: theme.palette.action.hover,
   },
   media: {
     height: '0',
@@ -99,6 +103,7 @@ const CheckViewDialog = (props) => {
 
   return (
     <Dialog
+      className={classes.root}
       keepMounted
       fullWidth
       maxWidth={'md'}

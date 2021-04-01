@@ -23,11 +23,11 @@ import DeleteIcon from '@material-ui/icons/Delete'
 import { makeStyles } from '@material-ui/core/styles'
 /* ===================================================================== */
 
-const useStyles = makeStyles({
+const useStyles = makeStyles((theme) => ({
   card: {
     marginTop: '20px',
     padding: '5px 20px 20px 20px',
-    backgroundColor: '#00000005',
+    backgroundColor: theme.palette.action.hover,
   },
   flex: {
     display: 'flex',
@@ -36,7 +36,7 @@ const useStyles = makeStyles({
   icon: {
     opacity: '0.7',
   },
-})
+}))
 
 const QuestionComponent = (props) => {
   const classes = useStyles()
