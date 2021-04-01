@@ -97,11 +97,9 @@ const AppBarHeader = (props) => {
   const [anchorEl, setAnchorEl] = useState(null)
   const [sideBarOpen, setSideBarOpen] = useState(false)
   const [openCheckDialog, setOpenCheckDialog] = useState(false)
-
   const isMenuOpen = Boolean(anchorEl)
 
   const handleToggle = () => {
-    // setThemeType(true)
     dispatch(updateTheme(current_uid, !themeType))
   }
 
@@ -155,10 +153,9 @@ const AppBarHeader = (props) => {
         const userData = snapshots.data()
         if (userData.icon) {
           const icon = userData.icon.path
-          const theme = userData.dark_mode
           setIcon(icon)
-          setThemeType(theme)
         }
+        setThemeType(userData.dark_mode)
       })
     return () => unsubscribe()
   }, [])

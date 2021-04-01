@@ -10,6 +10,7 @@ import {
   isValidEmailFormat,
   isValidRequiredInput,
 } from '../../functions/function.js'
+import { getUserId } from './selectors.js'
 /* ===================================================================== */
 
 const usersRef = db.collection('users')
@@ -73,6 +74,8 @@ export const signOut = () => {
       .signOut()
       .then(() => {
         dispatch(signOutAction())
+      })
+      .then(() => {
         dispatch(push('./signin'))
       })
       .catch(() => {
@@ -280,7 +283,6 @@ export const updateTheme = (uid, type) => {
       .doc(uid)
       .set(data, { merge: true })
       .then(() => {
-        console.log('テーマを切り替えました！')
         dispatch(updateThemeAction(data))
       })
       .catch((error) => {

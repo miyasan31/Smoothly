@@ -102,7 +102,7 @@ const PostList = (props) => {
   }, [])
 
   return (
-    <>
+    <div>
       <Card className="mg_btm_20px" className={classes.root}>
         <CardHeader
           avatar={
@@ -211,7 +211,7 @@ const PostList = (props) => {
         setOpenDialog={setOpenDeleteCheckDialog}
         actionHandleClick={deleteHandleClick}
       />
-    </>
+    </div>
   )
 }
 export default PostList

@@ -121,7 +121,7 @@ const MissionList = (props) => {
   }, [])
 
   return (
-    <>
+    <div>
       <Card className="mg_btm_20px">
         <CardHeader
           avatar={
@@ -248,7 +248,7 @@ const MissionList = (props) => {
         setOpenDialog={setOpenDeleteCheckDialog}
         actionHandleClick={deleteHandleClick}
       />
-    </>
+    </div>
   )
 }
 export default MissionList

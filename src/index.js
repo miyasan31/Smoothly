@@ -8,6 +8,8 @@ import * as History from 'history'
 import App from './App.js'
 import TempleteTheme from './TemplateTheme'
 import reportWebVitals from './reportWebVitals'
+
+import TemplateTheme from './TemplateTheme.js'
 /* ===================================================================== */
 
 export const history = History.createBrowserHistory()

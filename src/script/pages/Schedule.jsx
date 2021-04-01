@@ -169,6 +169,7 @@ const Schedule = () => {
           <EditRecurrenceMenu />
           <Appointments />
           <AppointmentTooltip showCloseButton />
+
           <Toolbar />
           <DateNavigator />
           <Resources data={resources} />

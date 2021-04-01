@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import { useSelector } from 'react-redux'
 import { getTheme } from './reducks/users/selectors.js'
 
@@ -12,7 +12,7 @@ const TemplateTheme = ({ children }) => {
 
   const theme = createMuiTheme({
     palette: {
-      type: !themeType ? 'dark' : 'light',
+      type: themeType ? 'dark' : 'light',
       primary: {
         main: '#2196f3',
         light: '#2196f3',

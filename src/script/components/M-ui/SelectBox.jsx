@@ -6,25 +6,27 @@ import FormControl from '@material-ui/core/FormControl'
 import Select from '@material-ui/core/Select'
 /* ===================================================================== */
 
-const useStyles = makeStyles({
+const useStyles = makeStyles((theme) => ({
   formControl: {
     width: '100%',
   },
   label: {
     paddingLeft: '20px',
   },
-})
+}))
 
 const SelectBox = (props) => {
   const classes = useStyles()
 
   return (
-    <FormControl fullWidth>
+    <FormControl fullWidth={props.fullWidth}>
       {props.label && <InputLabel>{props.label}</InputLabel>}
       <Select
+        className={classes.margin}
         error={props.error}
         value={props.value}
         required={props.required}
+        variant={props.variant}
         onChange={(e) => props.select(e.target.value)}
       >
         {props.options.map((value) => {

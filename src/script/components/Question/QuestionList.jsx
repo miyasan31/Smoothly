@@ -89,7 +89,7 @@ const QuestionList = (props) => {
   }, [])
 
   return (
-    <>
+    <div>
       <Card className="mg_btm_20px">
         <CardHeader
           avatar={
@@ -188,7 +188,7 @@ const QuestionList = (props) => {
         setOpenDialog={setOpenDeleteCheckDialog}
         actionHandleClick={deleteHandleClick}
       />
-    </>
+    </div>
   )
 }
 export default QuestionList

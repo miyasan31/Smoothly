@@ -54,7 +54,7 @@ const Post = () => {
             />
           ))
         ) : posts.length === 0 ? (
-          <h3>現在連絡は投稿されていません</h3>
+          <div>現在連絡は投稿されていません</div>
         ) : null}
       </div>
     </section>
