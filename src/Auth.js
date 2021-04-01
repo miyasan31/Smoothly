@@ -3,8 +3,6 @@ import { useDispatch, useSelector } from 'react-redux'
 import { getIsLogin } from './reducks/users/selectors.js'
 import { listenAuthState } from './reducks/users/operations.js'
 import CircularProgress from '@material-ui/core/CircularProgress'
-
-import TemplateTheme from './TemplateTheme.js'
 /* ===================================================================== */
 
 const Auth = ({ children }) => {
@@ -21,14 +19,12 @@ const Auth = ({ children }) => {
 
   if (!isSignedIn) {
     return (
-      <TemplateTheme>
-        <div className="flex_center pd_top_30px">
-          <CircularProgress />
-        </div>
-      </TemplateTheme>
+      <div className="flex_center pd_top_30px">
+        <CircularProgress />
+      </div>
     )
   } else {
-    return <TemplateTheme>{children}</TemplateTheme>
+    return <div>{children}</div>
   }
 }
 
