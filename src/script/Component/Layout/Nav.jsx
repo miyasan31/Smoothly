@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { NavLink } from 'react-router-dom'
 
 import { makeStyles } from '@material-ui/core/styles'
@@ -14,56 +14,8 @@ import FormatListBulletedSharpIcon from '@material-ui/icons/FormatListBulletedSh
 import CategorySharpIcon from '@material-ui/icons/CategorySharp'
 import AppsSharpIcon from '@material-ui/icons/AppsSharp'
 import TuneSharpIcon from '@material-ui/icons/TuneSharp'
-import ExitToAppSharpIcon from '@material-ui/icons/ExitToAppSharp'
 
-// import SchoolRoundedIcon from '@material-ui/icons/SchoolRounded'
-// import AppsRoundedIcon from '@material-ui/icons/AppsRounded'
-// import DescriptionRoundedIcon from '@material-ui/icons/DescriptionRounded'
-// import ForumRoundedIcon from '@material-ui/icons/ForumRounded'
-// import FormatListBulletedRoundedIcon from '@material-ui/icons/FormatListBulletedRounded'
-// import CategoryRoundedIcon from '@material-ui/icons/CategoryRounded'
-// import TuneRoundedIcon from '@material-ui/icons/TuneRounded'
-// import ExitToAppRoundedIcon from '@material-ui/icons/ExitToAppRounded'
 /* ===================================================================== */
-
-const navItem = [
-  { id: 1, tag: 'post', tagName: '掲示板', img: <SchoolSharpIcon /> },
-  { id: 2, tag: 'mission', tagName: '課題', img: <DescriptionSharpIcon /> },
-  { id: 3, tag: 'chat', tagName: 'チャット', img: <ForumSharpIcon /> },
-  {
-    id: 4,
-    tag: 'task',
-    tagName: 'タスク',
-    img: <FormatListBulletedSharpIcon />,
-  },
-  {
-    id: 5,
-    tag: 'question',
-    tagName: 'アンケート',
-    img: <CategorySharpIcon />,
-  },
-  { id: 6, tag: 'schedule', tagName: 'スケジュール', img: <AppsSharpIcon /> },
-  { id: 10, tag: 'setting', tagName: '設定', img: <TuneSharpIcon /> },
-]
-// const navItem = [
-//   { id: 1, tag: 'post', tagName: '掲示板', img: <SchoolRoundedIcon /> },
-//   { id: 2, tag: 'mission', tagName: '課題', img: <DescriptionRoundedIcon /> },
-//   { id: 3, tag: 'chat', tagName: 'チャット', img: <ForumRoundedIcon /> },
-//   {
-//     id: 4,
-//     tag: 'task',
-//     tagName: 'タスク',
-//     img: <FormatListBulletedRoundedIcon />,
-//   },
-//   {
-//     id: 5,
-//     tag: 'question',
-//     tagName: 'アンケート',
-//     img: <CategoryRoundedIcon />,
-//   },
-//   { id: 6, tag: 'schedule', tagName: 'スケジュール', img: <AppsRoundedIcon /> },
-//   { id: 10, tag: 'setting', tagName: '設定', img: <TuneRoundedIcon /> },
-// ]
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -76,9 +28,6 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   btn: {
-    cursor: 'pointer',
-    width: '100%',
-    height: 37,
     maxWidth: 240,
     paddingLeft: 30,
   },
@@ -87,22 +36,159 @@ const useStyles = makeStyles((theme) => ({
 const Nav = () => {
   const classes = useStyles()
 
-  const navLink = navItem.map((e) => (
-    <NavLink to={'/' + e.tag} key={e.id} activeClassName="activeButton">
-      <div className="activeColor">
-        <ListItem button className={classes.btn}>
-          <ListItemIcon>{e.img}</ListItemIcon>
-          <Typography className="navTag" variant="body2" color="textPrimary">
-            {e.tagName}
-          </Typography>
-        </ListItem>
-      </div>
-    </NavLink>
-  ))
+  const [selectedIndex, setSelectedIndex] = useState(1)
+  const handleListItemClick = (event, index) => {
+    setSelectedIndex(index)
+  }
 
   return (
     <List component="nav" className={classes.root}>
-      {navLink}
+      <NavLink to="/post">
+        <ListItem
+          button
+          className={classes.btn}
+          selected={selectedIndex === 1}
+          onClick={(event) => handleListItemClick(event, 1)}
+        >
+          <ListItemIcon>
+            <SchoolSharpIcon
+              color={selectedIndex === 1 ? 'primary' : 'textPrimary'}
+            />
+          </ListItemIcon>
+          <Typography
+            variant="body2"
+            color={selectedIndex === 1 ? 'primary' : 'textPrimary'}
+          >
+            掲示板
+          </Typography>
+        </ListItem>
+      </NavLink>
+
+      <NavLink to="/mission">
+        <ListItem
+          button
+          className={classes.btn}
+          selected={selectedIndex === 2}
+          onClick={(event) => handleListItemClick(event, 2)}
+        >
+          <ListItemIcon>
+            <DescriptionSharpIcon
+              color={selectedIndex === 2 ? 'primary' : 'textPrimary'}
+            />
+          </ListItemIcon>
+          <Typography
+            variant="body2"
+            color={selectedIndex === 2 ? 'primary' : 'textPrimary'}
+          >
+            課題
+          </Typography>
+        </ListItem>
+      </NavLink>
+
+      <NavLink to="/chat">
+        <ListItem
+          button
+          className={classes.btn}
+          selected={selectedIndex === 3}
+          onClick={(event) => handleListItemClick(event, 3)}
+        >
+          <ListItemIcon>
+            <ForumSharpIcon
+              color={selectedIndex === 3 ? 'primary' : 'textPrimary'}
+            />
+          </ListItemIcon>
+          <Typography
+            variant="body2"
+            color={selectedIndex === 3 ? 'primary' : 'textPrimary'}
+          >
+            チャット
+          </Typography>
+        </ListItem>
+      </NavLink>
+
+      <NavLink to="/task">
+        <ListItem
+          button
+          className={classes.btn}
+          selected={selectedIndex === 4}
+          onClick={(event) => handleListItemClick(event, 4)}
+        >
+          <ListItemIcon>
+            <FormatListBulletedSharpIcon
+              color={selectedIndex === 4 ? 'primary' : 'textPrimary'}
+            />
+          </ListItemIcon>
+          <Typography
+            variant="body2"
+            color={selectedIndex === 4 ? 'primary' : 'textPrimary'}
+          >
+            タスク
+          </Typography>
+        </ListItem>
+      </NavLink>
+
+      <NavLink to="/question">
+        <ListItem
+          button
+          className={classes.btn}
+          selected={selectedIndex === 5}
+          onClick={(event) => handleListItemClick(event, 5)}
+        >
+          <ListItemIcon>
+            <CategorySharpIcon
+              color={selectedIndex === 5 ? 'primary' : 'textPrimary'}
+            />
+          </ListItemIcon>
+          <Typography
+            variant="body2"
+            color={selectedIndex === 5 ? 'primary' : 'textPrimary'}
+          >
+            アンケート
+          </Typography>
+        </ListItem>
+      </NavLink>
+
+      <NavLink to="/schedule">
+        <ListItem
+          button
+          className={classes.btn}
+          selected={selectedIndex === 6}
+          onClick={(event) => handleListItemClick(event, 6)}
+        >
+          <ListItemIcon>
+            <AppsSharpIcon
+              color={selectedIndex === 6 ? 'primary' : 'textPrimary'}
+            />
+          </ListItemIcon>
+          <Typography
+            variant="body2"
+            color={selectedIndex === 6 ? 'primary' : 'textPrimary'}
+          >
+            スケジュール
+          </Typography>
+        </ListItem>
+      </NavLink>
+
+      <NavLink to="/setting">
+        <ListItem
+          button
+          className={classes.btn}
+          selected={selectedIndex === 7}
+          onClick={(event) => handleListItemClick(event, 7)}
+        >
+          <ListItemIcon>
+            <TuneSharpIcon
+              color={selectedIndex === 7 ? 'primary' : 'textPrimary'}
+            />
+          </ListItemIcon>
+          <Typography
+            variant="body2"
+            color={selectedIndex === 7 ? 'primary' : 'textPrimary'}
+          >
+            設定
+          </Typography>
+        </ListItem>
+      </NavLink>
     </List>
   )
 }
