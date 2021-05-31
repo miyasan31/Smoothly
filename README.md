@@ -1,70 +1,65 @@
-# Getting Started with Create React App
+# HALポータルサイト 改善版
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## 使用技術
+- React(Hooks, Redux)
+- Firebase(Firesore, Storage, Authentication, Hosting)
+- MaterialUI
 
-## Available Scripts
+## 要件定義
 
-In the project directory, you can run:
+HAL ポータルサイトを SNS 風にした改善版です。  
+現状のサイトは多機能ではあるものの、ページや機能が分散してして使いづらく  
+周囲の人も積極的に使っているのを見たことがなかったので、UI をモダンな設計して 1 ページで機能が簡潔できるようにしました。
 
-### `yarn start`
+## 工夫した点
+- アンケート機能を実装
+- チャットのルーム作成機能を実装  
+- ユーザー属性に関係する課題やアンケート、個人のタスクが追加された際に自動的にスケジュールに同期されること
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## 苦労した点
+- 最初 Redux の flux フローの流れを掴むのが難しかった
+- Scheduler のドキュメントを翻訳しながら実装したこと
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+## 今後やりたいこと
+- リファクタリングしたらバグを生んでしまったので修正する
+- 学習用リポジトリ化しているのでいろんな技術を取り入れていきたい
+  - GraphQL
+  - SWR
+  - Express
+  - TailwindCSS
+- Nextjsへ移行してSSG/ISRとかやってみたい
 
-### `yarn test`
+## 機能
+### ログイン
+  <img width="1440" alt="スクリーンショット 2021-05-31 11 46 05" src="https://user-images.githubusercontent.com/71614432/120132726-d50dab80-c205-11eb-862b-a8b9c27e32b8.png">
+  
+### サインイン
+  <img width="1440" alt="スクリーンショット 2021-05-31 11 46 13" src="https://user-images.githubusercontent.com/71614432/120132746-d939c900-c205-11eb-813f-8ad2ba5bfd77.png">  
+  
+### パスワード再発行
+  <img width="1440" alt="スクリーンショット 2021-05-31 11 46 55" src="https://user-images.githubusercontent.com/71614432/120132798-eeaef300-c205-11eb-9ef1-366332cf6bb0.png">  
+  
+### 連絡掲示板
+  <img width="1440" alt="スクリーンショット 2021-05-31 11 28 02" src="https://user-images.githubusercontent.com/71614432/120132388-3f721c00-c205-11eb-9ece-eceed832586e.png">  
+  
+### 課題
+  <img width="1440" alt="スクリーンショット 2021-05-31 11 32 39" src="https://user-images.githubusercontent.com/71614432/120132406-4731c080-c205-11eb-9680-03c77fb7cb36.png">  
+  
+### グループチャット
+  <img width="1440" alt="スクリーンショット 2021-05-31 11 33 22" src="https://user-images.githubusercontent.com/71614432/120132421-4bf67480-c205-11eb-9b50-dbc38e2c15f4.png">  
+  
+### タスク管理
+  <img width="1440" alt="スクリーンショット 2021-05-31 11 33 39" src="https://user-images.githubusercontent.com/71614432/120132430-50229200-c205-11eb-8a4a-28f8eef9d6b7.png">  
+  
+### アンケート
+  <img width="1440" alt="スクリーンショット 2021-05-31 11 44 06" src="https://user-images.githubusercontent.com/71614432/120132589-8f50e300-c205-11eb-90ff-57b1e0a604ca.png">  
+  
+### カレンダー
+  <img width="1440" alt="スクリーンショット 2021-05-31 11 43 43" src="https://user-images.githubusercontent.com/71614432/120132600-94159700-c205-11eb-8f17-0ca9e5e3af0e.png">  
+  
+### 設定
+  <img width="1440" alt="スクリーンショット 2021-05-31 11 32 10" src="https://user-images.githubusercontent.com/71614432/120132471-5e70ae00-c205-11eb-8a4c-be3a71cd6521.png">  
+  
+### レスポンシブ対応
+### ダークモード対応
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `yarn build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `yarn eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `yarn build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
