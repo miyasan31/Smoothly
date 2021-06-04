@@ -3,17 +3,16 @@ import { useDispatch, useSelector } from 'react-redux'
 import { push } from 'connected-react-router'
 
 import { MissionList } from '../components/Mission'
-import { AppBarSubHeader, ToolTip } from '../components/M-ui'
+import { AppBarSubHeader, MuiTooltip } from '../components/M-ui'
 import { readMissions } from '../../reducks/missions/operations'
 import { getUserValue } from '../../reducks/users/selectors'
 import { getUserId } from '../../reducks/users/selectors'
 import { getMissionLists } from '../../reducks/missions/selectors'
 
 import EditIcon from '@material-ui/icons/Edit'
-import Fab from '@material-ui/core/Fab'
 /* ===================================================================== */
 
-const Mission = () => {
+export const Mission = () => {
   const dispatch = useDispatch()
   const selector = useSelector((state) => state)
   const current_uid = getUserId(selector)
@@ -34,13 +33,11 @@ const Mission = () => {
       <AppBarSubHeader subtitle={'課題一覧'} />
 
       {current_value === 'teacher' && (
-        <div className="edit_addbtn">
-          <ToolTip title="課題作成">
-            <Fab color="secondary" onClick={pushHandleClick}>
-              <EditIcon />
-            </Fab>
-          </ToolTip>
-        </div>
+        <MuiTooltip
+          title="連絡作成"
+          icon={<EditIcon />}
+          onClick={pushHandleClick}
+        />
       )}
 
       <div className="contents_style">
@@ -65,4 +62,3 @@ const Mission = () => {
     </section>
   )
 }
-export default Mission

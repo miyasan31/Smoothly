@@ -2,8 +2,11 @@ import React, { useState, useEffect } from 'react'
 import { push } from 'connected-react-router'
 import { useDispatch, useSelector } from 'react-redux'
 
-import { ActionCheckDialog } from '../components/Layout'
-import { AppBarSubHeader, BlueButton, PinkButton } from '../components/M-ui'
+import {
+  AppBarSubHeader,
+  MuiButton,
+  ActionCheckDialog,
+} from '../components/M-ui'
 import { signOut } from '../../reducks/users/operations'
 import { getUserId } from '../../reducks/users/selectors'
 import { db } from '../../firebase/firebase'
@@ -38,7 +41,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }))
 
-const Setting = () => {
+export const Setting = () => {
   const classes = useStyles()
   const dispatch = useDispatch()
   const selector = useSelector((state) => state)
@@ -118,8 +121,11 @@ const Setting = () => {
             </div>
           </div>
           <div className="right pd_top_10px">
-            <BlueButton
-              label={'編集'}
+            <MuiButton
+              fullWidth={false}
+              variant="outlined"
+              color="blue"
+              label="編集"
               onClick={() => dispatch(push('/setting/prof'))}
             />
           </div>
@@ -148,8 +154,11 @@ const Setting = () => {
             {mail}
           </Typography>
           <div className="right">
-            <BlueButton
-              label={'変更'}
+            <MuiButton
+              fullWidth={false}
+              variant="outlined"
+              color="blue"
+              label="変更"
               onClick={() => dispatch(push('/setting/auth'))}
             />
           </div>
@@ -164,7 +173,13 @@ const Setting = () => {
             サインアウト
           </Typography>
           <div className="right pd_top_10px">
-            <BlueButton label={'サインアウト'} onClick={checkHandleClick} />
+            <MuiButton
+              fullWidth={false}
+              variant="outlined"
+              color="blue"
+              label="サインアウト"
+              onClick={checkHandleClick}
+            />
           </div>
         </Paper>
 
@@ -177,8 +192,11 @@ const Setting = () => {
             退会
           </Typography>
           <div className="right pd_top_10px">
-            <PinkButton
-              label={'退会手続きへ'}
+            <MuiButton
+              fullWidth={false}
+              variant="outlined"
+              color="pink"
+              label="退会手続きへ"
               onClick={() => dispatch(push('/setting/delete'))}
             />
           </div>
@@ -187,4 +205,3 @@ const Setting = () => {
     </section>
   )
 }
-export default Setting

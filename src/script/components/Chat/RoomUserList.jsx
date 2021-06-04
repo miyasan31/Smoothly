@@ -13,7 +13,7 @@ import Checkbox from '@material-ui/core/Checkbox'
 import Avatar from '@material-ui/core/Avatar'
 /* ===================================================================== */
 
-const RoomUserList = (props) => {
+export const RoomUserList = (props) => {
   const selector = useSelector((state) => state)
   const current_uid = getUserId(selector)
   const [userList, setUserList] = useState([])
@@ -59,36 +59,34 @@ const RoomUserList = (props) => {
   }
 
   return (
-    <div>
-      <List className="full_width" dense>
-        {userList !== '' &&
-          userList.map((data) => {
-            const labelId = `checkbox-list-label-${data.uid}`
-            return (
-              <ListItem
-                button
-                key={data.uid}
-                onClick={handleToggle(data.uid, data.user_name)}
-              >
-                <ListItemAvatar>
-                  <Avatar src={data.icon} />
-                </ListItemAvatar>
-                <ListItemText id={labelId} primary={data.user_name} />
-                <ListItemPrimaryAction>
-                  <Checkbox
-                    edge="end"
-                    color="primary"
-                    id={labelId}
-                    onChange={handleToggle(data.uid, data.user_name)}
-                    checked={props.checked.indexOf(data.uid) !== -1}
-                  />
-                </ListItemPrimaryAction>
-              </ListItem>
-            )
-          })}
-      </List>
-    </div>
+    <List className="full_width" dense>
+      {userList !== '' &&
+        userList.map((data) => {
+          const labelId = `checkbox-list-label-${data.uid}`
+          return (
+            <ListItem
+              button
+              key={data.uid}
+              onClick={handleToggle(data.uid, data.user_name)}
+            >
+              <ListItemAvatar>
+                <Avatar src={data.icon} />
+              </ListItemAvatar>
+
+              <ListItemText id={labelId} primary={data.user_name} />
+
+              <ListItemPrimaryAction>
+                <Checkbox
+                  edge="end"
+                  color="primary"
+                  id={labelId}
+                  onChange={handleToggle(data.uid, data.user_name)}
+                  checked={props.checked.indexOf(data.uid) !== -1}
+                />
+              </ListItemPrimaryAction>
+            </ListItem>
+          )
+        })}
+    </List>
   )
 }
-
-export default RoomUserList

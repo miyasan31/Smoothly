@@ -3,16 +3,15 @@ import { useDispatch, useSelector } from 'react-redux'
 import { push } from 'connected-react-router'
 
 import { PostList } from '../components/Post'
-import { AppBarSubHeader, ToolTip } from '../components/M-ui'
+import { AppBarSubHeader, MuiTooltip } from '../components/M-ui'
 import { readPosts } from '../../reducks/posts/operations'
 import { getUserId } from '../../reducks/users/selectors'
 import { getPostLists } from '../../reducks/posts/selectors'
 
 import EditIcon from '@material-ui/icons/Edit'
-import Fab from '@material-ui/core/Fab'
 /* ===================================================================== */
 
-const Post = () => {
+export const Post = () => {
   const dispatch = useDispatch()
   const selector = useSelector((state) => state)
   const current_uid = getUserId(selector)
@@ -31,13 +30,11 @@ const Post = () => {
     <section className="main">
       <AppBarSubHeader subtitle={'連絡一覧'} />
 
-      <div className="edit_addbtn">
-        <ToolTip title="連絡作成">
-          <Fab color="secondary" onClick={pushHandleClick}>
-            <EditIcon />
-          </Fab>
-        </ToolTip>
-      </div>
+      <MuiTooltip
+        title="連絡作成"
+        icon={<EditIcon />}
+        onClick={pushHandleClick}
+      />
 
       <div className="contents_style">
         {posts.length > 0 ? (
@@ -60,4 +57,3 @@ const Post = () => {
     </section>
   )
 }
-export default Post

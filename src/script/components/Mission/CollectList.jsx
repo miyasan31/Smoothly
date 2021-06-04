@@ -57,7 +57,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }))
 
-const CollectList = (props) => {
+export const CollectList = (props) => {
   const classes = useStyles()
 
   return (
@@ -109,5 +109,3 @@ const CollectList = (props) => {
     </TableContainer>
   )
 }
-
-export default CollectList

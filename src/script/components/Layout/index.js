@@ -1,5 +1,2 @@
-export { default as Header } from './Header'
-export { default as Nav } from './Nav'
-export { default as ProfDialog } from './ProfDialog'
-export { default as CheckViewDialog } from './CheckViewDialog'
-export { default as ActionCheckDialog } from './ActionCheckDialog'
+export { Header } from './Header'
+export { Nav } from './Nav'

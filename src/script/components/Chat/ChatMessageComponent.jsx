@@ -3,23 +3,28 @@ import { useSelector } from 'react-redux'
 import { format } from 'date-fns'
 import { ja } from 'date-fns/locale'
 
-import { ToolTipTime } from '../M-ui'
 import { getUserId } from '../../../reducks/users/selectors'
 import { db } from '../../../firebase/firebase'
 
 import Avatar from '@material-ui/core/Avatar'
+import Tooltip from '@material-ui/core/Tooltip'
 import Typography from '@material-ui/core/Typography'
 import { makeStyles } from '@material-ui/core/styles'
 /* ===================================================================== */
-const useStyles = makeStyles((theme) => ({
-  message: {
-    color: theme.palette.text.primary,
-    [theme.breakpoints.up('md')]: {
-      fontSize: '40px',
-    },
+const useStyles = makeStyles({
+  tooltip: {
+    backgroundColor: '#00000055',
+    padding: '10px 10px',
+    lineHeight: 0,
+    fontSize: 5,
+    fontWeight: 'bold',
   },
-}))
-const ChatMessageComponent = (props) => {
+  arrow: {
+    color: '#00000055',
+  },
+})
+
+export const ChatMessageComponent = (props) => {
   const classes = useStyles()
   const selector = useSelector((state) => state)
   const current_uid = getUserId(selector)
@@ -89,8 +94,15 @@ const ChatMessageComponent = (props) => {
             {name}
           </Typography>
         </span>
+
         <span>
-          <ToolTipTime title={timeChange(props.updateTime)}>
+          <Tooltip
+            arrow
+            placement="right-end"
+            title={timeChange(props.updateTime)}
+            TransitionProps={{ timeout: 300 }}
+            classes={classes}
+          >
             <Typography
               variant="body2"
               style={{ whiteSpace: 'pre-wrap' }}
@@ -100,13 +112,9 @@ const ChatMessageComponent = (props) => {
             >
               {props.message}
             </Typography>
-          </ToolTipTime>
+          </Tooltip>
         </span>
       </div>
     </div>
   )
 }
-
-export default ChatMessageComponent
-
-/* ===================================================================== */

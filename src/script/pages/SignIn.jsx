@@ -2,19 +2,14 @@ import React, { useState, useCallback } from 'react'
 import { useDispatch } from 'react-redux'
 import { push } from 'connected-react-router'
 
-import {
-  BlueInput,
-  BlueButton,
-  OrangeButton,
-  GreenButton,
-} from '../components/M-ui'
+import { MuiTextField, MuiButton } from '../components/M-ui'
 import { signIn } from '../../reducks/users/operations'
 
 import Grid from '@material-ui/core/Grid'
 import PersonIcon from '@material-ui/icons/Person'
 import LockIcon from '@material-ui/icons/Lock'
 /* ===================================================================== */
-const SignIn = () => {
+export const SignIn = () => {
   const dispatch = useDispatch()
   const [email, setEmail] = useState('guest@gmail.com')
   const [password, setPassword] = useState('halnagoya')
@@ -62,50 +57,60 @@ const SignIn = () => {
                 <PersonIcon color="action" />
               </Grid>
               <Grid item xs={11}>
-                <BlueInput
+                <MuiTextField
+                  error={false}
+                  type="email"
                   fullWidth={true}
+                  variant="standard"
                   multiline={false}
-                  label={'メールアドレス'}
-                  type={'email'}
+                  label="メールアドレス"
                   value={email}
-                  defaultValue={email}
+                  autoFocus={false}
                   onChange={inputEmail}
                 />
               </Grid>
             </Grid>
             <Grid container spacing={1} alignItems="flex-end">
-              <Grid item item xs={1}>
+              <Grid item xs={1}>
                 <LockIcon color="action" />
               </Grid>
               <Grid item xs={11}>
-                <BlueInput
+                <MuiTextField
+                  error={false}
+                  type="password"
                   fullWidth={true}
+                  variant="standard"
                   multiline={false}
-                  label={'パスワード'}
-                  type={'password'}
+                  label="パスワード"
                   value={password}
-                  defaultValue={password}
+                  autoFocus={false}
                   onChange={inputPassword}
                 />
               </Grid>
             </Grid>
             <div className="space_25px"></div>
 
-            <BlueButton
-              fullWidth
-              label={'ログイン'}
+            <MuiButton
+              fullWidth={true}
+              variant="outlined"
+              color="blue"
+              label="ログイン"
               onClick={() => dispatch(signIn(email, password))}
             />
             <div className="space_15px"></div>
-            <OrangeButton
-              fullWidth
-              label={'新規登録'}
+            <MuiButton
+              fullWidth={true}
+              variant="outlined"
+              color="orange"
+              label="新規登録"
               onClick={() => dispatch(push('./signup'))}
             />
             <div className="space_15px"></div>
-            <GreenButton
-              fullWidth
-              label={'パスワード再発行'}
+            <MuiButton
+              fullWidth={true}
+              variant="outlined"
+              color="green"
+              label="パスワード再発行"
               onClick={() => dispatch(push('./reissue'))}
             />
           </div>
@@ -114,4 +119,3 @@ const SignIn = () => {
     </section>
   )
 }
-export default SignIn

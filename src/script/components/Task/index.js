@@ -1,2 +1,2 @@
-export { default as TaskList } from './TaskList'
-export { default as TaskTab } from './TaskTab'
+export { TaskList } from './TaskList'
+export { TaskTab } from './TaskTab'

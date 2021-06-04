@@ -1,9 +1,8 @@
 import React, { useCallback, useState, useEffect, useRef } from 'react'
 import { useDispatch } from 'react-redux'
 
-import { ChatMessageComponent } from './index'
-import { ProfDialog } from '../Layout'
-import { BlueInputOutlined } from '../M-ui'
+import { ChatMessageComponent } from '../Chat'
+import { MuiTextField, ProfViewDialog } from '../M-ui'
 import { createChatMessage } from '../../../reducks/chats/operations'
 import { db } from '../../../firebase/firebase'
 
@@ -34,7 +33,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }))
 
-const ChatMessageList = (props) => {
+export const ChatMessageList = (props) => {
   const classes = useStyles()
   const dispatch = useDispatch()
   const [messageData, setMessageData] = useState('')
@@ -121,23 +120,18 @@ const ChatMessageList = (props) => {
             />
           )
         })}
-
-      <ProfDialog
-        uid={uid}
-        openDialog={openDialog}
-        setOpenDialog={setOpenDialog}
-      />
-
       <div ref={messagesEndRef} />
       <div className="chat_content">
         <div className="chat_textarea">
-          <BlueInputOutlined
+          <MuiTextField
+            type="text"
             fullWidth={true}
+            autoFocus={true}
+            variant="outlined"
             multiline={true}
-            autoFocus={false}
             value={message}
-            onChange={inputMessage}
             placeholder={'メッセージを送信する'}
+            onChange={inputMessage}
           />
         </div>
 
@@ -155,10 +149,12 @@ const ChatMessageList = (props) => {
           </IconButton>
         </div>
       </div>
+
+      <ProfViewDialog
+        uid={uid}
+        openDialog={openDialog}
+        setOpenDialog={setOpenDialog}
+      />
     </div>
   )
 }
-
-export default ChatMessageList
-
-/* ===================================================================== */

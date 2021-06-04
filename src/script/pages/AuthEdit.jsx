@@ -4,11 +4,10 @@ import { useDispatch } from 'react-redux'
 
 import {
   AppBarSubHeader,
-  BlueButton,
-  BlueButtonNomal,
-  BlueInput,
-  SelectBox,
-  ErrorAlert,
+  MuiTextField,
+  MuiSelectBox,
+  MuiButton,
+  MuiErrorBar,
 } from '../components/M-ui'
 import { updateEmail, updatePassword } from '../../reducks/users/operations'
 
@@ -16,7 +15,7 @@ import Paper from '@material-ui/core/Paper'
 import Typography from '@material-ui/core/Typography'
 /* ===================================================================== */
 
-const AuthEdit = () => {
+export const AuthEdit = () => {
   const dispatch = useDispatch()
   const [choice, setChoice] = useState('email')
   const [email, seteEail] = useState('')
@@ -77,13 +76,13 @@ const AuthEdit = () => {
       <AppBarSubHeader subtitle={'メールアドレス・パスワード変更'} />
 
       <div className="contents_style">
-        {openAlert ? <ErrorAlert setOpenAlert={setOpenAlert} /> : null}
+        {openAlert ? <MuiErrorBar setOpenAlert={setOpenAlert} /> : null}
 
         <Paper className="paper">
           <Typography className="pd_y_10px" color="textSecondary">
             変更項目
           </Typography>
-          <SelectBox
+          <MuiSelectBox
             fullWidth={true}
             options={choiceData}
             value={choice}
@@ -93,13 +92,12 @@ const AuthEdit = () => {
           <Typography className="pd_top_10px" color="textSecondary">
             現在のメールアドレス
           </Typography>
-          <BlueInput
-            type={'email'}
+          <MuiTextField
+            type="email"
             fullWidth={true}
-            multiline={false}
             value={email}
-            error={!email && openAlert ? true : false}
             onChange={inputEmail}
+            error={!email && openAlert ? true : false}
           />
 
           {choice === 'email' && (
@@ -107,10 +105,9 @@ const AuthEdit = () => {
               <Typography className="pd_top_10px" color="textSecondary">
                 新しいメールアドレス
               </Typography>
-              <BlueInput
-                type={'email'}
+              <MuiTextField
+                type="email"
                 fullWidth={true}
-                multiline={false}
                 value={newEmail}
                 error={!newEmail && openAlert ? true : false}
                 onChange={inputNewEmail}
@@ -121,13 +118,12 @@ const AuthEdit = () => {
           <Typography className="pd_top_10px" color="textSecondary">
             現在のパスワード
           </Typography>
-          <BlueInput
-            type={'password'}
+          <MuiTextField
+            type="password"
             fullWidth={true}
-            multiline={false}
             value={password}
-            error={!password && openAlert ? true : false}
             onChange={inputPassword}
+            error={!password && openAlert ? true : false}
           />
 
           {choice === 'password' && (
@@ -135,27 +131,37 @@ const AuthEdit = () => {
               <Typography className="pd_top_10px" color="textSecondary">
                 新しいパスワード
               </Typography>
-              <BlueInput
-                type={'password'}
+              <MuiTextField
+                type="password"
                 fullWidth={true}
-                multiline={false}
                 value={newPassword}
-                error={!newPassword && openAlert ? true : false}
                 onChange={inputNewPassword}
+                error={!newPassword && openAlert ? true : false}
               />
             </>
           )}
 
           <div className="right mg_top_20px">
-            <BlueButtonNomal label={'キャンセル'} onClick={backHandleClick} />
-            <BlueButton label={'変更'} onClick={authUpdateHandleClick} />
+            <MuiButton
+              fullWidth={false}
+              variant="text"
+              color="blueNomal"
+              label="キャンセル"
+              onClick={backHandleClick}
+            />
+            <MuiButton
+              fullWidth={false}
+              variant="outlined"
+              color="blue"
+              label="変更"
+              onClick={authUpdateHandleClick}
+            />
           </div>
         </Paper>
       </div>
     </section>
   )
 }
-export default AuthEdit
 
 const choiceData = [
   { id: 'email', name: 'メールアドレス' },

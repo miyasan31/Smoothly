@@ -2,25 +2,11 @@ import React, { useState, useCallback } from 'react'
 import { useDispatch } from 'react-redux'
 import { push } from 'connected-react-router'
 
-import { BlueInput, OrangeButton, SelectBox } from '../components/M-ui'
+import { MuiTextField, MuiSelectBox, MuiButton } from '../components/M-ui'
 import { signUp } from '../../reducks/users/operations'
 /* ===================================================================== */
 
-const user_value = [
-  { id: 'teacher', name: '教官' },
-  { id: 'student', name: '学生' },
-]
-const genders = [
-  { id: 'man', name: '男性' },
-  { id: 'lady', name: '女性' },
-  { id: 'other', name: 'その他' },
-]
-const class_name = [
-  { id: 'PI-11A-172', name: 'PI-11A-172' },
-  { id: 'PW-11A-172', name: 'PW-11A-172' },
-]
-
-const SignUp = () => {
+export const SignUp = () => {
   const dispatch = useDispatch()
   const [userValue, setUserValue] = useState('')
   const [userName, setUserName] = useState('')
@@ -107,43 +93,49 @@ const SignUp = () => {
             <h1 className="pointer" onClick={() => dispatch(push('./signin'))}>
               Smoothly
             </h1>
-            <SelectBox
+            <MuiSelectBox
               fullWidth={true}
               options={user_value}
               label={'ユーザー属性'}
               value={userValue}
               select={setUserValue}
             />
-            <BlueInput
-              fullWidth
+            <MuiTextField
+              error={false}
+              type="text"
+              fullWidth={true}
+              variant="standard"
               multiline={false}
-              label={'氏名'}
-              type={'text'}
+              label="メールアドレス"
               value={userName}
+              autoFocus={false}
               onChange={inputUserName}
             />
-            <div className="pd_top_10px"></div>
-            <SelectBox
+            <div className="space_5px"></div>
+            <MuiSelectBox
               fullWidth={true}
               options={genders}
               label={'性別'}
               value={gender}
               select={setGender}
             />
-            <BlueInput
-              fullWidth
+            <MuiTextField
+              error={false}
+              type="number"
+              fullWidth={true}
+              variant="standard"
               multiline={false}
               label={
                 userValue === 'teacher' ? '教官番号（3桁）' : '学籍番号（5桁）'
               }
-              type={'number'}
               value={userNumber}
               onChange={inputUserNumber}
+              autoFocus={false}
             />
             {userValue !== 'teacher' ? (
               <>
-                <div className="pd_top_10px"></div>
-                <SelectBox
+                <div className="space_5px"></div>
+                <MuiSelectBox
                   fullWidth={true}
                   options={class_name}
                   label={'クラス記号'}
@@ -152,38 +144,66 @@ const SignUp = () => {
                 />
               </>
             ) : null}
-            <BlueInput
-              fullWidth
+            <MuiTextField
+              error={false}
+              type="email"
+              fullWidth={true}
+              variant="standard"
               multiline={false}
-              label={'メールアドレス'}
-              type={'email'}
+              label="メールアドレス"
               value={email}
+              autoFocus={false}
               onChange={inputEmail}
             />
-            <BlueInput
-              fullWidth
+            <MuiTextField
+              error={false}
+              type="password"
+              fullWidth={true}
+              variant="standard"
               multiline={false}
-              label={'パスワード'}
-              type={'password'}
+              label="パスワード"
               value={password}
+              autoFocus={false}
               onChange={inputPassword}
             />
-            <BlueInput
-              fullWidth
+            <MuiTextField
+              error={false}
+              type="password"
+              fullWidth={true}
+              variant="standard"
               multiline={false}
-              label={'パスワード（確認用）'}
-              type={'password'}
+              label="パスワード（確認用）"
               value={confirmPassword}
+              autoFocus={false}
               onChange={inputConfirmPassword}
             />
 
             <div className="space_25px"></div>
 
-            <OrangeButton fullWidth label={'新規登録'} onClick={handleClick} />
+            <MuiButton
+              fullWidth={true}
+              variant="outlined"
+              color="orange"
+              label="新規登録"
+              onClick={handleClick}
+            />
           </div>
         </div>
       </div>
     </section>
   )
 }
-export default SignUp
+
+const user_value = [
+  { id: 'teacher', name: '教官' },
+  { id: 'student', name: '学生' },
+]
+const genders = [
+  { id: 'man', name: '男性' },
+  { id: 'lady', name: '女性' },
+  { id: 'other', name: 'その他' },
+]
+const class_name = [
+  { id: 'PI-11A-172', name: 'PI-11A-172' },
+  { id: 'PW-11A-172', name: 'PW-11A-172' },
+]

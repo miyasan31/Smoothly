@@ -3,17 +3,16 @@ import { useDispatch, useSelector } from 'react-redux'
 import { push } from 'connected-react-router'
 
 import { QuestionList } from '../components/Question'
-import { AppBarSubHeader, ToolTip } from '../components/M-ui'
+import { AppBarSubHeader, MuiTooltip } from '../components/M-ui'
 import { readQuestions } from '../../reducks/questions/operations'
 import { getUserId } from '../../reducks/users/selectors'
 import { getQuestionLists } from '../../reducks/questions/selectors'
 import { clearQuestionItemAction } from '../../reducks/questions/actions'
 
 import EditIcon from '@material-ui/icons/Edit'
-import Fab from '@material-ui/core/Fab'
 /* ===================================================================== */
 
-const Question = () => {
+export const Question = () => {
   const dispatch = useDispatch()
   const selector = useSelector((state) => state)
   const current_uid = getUserId(selector)
@@ -33,13 +32,11 @@ const Question = () => {
     <section className="main">
       <AppBarSubHeader subtitle={'アンケート一覧'} />
 
-      <div className="edit_addbtn">
-        <ToolTip title="アンケート作成">
-          <Fab color="secondary" onClick={pushHandleClick}>
-            <EditIcon />
-          </Fab>
-        </ToolTip>
-      </div>
+      <MuiTooltip
+        title="アンケート作成"
+        icon={<EditIcon />}
+        onClick={pushHandleClick}
+      />
 
       <div className="contents_style">
         {questions.length > 0 ? (
@@ -62,5 +59,3 @@ const Question = () => {
     </section>
   )
 }
-
-export default Question

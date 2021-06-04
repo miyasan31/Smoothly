@@ -1,4 +1,3 @@
-import React from 'react'
 import jaLocale from 'date-fns/locale/ja'
 
 import {
@@ -8,7 +7,6 @@ import {
 import { makeStyles } from '@material-ui/core/styles'
 import Grid from '@material-ui/core/Grid'
 import DateFnsUtils from '@date-io/date-fns'
-
 /* ===================================================================== */
 
 const useStyles = makeStyles({
@@ -17,7 +15,7 @@ const useStyles = makeStyles({
   },
 })
 
-const DateTimePicker = (props) => {
+export const MuiDateTimePicker = (props) => {
   const classes = useStyles()
   return (
     <MuiPickersUtilsProvider utils={DateFnsUtils} locale={jaLocale}>
@@ -40,5 +38,3 @@ const DateTimePicker = (props) => {
     </MuiPickersUtilsProvider>
   )
 }
-
-export default DateTimePicker

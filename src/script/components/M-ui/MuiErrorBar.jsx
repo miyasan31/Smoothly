@@ -6,7 +6,7 @@ function Alert(props) {
   return <MuiAlert elevation={6} variant="filled" {...props} />
 }
 
-const ErrorAlert = (props) => {
+export const MuiErrorBar = (props) => {
   const handleClose = () => {
     props.setOpenAlert(false)
   }
@@ -16,5 +16,3 @@ const ErrorAlert = (props) => {
     </Alert>
   )
 }
-
-export default ErrorAlert

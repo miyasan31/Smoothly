@@ -1,4 +1,3 @@
-import React from 'react'
 import { useDispatch } from 'react-redux'
 import { push } from 'connected-react-router'
 
@@ -22,15 +21,6 @@ import CategoryRoundedIcon from '@material-ui/icons/CategoryRounded'
 import TuneRoundedIcon from '@material-ui/icons/TuneRounded'
 import ExitToAppRoundedIcon from '@material-ui/icons/ExitToAppRounded'
 
-// import SchoolSharpIcon from '@material-ui/icons/SchoolSharp'
-// import AppsSharpIcon from '@material-ui/icons/AppsSharp'
-// import DescriptionSharpIcon from '@material-ui/icons/DescriptionSharp'
-// import ForumSharpIcon from '@material-ui/icons/ForumSharp'
-// import FormatListBulletedSharpIcon from '@material-ui/icons/FormatListBulletedSharp';
-// import BorderColorRoundedIcon from '@material-ui/icons/BorderColorRounded'
-// import CategorySharpIcon from '@material-ui/icons/CategorySharp'
-// import TuneSharpIcon from '@material-ui/icons/TuneSharp'
-// import ExitToAppSharpIcon from '@material-ui/icons/ExitToAppSharp';
 /* ===================================================================== */
 
 const useStyles = makeStyles((theme) =>
@@ -56,7 +46,7 @@ const useStyles = makeStyles((theme) =>
   })
 )
 
-const ClosableDrawer = (props) => {
+export const ClosableDrawer = (props) => {
   const { container } = props
   const classes = useStyles()
   const dispatch = useDispatch()
@@ -167,5 +157,3 @@ const ClosableDrawer = (props) => {
     </nav>
   )
 }
-
-export default ClosableDrawer

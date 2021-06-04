@@ -34,7 +34,7 @@ const useStyles = makeStyles({
   },
 })
 
-const FileUpload = (props) => {
+export const FileUpload = (props) => {
   const classes = useStyles()
 
   return (
@@ -56,4 +56,3 @@ const FileUpload = (props) => {
     </Button>
   )
 }
-export default FileUpload

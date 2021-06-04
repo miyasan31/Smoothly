@@ -33,7 +33,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }))
 
-const Nav = () => {
+export const Nav = () => {
   const classes = useStyles()
 
   const [selectedIndex, setSelectedIndex] = useState(1)
@@ -192,4 +192,3 @@ const Nav = () => {
     </List>
   )
 }
-export default Nav

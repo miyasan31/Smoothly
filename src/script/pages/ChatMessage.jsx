@@ -4,7 +4,7 @@ import { ChatMessageList } from '../components/Chat'
 import { AppBarSubHeader } from '../components/M-ui'
 /* ===================================================================== */
 
-const ChatMessage = () => {
+export const ChatMessage = () => {
   const [roomName, setRoomName] = useState('')
 
   return (
@@ -15,4 +15,3 @@ const ChatMessage = () => {
     </section>
   )
 }
-export default ChatMessage

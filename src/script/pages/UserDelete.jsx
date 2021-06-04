@@ -2,13 +2,12 @@ import React, { useState, useCallback } from 'react'
 import { push } from 'connected-react-router'
 import { useDispatch } from 'react-redux'
 
-import { ActionCheckDialog } from '../components/Layout'
 import {
   AppBarSubHeader,
-  PinkButton,
-  PinkButtonNomal,
-  BlueInput,
-  ErrorAlert,
+  MuiTextField,
+  MuiButton,
+  MuiErrorBar,
+  ActionCheckDialog,
 } from '../components/M-ui'
 import { userDelete } from '../../reducks/users/operations'
 
@@ -16,7 +15,7 @@ import Paper from '@material-ui/core/Paper'
 import Typography from '@material-ui/core/Typography'
 /* ===================================================================== */
 
-const AuthEdit = () => {
+export const UserDelete = () => {
   const dispatch = useDispatch()
   const [email, seteEail] = useState('')
   const [password, setePassword] = useState('')
@@ -69,40 +68,49 @@ const AuthEdit = () => {
       />
 
       <div className="contents_style">
-        {openAlert ? <ErrorAlert setOpenAlert={setOpenAlert} /> : null}
+        {openAlert ? <MuiErrorBar setOpenAlert={setOpenAlert} /> : null}
 
         <Paper className="paper">
           <Typography className="pd_top_10px" color="textSecondary">
             現在のメールアドレス
           </Typography>
-          <BlueInput
-            type={'email'}
+          <MuiTextField
+            type="email"
             fullWidth={true}
-            multiline={false}
             value={email}
-            error={!email && openAlert ? true : false}
             onChange={inputEmail}
+            error={!email && openAlert ? true : false}
           />
 
           <Typography className="pd_top_10px" color="textSecondary">
             現在のパスワード
           </Typography>
-          <BlueInput
-            type={'password'}
+          <MuiTextField
+            type="password"
             fullWidth={true}
-            multiline={false}
             value={password}
-            error={!password && openAlert ? true : false}
             onChange={inputPassword}
+            error={!password && openAlert ? true : false}
           />
 
           <div className="right mg_top_20px">
-            <PinkButtonNomal label={'キャンセル'} onClick={backHandleClick} />
-            <PinkButton label={'退会する'} onClick={checkHandleClick} />
+            <MuiButton
+              fullWidth={false}
+              variant="text"
+              color="pinkNomal"
+              label="キャンセル"
+              onClick={backHandleClick}
+            />
+            <MuiButton
+              fullWidth={false}
+              variant="outlined"
+              color="pink"
+              label="退会する"
+              onClick={checkHandleClick}
+            />
           </div>
         </Paper>
       </div>
     </section>
   )
 }
-export default AuthEdit

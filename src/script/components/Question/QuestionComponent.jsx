@@ -1,14 +1,7 @@
 import React, { useState, useEffect, useCallback } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 
-import {
-  QuestionSelect,
-  QuestionInput,
-  GreyButton,
-  AnswerText1,
-  AnswerRadio2,
-  AnswerRadio3,
-} from '../M-ui'
+import { MuiTextField, MuiSelectBox, MuiRadioButton, MuiButton } from '../M-ui'
 import {
   addQuestionItem,
   deleteQuestionItem,
@@ -38,7 +31,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }))
 
-const QuestionComponent = (props) => {
+export const QuestionComponent = (props) => {
   const classes = useStyles()
   const dispatch = useDispatch()
   const selector = useSelector((state) => state)
@@ -91,42 +84,70 @@ const QuestionComponent = (props) => {
               {data.item}
             </Typography>
             {data.type === '1' ? (
-              <AnswerText1
+              <MuiTextField
                 id={index}
-                label={'テキストを入力'}
-                type={'text'}
+                type="text"
                 fullWidth={true}
                 disabled={true}
-                multiline={false}
-                value={null}
+                label="テキストを入力"
               />
             ) : data.type === '2' ? (
-              <AnswerRadio2 id={index} disabled={true} />
+              <MuiRadioButton id={index} options={radio1} disabled={true} />
             ) : (
-              <AnswerRadio3 id={index} disabled={true} fullWidth />
+              <MuiRadioButton id={index} options={radio2} disabled={true} />
             )}
           </Card>
         ))}
 
       <div className={classes.flex}>
-        <QuestionInput
-          error={props.error}
+        <MuiTextField
+          type="text"
+          label="質問内容"
+          fullWidth={false}
+          answer={true}
           value={questionItem}
           onChange={inputItem}
-        />
-        <QuestionSelect
           error={props.error}
+        />
+        <MuiSelectBox
+          label="ラベル"
+          fullWidth={false}
+          options={sent}
           value={questionType}
           select={setQuestionType}
+          error={props.error}
         />
       </div>
 
-      <GreyButton
-        size={'small'}
-        label={'作成 ＋ '}
+      <MuiButton
+        fullWidth={false}
+        variant="text"
+        color="grey"
+        label="作成 ＋ "
+        size="small"
         onClick={questionAddHnadleClick}
       />
     </div>
   )
 }
-export default QuestionComponent
+
+const sent = [
+  { id: '1', name: 'テキスト' },
+  { id: '2', name: '２択（はい・いいえ）' },
+  {
+    id: '3',
+    name: '３択（そう思う・どちらでもない・そう思わない）',
+  },
+]
+const radio1 = [
+  { value: '1', label: 'はい' },
+  { value: '2', label: 'いいえ' },
+]
+const radio2 = [
+  { value: '10', label: 'そう思う' },
+  { value: '20', label: 'どちらでもない' },
+  {
+    value: '30',
+    label: 'そう思わない',
+  },
+]

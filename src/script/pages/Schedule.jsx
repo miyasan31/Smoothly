@@ -34,7 +34,7 @@ import {
 } from '@material-ui/core/colors'
 /* ===================================================================== */
 
-const Schedule = () => {
+export const Schedule = () => {
   const dispatch = useDispatch()
   const selector = useSelector((state) => state)
   const current_uid = getUserId(selector)
@@ -178,8 +178,6 @@ const Schedule = () => {
     </section>
   )
 }
-
-export default Schedule
 
 const resources = [
   {

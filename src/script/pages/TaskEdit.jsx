@@ -4,11 +4,10 @@ import { push } from 'connected-react-router'
 
 import {
   AppBarSubHeader,
-  BlueInput,
-  DateTimePicker,
-  BlueButton,
-  BlueButtonNomal,
-  ErrorAlert,
+  MuiTextField,
+  MuiButton,
+  MuiErrorBar,
+  MuiDateTimePicker,
 } from '../components/M-ui'
 import { addTask } from '../../reducks/tasks/operations'
 import { getUserId } from '../../reducks/users/selectors'
@@ -29,7 +28,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }))
 
-const TaskEdit = () => {
+export const TaskEdit = () => {
   const classes = useStyles()
   const dispatch = useDispatch()
   const selector = useSelector((state) => state)
@@ -107,21 +106,20 @@ const TaskEdit = () => {
       />
 
       <div className="contents_style">
-        {openAlert ? <ErrorAlert setOpenAlert={setOpenAlert} /> : null}
+        {openAlert ? <MuiErrorBar setOpenAlert={setOpenAlert} /> : null}
 
         <Paper className="paper">
           <Typography className="pd_top_10px" color="textSecondary">
             タスク名
           </Typography>
-          <BlueInput
-            label={null}
-            type={'text'}
+          <MuiTextField
+            type="text"
             fullWidth={true}
             multiline={true}
             value={title}
             defaultValue={title}
-            error={!title && openAlert ? true : false}
             onChange={inputTitle}
+            error={!title && openAlert ? true : false}
           />
 
           <div className={classes.picker}>
@@ -129,7 +127,7 @@ const TaskEdit = () => {
               <Typography className="pd_top_10px" color="textSecondary">
                 開始時刻
               </Typography>
-              <DateTimePicker
+              <MuiDateTimePicker
                 fullWidth={true}
                 ampm={false}
                 value={startDate}
@@ -142,7 +140,7 @@ const TaskEdit = () => {
               <Typography className="pd_top_10px" color="textSecondary">
                 終了時刻
               </Typography>
-              <DateTimePicker
+              <MuiDateTimePicker
                 fullWidth={true}
                 ampm={false}
                 value={endDate}
@@ -160,8 +158,17 @@ const TaskEdit = () => {
           </div>
 
           <div className="right mg_top_20px">
-            <BlueButtonNomal label={'キャンセル'} onClick={handleClose} />
-            <BlueButton
+            <MuiButton
+              fullWidth={false}
+              variant="text"
+              color="blueNomal"
+              label="キャンセル"
+              onClick={handleClose}
+            />
+            <MuiButton
+              fullWidth={false}
+              variant="outlined"
+              color="blue"
               label={tid === '' ? '追加' : '保存'}
               onClick={createHandleClick}
             />
@@ -171,4 +178,3 @@ const TaskEdit = () => {
     </section>
   )
 }
-export default TaskEdit

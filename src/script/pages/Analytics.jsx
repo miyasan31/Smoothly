@@ -5,7 +5,7 @@ import { AppBarSubHeader } from '../components/M-ui'
 import { db } from '../../firebase/firebase'
 /* ===================================================================== */
 
-const Analytics = () => {
+export const Analytics = () => {
   const [questions, setQuestions] = useState('')
   const [answers, setAnswers] = useState('')
 
@@ -59,4 +59,3 @@ const Analytics = () => {
     </section>
   )
 }
-export default Analytics

@@ -1,1 +1,1 @@
-export { default as IconCropper } from './IconCropper'
+export { IconCropper } from './IconCropper'

@@ -1,22 +1,15 @@
 import React, { useState } from 'react'
 
-import { BlueButton } from '../M-ui'
+import { MuiButton, MuiDialog } from '../M-ui'
 import { db } from '../../../firebase/firebase'
 
-import Dialog from '@material-ui/core/Dialog'
 import DialogActions from '@material-ui/core/DialogActions'
-import Slide from '@material-ui/core/Slide'
 import { makeStyles } from '@material-ui/core/styles'
 import Typography from '@material-ui/core/Typography'
 import { Avatar } from '@material-ui/core'
 /* ===================================================================== */
 
 const useStyles = makeStyles((theme) => ({
-  dialog: {
-    width: 'inherit',
-    margin: '0 auto',
-    padding: '20px 0px',
-  },
   name: {
     borderBottom: `1px solid ${theme.palette.divider}`,
   },
@@ -41,7 +34,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }))
 
-const ProfDialog = (props) => {
+export const ProfViewDialog = (props) => {
   const classes = useStyles()
   const [name, setName] = useState('')
   const [prof, setProf] = useState('')
@@ -85,60 +78,53 @@ const ProfDialog = (props) => {
   }
 
   return (
-    <div>
-      <Dialog
-        keepMounted
-        fullWidth
-        maxWidth={'sm'}
-        TransitionComponent={Transition}
-        open={props.openDialog}
-        onClose={handleClose}
-      >
-        <div className={classes.dialog}>
-          <Typography variant="h6" className={classes.name} color="textPrimary">
-            {name}
+    <MuiDialog
+      maxWidth="sm"
+      openDialog={props.openDialog}
+      onClose={handleClose}
+    >
+      <Typography variant="h6" className={classes.name} color="textPrimary">
+        {name}
+      </Typography>
+
+      <div className={classes.flex}>
+        <div>
+          <Typography
+            variant="body2"
+            className="pd_y_10px"
+            color="textSecondary"
+          >
+            アイコン
           </Typography>
-
-          <div className={classes.flex}>
-            <div>
-              <Typography
-                variant="body2"
-                className="pd_y_10px"
-                color="textSecondary"
-              >
-                アイコン
-              </Typography>
-              <Avatar className={classes.icon} src={icon} />
-            </div>
-            <div>
-              <Typography
-                variant="body2"
-                className="pd_y_10px"
-                color="textSecondary"
-              >
-                自己紹介文
-              </Typography>
-              <Typography
-                variant="body1"
-                style={{ whiteSpace: 'pre-wrap' }}
-                color="textPrimary"
-              >
-                {prof}
-              </Typography>
-            </div>
-          </div>
-
-          <DialogActions>
-            <BlueButton onClick={handleClose} size={'small'} label={'閉じる'} />
-          </DialogActions>
+          <Avatar className={classes.icon} src={icon} />
         </div>
-      </Dialog>
-    </div>
+        <div>
+          <Typography
+            variant="body2"
+            className="pd_y_10px"
+            color="textSecondary"
+          >
+            自己紹介文
+          </Typography>
+          <Typography
+            variant="body1"
+            style={{ whiteSpace: 'pre-wrap' }}
+            color="textPrimary"
+          >
+            {prof}
+          </Typography>
+        </div>
+      </div>
+
+      <DialogActions>
+        <MuiButton
+          fullWidth={false}
+          color="blue"
+          label="閉じる"
+          size="small"
+          onClick={handleClose}
+        />
+      </DialogActions>
+    </MuiDialog>
   )
 }
-
-export default ProfDialog
-
-const Transition = React.forwardRef(function Transition(props, ref) {
-  return <Slide direction="up" ref={ref} {...props} />
-})
