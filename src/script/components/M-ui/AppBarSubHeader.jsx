@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { useDispatch } from 'react-redux'
 import { push } from 'connected-react-router'
 
-import { ActionCheckDialog } from '../Layout'
+import { ActionCheckDialog } from '../M-ui'
 import { deleteChatRoom } from '../../../reducks/chats/operations.js'
 
 import { makeStyles } from '@material-ui/core/styles'
@@ -76,7 +76,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }))
 
-const AppBarSubHeader = (props) => {
+export const AppBarSubHeader = (props) => {
   const classes = useStyles()
   const dispatch = useDispatch()
   const [rid, setRid] = useState('')
@@ -167,4 +167,3 @@ const AppBarSubHeader = (props) => {
     </AppBar>
   )
 }
-export default AppBarSubHeader

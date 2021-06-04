@@ -1,4 +1,3 @@
-import React from 'react'
 import { useDispatch } from 'react-redux'
 import { push } from 'connected-react-router'
 import { format } from 'date-fns'
@@ -21,7 +20,7 @@ import DeleteSharpIcon from '@material-ui/icons/DeleteSharp'
 import Divider from '@material-ui/core/Divider'
 /* ===================================================================== */
 
-const TaskList = (props) => {
+export const TaskList = (props) => {
   const dispatch = useDispatch()
   // 時間を正規表現
   const timeChange = (time) => {
@@ -100,4 +99,3 @@ const TaskList = (props) => {
     </div>
   )
 }
-export default TaskList

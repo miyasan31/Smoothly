@@ -6,12 +6,10 @@ import { RoomUserList, RoomCheckedList } from '../components/Chat'
 import { IconCropper } from '../components/Setting'
 import {
   AppBarSubHeader,
+  MuiTextField,
+  MuiButton,
+  MuiErrorBar,
   IconUpload,
-  BlueButton,
-  BlueButtonNomal,
-  PinkButton,
-  BlueInput,
-  ErrorAlert,
 } from '../components/M-ui'
 import { createChatRoom, editChatRoom } from '../../reducks/chats/operations'
 import { db } from '../../firebase/firebase'
@@ -32,7 +30,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }))
 
-const RoomEdit = () => {
+export const RoomEdit = () => {
   const classes = useStyles()
   const dispatch = useDispatch()
   const [rid, setRid] = useState('')
@@ -117,7 +115,7 @@ const RoomEdit = () => {
       />
 
       <div className="contents_style">
-        {openAlert ? <ErrorAlert setOpenAlert={setOpenAlert} /> : null}
+        {openAlert ? <MuiErrorBar setOpenAlert={setOpenAlert} /> : null}
 
         <Paper className="paper mg_btm_20px">
           <Typography className="pd_y_10px" color="textSecondary">
@@ -138,18 +136,14 @@ const RoomEdit = () => {
           <Typography className="pd_top_10px" color="textSecondary">
             ルーム名
           </Typography>
-
-          <BlueInput
-            label={null}
+          <MuiTextField
+            type="text"
             fullWidth={true}
-            required={true}
             multiline={true}
-            rows={1}
-            type={'text'}
             value={roomName}
             defaultValue={roomName}
-            error={!roomName && openAlert ? true : false}
             onChange={inputRoomName}
+            error={!roomName && openAlert ? true : false}
           />
 
           <Typography className="pd_top_10px" color="textSecondary">
@@ -164,11 +158,29 @@ const RoomEdit = () => {
 
           <div className="flex pd_top_10px">
             {checked.length !== 0 && (
-              <PinkButton label={'全選択解除'} onClick={clearHandleClick} />
+              <MuiButton
+                fullWidth={false}
+                variant="outlined"
+                color="pink"
+                label="全選択解除"
+                onClick={clearHandleClick}
+              />
             )}
             <div className="flex_grow"></div>
-            <BlueButtonNomal label={'キャンセル'} onClick={backHandleClick} />
-            <BlueButton label={'保存'} onClick={createHandleClick} />
+            <MuiButton
+              fullWidth={false}
+              variant="text"
+              color="blueNomal"
+              label="キャンセル"
+              onClick={backHandleClick}
+            />
+            <MuiButton
+              fullWidth={false}
+              variant="outlined"
+              color="blue"
+              label="保存"
+              onClick={createHandleClick}
+            />
           </div>
         </Paper>
 
@@ -209,7 +221,6 @@ const RoomEdit = () => {
     </section>
   )
 }
-export default RoomEdit
 
 const userValue = [
   { user_value_name: '教官', class_name: '教官' },

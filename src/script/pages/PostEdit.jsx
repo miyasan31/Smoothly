@@ -2,16 +2,15 @@ import React, { useState, useCallback, useEffect } from 'react'
 import { useDispatch } from 'react-redux'
 import { push } from 'connected-react-router'
 
-import { CheckViewDialog } from '../components/Layout'
 import {
   AppBarSubHeader,
-  BlueButton,
-  BlueButtonNomal,
-  BlueInput,
+  MuiTextField,
+  MuiSelectBox,
+  MuiButton,
+  MuiErrorBar,
   FileUpload,
   FileDelete,
-  SelectBox,
-  ErrorAlert,
+  CreateViewDialog,
 } from '../components/M-ui'
 import { createPost } from '../../reducks/posts/operations'
 import { checkExt } from '../../functions/function'
@@ -21,7 +20,7 @@ import Paper from '@material-ui/core/Paper'
 import Typography from '@material-ui/core/Typography'
 /* ===================================================================== */
 
-const PostEdit = () => {
+export const PostEdit = () => {
   const dispatch = useDispatch()
   const [pid, setPid] = useState('')
   const [destination, setDestination] = useState('')
@@ -113,26 +112,14 @@ const PostEdit = () => {
     <section className="main">
       <AppBarSubHeader subtitle={pid ? '連絡　ー編集ー' : '連絡　ー新規ー'} />
 
-      <CheckViewDialog
-        destination={destination}
-        title={title}
-        item={item}
-        file={file}
-        fileName={fileName}
-        preview={preview}
-        openDialog={openDialog}
-        setOpenDialog={setOpenDialog}
-        updateHandleClick={updateHandleClick}
-      />
-
       <div className="contents_style">
-        {openAlert ? <ErrorAlert setOpenAlert={setOpenAlert} /> : null}
+        {openAlert ? <MuiErrorBar setOpenAlert={setOpenAlert} /> : null}
 
         <Paper className="paper">
           <Typography className="pd_y_10px" color="textSecondary">
             投稿先
           </Typography>
-          <SelectBox
+          <MuiSelectBox
             fullWidth={true}
             options={send}
             value={destination}
@@ -143,29 +130,27 @@ const PostEdit = () => {
           <Typography className="pd_top_10px" color="textSecondary">
             タイトル
           </Typography>
-          <BlueInput
-            label={null}
-            type={'text'}
+          <MuiTextField
+            type="text"
             fullWidth={true}
             multiline={true}
             value={title}
             defaultValue={title}
-            error={!title && openAlert ? true : false}
             onChange={inputTitle}
+            error={!title && openAlert ? true : false}
           />
 
           <Typography className="pd_top_10px" color="textSecondary">
             内容
           </Typography>
-          <BlueInput
-            label={null}
-            type={'text'}
+          <MuiTextField
+            type="text"
             fullWidth={true}
             multiline={true}
             value={item}
             defaultValue={item}
-            error={!item && openAlert ? true : false}
             onChange={inputItem}
+            error={!item && openAlert ? true : false}
           />
 
           <Typography className="pd_y_10px" color="textSecondary">
@@ -192,15 +177,38 @@ const PostEdit = () => {
           )}
 
           <div className="right mg_top_20px">
-            <BlueButtonNomal label={'キャンセル'} onClick={backHandleClick} />
-            <BlueButton label="確認" onClick={checkHandleClick} />
+            <MuiButton
+              fullWidth={false}
+              variant="text"
+              label="キャンセル"
+              color="blueNomal"
+              onClick={backHandleClick}
+            />
+            <MuiButton
+              fullWidth={false}
+              variant="contained"
+              label="確認"
+              color="blue"
+              onClick={checkHandleClick}
+            />
           </div>
         </Paper>
       </div>
+
+      <CreateViewDialog
+        destination={destination}
+        title={title}
+        item={item}
+        file={file}
+        fileName={fileName}
+        preview={preview}
+        openDialog={openDialog}
+        setOpenDialog={setOpenDialog}
+        updateHandleClick={updateHandleClick}
+      />
     </section>
   )
 }
-export default PostEdit
 
 const send = [
   { id: 'all', name: '全体' },

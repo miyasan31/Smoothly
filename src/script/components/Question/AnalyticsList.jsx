@@ -1,5 +1,3 @@
-import React from 'react'
-
 import { withStyles, makeStyles } from '@material-ui/core/styles'
 import Table from '@material-ui/core/Table'
 import TableBody from '@material-ui/core/TableBody'
@@ -53,7 +51,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }))
 
-const AnalyticsList = (props) => {
+export const AnalyticsList = (props) => {
   const classes = useStyles()
 
   return (
@@ -123,5 +121,3 @@ const AnalyticsList = (props) => {
     </TableContainer>
   )
 }
-
-export default AnalyticsList

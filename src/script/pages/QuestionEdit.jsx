@@ -2,16 +2,15 @@ import React, { useState, useCallback, useEffect } from 'react'
 import { useDispatch } from 'react-redux'
 import { push } from 'connected-react-router'
 
-import { CheckViewDialog } from '../components/Layout'
 import { QuestionComponent } from '../components/Question'
 import {
   AppBarSubHeader,
-  BlueButton,
-  BlueInput,
-  BlueButtonNomal,
-  SelectBox,
-  DateTimePicker,
-  ErrorAlert,
+  MuiTextField,
+  MuiSelectBox,
+  MuiButton,
+  MuiErrorBar,
+  MuiDateTimePicker,
+  CreateViewDialog,
 } from '../components/M-ui'
 import {
   createQuestions,
@@ -23,7 +22,7 @@ import Paper from '@material-ui/core/Paper'
 import Typography from '@material-ui/core/Typography'
 /* ===================================================================== */
 
-const QuestionEdit = () => {
+export const QuestionEdit = () => {
   const dispatch = useDispatch()
   const [qid, setQid] = useState('')
   const [destination, setDestination] = useState('')
@@ -108,64 +107,51 @@ const QuestionEdit = () => {
         subtitle={qid ? 'アンケート　ー編集ー' : 'アンケート　ー新規ー'}
       />
 
-      <CheckViewDialog
-        destination={destination}
-        title={title}
-        item={item}
-        questionData={questionData}
-        limitTime={limitTime}
-        openDialog={openDialog}
-        setOpenDialog={setOpenDialog}
-        updateHandleClick={updateHandleClick}
-      />
-
       <div className="contents_style">
-        {openAlert ? <ErrorAlert setOpenAlert={setOpenAlert} /> : null}
+        {openAlert ? <MuiErrorBar setOpenAlert={setOpenAlert} /> : null}
 
         <Paper className="paper">
           <Typography className="pd_y_10px" color="textSecondary">
             投稿先
           </Typography>
-          <SelectBox
+          <MuiSelectBox
             fullWidth={true}
             options={send}
             value={destination}
-            error={!destination && openAlert ? true : false}
             select={setDestination}
+            error={!destination && openAlert ? true : false}
           />
 
           <Typography className="pd_top_10px" color="textSecondary">
             タイトル
           </Typography>
-          <BlueInput
-            label={null}
-            type={'text'}
+          <MuiTextField
+            type="text"
             fullWidth={true}
             multiline={true}
             value={title}
             defaultValue={title}
-            error={!title && openAlert ? true : false}
             onChange={inputTitle}
+            error={!title && openAlert ? true : false}
           />
 
           <Typography className="pd_top_10px" color="textSecondary">
             内容
           </Typography>
-          <BlueInput
-            label={null}
-            type={'text'}
+          <MuiTextField
+            type="text"
             fullWidth={true}
             multiline={true}
             value={item}
             defaultValue={item}
-            error={!item && openAlert ? true : false}
             onChange={inputItem}
+            error={!item && openAlert ? true : false}
           />
 
           <Typography className="pd_top_10px" color="textSecondary">
             回答期限
           </Typography>
-          <DateTimePicker
+          <MuiDateTimePicker
             ampm={false}
             fullWidth={true}
             value={limitTime}
@@ -183,15 +169,37 @@ const QuestionEdit = () => {
           />
 
           <div className="right mg_top_20px">
-            <BlueButtonNomal label={'キャンセル'} onClick={backHandleClick} />
-            <BlueButton label="確認" onClick={checkHandleClick} />
+            <MuiButton
+              fullWidth={false}
+              variant="text"
+              color="blueNomal"
+              label="キャンセル"
+              onClick={backHandleClick}
+            />
+            <MuiButton
+              fullWidth={false}
+              variant="outlined"
+              color="blue"
+              label="確認"
+              onClick={checkHandleClick}
+            />
           </div>
         </Paper>
       </div>
+
+      <CreateViewDialog
+        destination={destination}
+        title={title}
+        item={item}
+        questionData={questionData}
+        limitTime={limitTime}
+        openDialog={openDialog}
+        setOpenDialog={setOpenDialog}
+        updateHandleClick={updateHandleClick}
+      />
     </section>
   )
 }
-export default QuestionEdit
 
 const send = [
   { id: 'all', name: '全体' },

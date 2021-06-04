@@ -4,8 +4,7 @@ import { push } from 'connected-react-router'
 
 import {
   AppBarSubHeader,
-  BlueButton,
-  BlueButtonNomal,
+  MuiButton,
   FileUpload,
   FileDelete,
 } from '../components/M-ui'
@@ -18,7 +17,7 @@ import Paper from '@material-ui/core/Paper'
 import Typography from '@material-ui/core/Typography'
 /* ===================================================================== */
 
-const MissionSubmit = () => {
+export const MissionSubmit = () => {
   const dispatch = useDispatch()
   const selector = useSelector((state) => state)
   const current_uid = getUserId(selector)
@@ -110,8 +109,20 @@ const MissionSubmit = () => {
 
           <div className="right mg_top_20px">
             <span>
-              <BlueButtonNomal label={'キャンセル'} onClick={backHandleClick} />
-              <BlueButton label={'提出'} onClick={finishHnadleClick} />
+              <MuiButton
+                fullWidth={false}
+                variant="text"
+                color="blueNomal"
+                label="キャンセル"
+                onClick={backHandleClick}
+              />
+              <MuiButton
+                fullWidth={false}
+                variant="outlined"
+                color="blue"
+                label="提出"
+                onClick={finishHnadleClick}
+              />
             </span>
           </div>
         </Paper>
@@ -119,4 +130,3 @@ const MissionSubmit = () => {
     </section>
   )
 }
-export default MissionSubmit

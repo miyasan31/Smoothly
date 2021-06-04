@@ -4,11 +4,9 @@ import { push } from 'connected-react-router'
 
 import {
   AppBarSubHeader,
-  BlueButton,
-  BlueButtonNomal,
-  AnswerText1,
-  AnswerRadio2,
-  AnswerRadio3,
+  MuiTextField,
+  MuiRadioButton,
+  MuiButton,
 } from '../components/M-ui'
 import { db } from '../../firebase/firebase'
 import { createAnswers } from '../../reducks/questions/operations'
@@ -26,7 +24,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }))
 
-const AnswerEdit = () => {
+export const AnswerEdit = () => {
   const classes = useStyles()
   const dispatch = useDispatch()
   const [qid, setQid] = useState('')
@@ -92,25 +90,25 @@ const AnswerEdit = () => {
               </Typography>
 
               {data.type === '1' ? (
-                <AnswerText1
+                <MuiTextField
                   id={index}
-                  label={null}
-                  type={'text'}
+                  type="text"
                   fullWidth={true}
-                  disabled={false}
                   multiline={true}
                   value={answerData[index]}
                   onChange={handleChange}
                 />
               ) : data.type === '2' ? (
-                <AnswerRadio2
+                <MuiRadioButton
                   id={index}
+                  options={radio1}
                   value={answerData[index]}
                   onChange={handleChange}
                 />
               ) : (
-                <AnswerRadio3
+                <MuiRadioButton
                   id={index}
+                  options={radio2}
                   fullWidth
                   value={answerData[index]}
                   onChange={handleChange}
@@ -121,8 +119,20 @@ const AnswerEdit = () => {
 
           <div className="right mg_top_20px">
             <span>
-              <BlueButtonNomal label={'キャンセル'} onClick={backHandleClick} />
-              <BlueButton label={'回答'} onClick={finishHnadleClick} />
+              <MuiButton
+                fullWidth={false}
+                variant="text"
+                color="blueNomal"
+                label="キャンセル"
+                onClick={backHandleClick}
+              />
+              <MuiButton
+                fullWidth={false}
+                variant="outlined"
+                color="blue"
+                label="回答"
+                onClick={finishHnadleClick}
+              />
             </span>
           </div>
         </Paper>
@@ -130,4 +140,16 @@ const AnswerEdit = () => {
     </section>
   )
 }
-export default AnswerEdit
+
+const radio1 = [
+  { value: '1', label: 'はい' },
+  { value: '2', label: 'いいえ' },
+]
+const radio2 = [
+  { value: '10', label: 'そう思う' },
+  { value: '20', label: 'どちらでもない' },
+  {
+    value: '30',
+    label: 'そう思わない',
+  },
+]

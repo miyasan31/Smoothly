@@ -5,11 +5,10 @@ import { push } from 'connected-react-router'
 import { IconCropper } from '../components/Setting'
 import {
   AppBarSubHeader,
+  MuiTextField,
+  MuiButton,
+  MuiErrorBar,
   IconUpload,
-  BlueButton,
-  BlueButtonNomal,
-  BlueInputOutlined,
-  ErrorAlert,
 } from '../components/M-ui'
 import { createProf } from '../../reducks/users/operations'
 import { getUserId } from '../../reducks/users/selectors'
@@ -19,7 +18,7 @@ import Paper from '@material-ui/core/Paper'
 import Typography from '@material-ui/core/Typography'
 /* ===================================================================== */
 
-const ProfEdit = () => {
+export const ProfEdit = () => {
   const dispatch = useDispatch()
   const selector = useSelector((state) => state)
   const current_uid = getUserId(selector)
@@ -75,7 +74,7 @@ const ProfEdit = () => {
       <AppBarSubHeader subtitle={'プロフィール編集'} />
 
       <div className="contents_style">
-        {openAlert ? <ErrorAlert setOpenAlert={setOpenAlert} /> : null}
+        {openAlert ? <MuiErrorBar setOpenAlert={setOpenAlert} /> : null}
 
         <Paper className="paper">
           <Typography
@@ -104,26 +103,39 @@ const ProfEdit = () => {
           >
             自己紹介文
           </Typography>
-          <BlueInputOutlined
+          <MuiTextField
             fullWidth={true}
-            required={true}
             multiline={true}
             autoFocus={false}
+            variant="outlined"
+            rows={10}
             value={prof}
-            error={!prof && openAlert ? true : false}
+            defaultValue={prof}
             onChange={inputProf}
+            error={!prof && openAlert ? true : false}
           />
 
           <div className="right mg_top_20px">
-            <BlueButtonNomal label={'キャンセル'} onClick={backHandleClick} />
-            <BlueButton label={'保存'} onClick={updateHandleClick} />
+            <MuiButton
+              fullWidth={false}
+              variant="text"
+              color="blueNomal"
+              label="キャンセル"
+              onClick={backHandleClick}
+            />
+            <MuiButton
+              fullWidth={false}
+              variant="outlined"
+              color="blue"
+              label="保存"
+              onClick={updateHandleClick}
+            />
           </div>
         </Paper>
       </div>
     </section>
   )
 }
-export default ProfEdit
 
 const example =
   '【自己紹介】\n　年齢：\n　学科：\n　出身：\n\n【趣味・特技】\n\n【目標】\n\n【コメント】'

@@ -7,7 +7,7 @@ import ListItemText from '@material-ui/core/ListItemText'
 import Checkbox from '@material-ui/core/Checkbox'
 /* ===================================================================== */
 
-const RoomCheckedList = (props) => {
+export const RoomCheckedList = (props) => {
   // ユーザー選択イベント
   const handleToggle = (uid, name) => () => {
     const currentIndex = props.checked.indexOf(uid)
@@ -50,5 +50,3 @@ const RoomCheckedList = (props) => {
     </div>
   )
 }
-
-export default RoomCheckedList

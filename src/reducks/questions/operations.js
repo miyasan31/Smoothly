@@ -1,4 +1,3 @@
-import firebase from 'firebase/app'
 import { push } from 'connected-react-router'
 import { db, FirebaseTimestamp } from '../../firebase/firebase'
 import {
@@ -117,7 +116,7 @@ export const createQuestions = (
   }
 }
 
-export const deleteQuestions = (qid) => {
+export const deleteQuestion = (qid) => {
   return async (dispatch, getState) => {
     questionsRef
       .doc(qid)

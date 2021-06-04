@@ -1,4 +1,3 @@
-import React from 'react'
 import { makeStyles } from '@material-ui/core/styles'
 import InputLabel from '@material-ui/core/InputLabel'
 import MenuItem from '@material-ui/core/MenuItem'
@@ -10,21 +9,33 @@ const useStyles = makeStyles((theme) => ({
   label: {
     paddingLeft: '20px',
   },
+  full: {
+    width: '100%',
+  },
+  half: {
+    marginTop: '15px',
+    width: '30%',
+  },
 }))
 
-const SelectBox = (props) => {
+export const MuiSelectBox = (props) => {
   const classes = useStyles()
 
+  let style = [classes.full]
+  if (!props.fullWidth) {
+    style = [...style, classes.half]
+  }
+
   return (
-    <FormControl fullWidth={props.fullWidth}>
-      {props.label && <InputLabel>{props.label}</InputLabel>}
+    <FormControl className={style}>
+      <InputLabel id="select-label">{props.label}</InputLabel>
       <Select
-        className={classes.margin}
-        error={props.error}
-        value={props.value}
+        labelId="select-label"
         required={props.required}
         variant={props.variant}
+        value={props.value}
         onChange={(e) => props.select(e.target.value)}
+        error={props.error}
       >
         {props.options.map((value) => {
           return (
@@ -37,5 +48,3 @@ const SelectBox = (props) => {
     </FormControl>
   )
 }
-
-export default SelectBox

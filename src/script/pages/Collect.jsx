@@ -5,7 +5,7 @@ import { AppBarSubHeader } from '../components/M-ui'
 import { db } from '../../firebase/firebase'
 /* ===================================================================== */
 
-const Collect = () => {
+export const Collect = () => {
   const [missions, setMissions] = useState('')
   const [submits, setSubmits] = useState('')
   console.log(missions)
@@ -56,4 +56,3 @@ const Collect = () => {
     </section>
   )
 }
-export default Collect

@@ -25,7 +25,7 @@ const useStyles = makeStyles({
   },
 })
 
-const ChatRoomList = () => {
+export const ChatRoomList = () => {
   const classes = useStyles()
   const dispatch = useDispatch()
   const selector = useSelector((state) => state)
@@ -106,5 +106,3 @@ const ChatRoomList = () => {
     </div>
   )
 }
-
-export default ChatRoomList

@@ -1,2 +1,2 @@
-export { default as MissionList } from './MissionList'
-export { default as CollectList } from './CollectList'
+export { MissionList } from './MissionList'
+export { CollectList } from './CollectList'

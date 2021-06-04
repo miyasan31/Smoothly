@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { push } from 'connected-react-router'
 
 import { TaskTab } from '../components/Task'
-import { AppBarSubHeader, ToolTip } from '../components/M-ui'
+import { AppBarSubHeader, MuiTooltip } from '../components/M-ui'
 import { readTasks } from '../../reducks/tasks/operations'
 import {
   getDoingTasksLists,
@@ -11,11 +11,10 @@ import {
 } from '../../reducks/tasks/selectors'
 
 import EditIcon from '@material-ui/icons/Edit'
-import Fab from '@material-ui/core/Fab'
 import Paper from '@material-ui/core/Paper'
 /* ===================================================================== */
 
-const Task = () => {
+export const Task = () => {
   const dispatch = useDispatch()
   const selector = useSelector((state) => state)
   const doingTasks = getDoingTasksLists(selector)
@@ -41,13 +40,11 @@ const Task = () => {
     <section className="main">
       <AppBarSubHeader subtitle={'タスク管理'} />
 
-      <div className="edit_addbtn">
-        <ToolTip title="連絡作成">
-          <Fab color="secondary" onClick={pushHandleClick}>
-            <EditIcon />
-          </Fab>
-        </ToolTip>
-      </div>
+      <MuiTooltip
+        title="連絡作成"
+        icon={<EditIcon />}
+        onClick={pushHandleClick}
+      />
 
       <div className="contents_style">
         <Paper>
@@ -57,4 +54,3 @@ const Task = () => {
     </section>
   )
 }
-export default Task

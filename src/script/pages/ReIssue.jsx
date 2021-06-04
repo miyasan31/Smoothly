@@ -2,7 +2,7 @@ import React, { useState, useCallback } from 'react'
 import { useDispatch } from 'react-redux'
 import { push } from 'connected-react-router'
 
-import { BlueInput, GreenButton } from '../components/M-ui'
+import { MuiTextField, MuiButton } from '../components/M-ui'
 import { reIssue } from '../../reducks/users/operations'
 /* ===================================================================== */
 
@@ -48,21 +48,25 @@ export const ReIssue = () => {
               Smoothly
             </h1>
             <div>
-              <BlueInput
-                fullWidth
-                autoFocus
+              <MuiTextField
+                error={false}
+                type="email"
+                fullWidth={true}
+                variant="standard"
                 multiline={false}
-                label={'登録済みのメールアドレス'}
-                type={'email'}
+                label="登録済みのメールアドレス"
                 value={email}
+                autoFocus={true}
                 onChange={inputEmail}
               />
             </div>
             <div className="space_25px"></div>
 
-            <GreenButton
-              fullWidth
-              label={'パスワード再発行'}
+            <MuiButton
+              fullWidth={true}
+              variant="outlined"
+              color="blue"
+              label="パスワード再発行"
               onClick={handleClick}
             />
           </div>
@@ -71,4 +75,3 @@ export const ReIssue = () => {
     </section>
   )
 }
-export default ReIssue

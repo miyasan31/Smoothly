@@ -3,7 +3,7 @@ import Cropper from 'react-easy-crop'
 
 import getCroppedImg from '../../../functions/function'
 /* ===================================================================== */
-const IconCropper = ({ getBlob, inputImg }) => {
+export const IconCropper = ({ getBlob, inputImg }) => {
   const [crop, setCrop] = useState({ x: 0, y: 0 })
   const [zoom, setZoom] = useState(1)
 
@@ -26,4 +26,3 @@ const IconCropper = ({ getBlob, inputImg }) => {
     />
   )
 }
-export default IconCropper

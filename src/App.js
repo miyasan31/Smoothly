@@ -1,3 +1,4 @@
+import { Route, Switch } from 'react-router-dom'
 import { Header, Nav } from './script/components/Layout'
 import {
   SignIn,
@@ -28,7 +29,6 @@ import Auth from './Auth'
 import './script/styles/common.css'
 import './script/styles/top.css'
 import './script/styles/header.css'
-import { Route, Switch } from 'react-router-dom'
 /* ===================================================================== */
 
 const App = () => {

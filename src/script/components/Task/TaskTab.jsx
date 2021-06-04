@@ -24,7 +24,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }))
 
-const TaskTab = (props) => {
+export const TaskTab = (props) => {
   const classes = useStyles()
   const [value, setValue] = useState(0)
 
@@ -60,7 +60,6 @@ const TaskTab = (props) => {
     </div>
   )
 }
-export default TaskTab
 
 const a11yProps = (index) => {
   return {

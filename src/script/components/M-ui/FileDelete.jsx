@@ -26,7 +26,7 @@ const useStyles = makeStyles({
   },
 })
 
-const FileDelete = (props) => {
+export const FileDelete = (props) => {
   const classes = useStyles()
 
   return (
@@ -40,4 +40,3 @@ const FileDelete = (props) => {
     </Button>
   )
 }
-export default FileDelete

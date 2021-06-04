@@ -2,17 +2,16 @@ import React, { useState, useCallback, useEffect } from 'react'
 import { useDispatch } from 'react-redux'
 import { push } from 'connected-react-router'
 
-import { CheckViewDialog } from '../components/Layout'
 import {
   AppBarSubHeader,
-  BlueButton,
-  BlueButtonNomal,
-  BlueInput,
+  MuiTextField,
+  MuiSelectBox,
+  MuiButton,
+  MuiErrorBar,
+  MuiDateTimePicker,
   FileUpload,
   FileDelete,
-  SelectBox,
-  DateTimePicker,
-  ErrorAlert,
+  CreateViewDialog,
 } from '../components/M-ui'
 import { createMissison } from '../../reducks/missions/operations'
 import { checkExt } from '../../functions/function'
@@ -22,7 +21,7 @@ import Paper from '@material-ui/core/Paper'
 import Typography from '@material-ui/core/Typography'
 /* ===================================================================== */
 
-const MissionEdit = () => {
+export const MissionEdit = () => {
   const dispatch = useDispatch()
   const [mid, setMid] = useState('')
   const [destination, setDestination] = useState('')
@@ -127,27 +126,14 @@ const MissionEdit = () => {
     <section className="main">
       <AppBarSubHeader subtitle={mid ? '課題　ー編集ー' : '課題　ー新規ー'} />
 
-      <CheckViewDialog
-        destination={destination}
-        title={title}
-        item={item}
-        limitTime={limitTime}
-        file={file}
-        fileName={fileName}
-        preview={preview}
-        openDialog={openDialog}
-        setOpenDialog={setOpenDialog}
-        updateHandleClick={updateHandleClick}
-      />
-
       <div className="contents_style">
-        {openAlert ? <ErrorAlert setOpenAlert={setOpenAlert} /> : null}
+        {openAlert ? <MuiErrorBar setOpenAlert={setOpenAlert} /> : null}
 
         <Paper className="paper">
           <Typography className="pd_y_10px" color="textSecondary">
             投稿先
           </Typography>
-          <SelectBox
+          <MuiSelectBox
             fullWidth={true}
             options={send}
             value={destination}
@@ -158,35 +144,33 @@ const MissionEdit = () => {
           <Typography className="pd_top_10px" color="textSecondary">
             タイトル
           </Typography>
-          <BlueInput
+          <MuiTextField
+            type="text"
             fullWidth={true}
-            required={true}
             multiline={true}
-            type={'text'}
             value={title}
             defaultValue={title}
-            error={!title && openAlert ? true : false}
             onChange={inputTitle}
+            error={!title && openAlert ? true : false}
           />
 
           <Typography className="pd_top_10px" color="textSecondary">
             内容
           </Typography>
-          <BlueInput
+          <MuiTextField
+            type="text"
             fullWidth={true}
-            required={true}
             multiline={true}
-            type={'text'}
             value={item}
             defaultValue={item}
-            error={!item && openAlert ? true : false}
             onChange={inputItem}
+            error={!item && openAlert ? true : false}
           />
 
           <Typography className="pd_top_10px" color="textSecondary">
             提出期限
           </Typography>
-          <DateTimePicker
+          <MuiDateTimePicker
             fullWidth={true}
             value={limitTime}
             ampm={false}
@@ -218,15 +202,39 @@ const MissionEdit = () => {
           )}
 
           <div className="right mg_top_20px">
-            <BlueButtonNomal label={'キャンセル'} onClick={backHandleClick} />
-            <BlueButton label="確認" onClick={checkHandleClick} />
+            <MuiButton
+              fullWidth={false}
+              variant="text"
+              color="blueNomal"
+              label="キャンセル"
+              onClick={backHandleClick}
+            />
+            <MuiButton
+              fullWidth={false}
+              variant="outlined"
+              color="blue"
+              label="確認"
+              onClick={checkHandleClick}
+            />
           </div>
         </Paper>
       </div>
+
+      <CreateViewDialog
+        destination={destination}
+        title={title}
+        item={item}
+        limitTime={limitTime}
+        file={file}
+        fileName={fileName}
+        preview={preview}
+        openDialog={openDialog}
+        setOpenDialog={setOpenDialog}
+        updateHandleClick={updateHandleClick}
+      />
     </section>
   )
 }
-export default MissionEdit
 
 const send = [
   { id: 'student', name: '全学生' },

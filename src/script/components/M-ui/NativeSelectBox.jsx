@@ -19,7 +19,6 @@ const BootstrapInput = withStyles((theme) => ({
     fontSize: 16,
     padding: '8px 26px 8px 12px',
     transition: theme.transitions.create(['border-color', 'box-shadow']),
-    // Use the system font instead of the default Roboto font.
     fontFamily: [
       '-apple-system',
       'BlinkMacSystemFont',
@@ -46,12 +45,11 @@ const useStyles = makeStyles((theme) => ({
   },
 }))
 
-const NativeSelectBox = (props) => {
+export const NativeSelectBox = (props) => {
   const classes = useStyles()
   return (
     <FormControl fullWidth={props.fullWidth} className={classes.margin}>
       <Select
-        id="demo-customized-select-native"
         value={props.value}
         onChange={(e) => props.select(e.target.value)}
         input={<BootstrapInput />}
@@ -67,4 +65,3 @@ const NativeSelectBox = (props) => {
     </FormControl>
   )
 }
-export default NativeSelectBox
