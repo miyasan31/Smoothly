@@ -30,6 +30,7 @@ HAL ポータルサイトを SNS 風にした改善版です。
   - Express
   - TailwindCSS
 - Nextjsへ移行してSSG/ISRとかやってみたい
+- useRouter, useCallback,useMemoを使う
 
 ## 機能
 ### ログイン
