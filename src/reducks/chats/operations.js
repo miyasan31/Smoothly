@@ -2,8 +2,11 @@ import { push } from "connected-react-router";
 import { format } from "date-fns";
 import { ja } from "date-fns/locale";
 
-import { storage, db, FirebaseTimestamp } from "../../firebase/firebase";
-import { readChatRoomsAction, deleteChatRoomAction } from "./actions.js";
+import { storage, db, FirebaseTimestamp } from "src/firebase/firebase";
+import {
+  readChatRoomsAction,
+  deleteChatRoomAction,
+} from "src/reducks/chats/actions";
 /* ===================================================================== */
 
 const chatsRef = db.collection("chats");

@@ -1,6 +1,6 @@
 import { push } from "connected-react-router";
-import { db, FirebaseTimestamp, storage } from "../../firebase/firebase";
-import { readPostsAction, deletePostsAction } from "./actions.js";
+import { db, FirebaseTimestamp, storage } from "src/firebase/firebase";
+import { readPostsAction, deletePostsAction } from "src/reducks/posts/actions";
 /* ===================================================================== */
 
 const postsRef = db.collection("posts");
@@ -33,7 +33,7 @@ export const readPosts = () => {
         dispatch(readPostsAction(postList));
       })
       .catch((error) => {
-        throw new Error(error)
+        throw new Error(error);
       });
   };
 };

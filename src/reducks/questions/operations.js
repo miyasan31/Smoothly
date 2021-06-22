@@ -1,12 +1,12 @@
 import { push } from "connected-react-router";
-import { db, FirebaseTimestamp } from "../../firebase/firebase";
+import { db, FirebaseTimestamp } from "src/firebase/firebase";
 import {
   readQuestionsAction,
   addQuestionItemAction,
   deleteQuestionItemAction,
   readQuestionItemAction,
   readAnswersAction,
-} from "./actions.js";
+} from "src/reducks/questions/actions";
 /* ===================================================================== */
 
 const questionsRef = db.collection("questions");

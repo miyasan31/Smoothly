@@ -3,10 +3,10 @@ import ReactDOM from "react-dom";
 import { Provider } from "react-redux";
 import { ConnectedRouter } from "connected-react-router";
 import * as History from "history";
-import createStore from "./reducks/store/store.js";
+import createStore from "src/reducks/store/store";
 
-import App from "./App.jsx";
-import TempleteTheme from "./TemplateTheme";
+import TempleteTheme from "src/TemplateTheme";
+import App from "src/App";
 
 // import TemplateTheme from './TemplateTheme.js';
 /* ===================================================================== */

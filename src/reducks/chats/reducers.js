@@ -1,5 +1,5 @@
-import * as Action from "./actions";
-import { initialState } from "../store/initialState.js";
+import * as Action from "src/reducks/chats/actions";
+import { initialState } from "src/reducks/store/initialState";
 /* ===================================================================== */
 
 export const ChatRoomsReducter = (state = initialState.rooms, action) => {

@@ -1,5 +1,5 @@
 import { useSelector } from "react-redux";
-import { getTheme } from "./reducks/users/selectors.js";
+import { getTheme } from "src/reducks/users/selectors";
 
 import { createMuiTheme, ThemeProvider } from "@material-ui/core/styles";
 import CssBaseline from "@material-ui/core/CssBaseline";
