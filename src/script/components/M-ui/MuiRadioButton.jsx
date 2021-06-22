@@ -1,22 +1,22 @@
-import Radio from '@material-ui/core/Radio'
-import RadioGroup from '@material-ui/core/RadioGroup'
-import FormControlLabel from '@material-ui/core/FormControlLabel'
-import FormControl from '@material-ui/core/FormControl'
-import { makeStyles } from '@material-ui/core/styles'
+import Radio from "@material-ui/core/Radio";
+import RadioGroup from "@material-ui/core/RadioGroup";
+import FormControlLabel from "@material-ui/core/FormControlLabel";
+import FormControl from "@material-ui/core/FormControl";
+import { makeStyles } from "@material-ui/core/styles";
 /* ===================================================================== */
 
 const useStyles = makeStyles({
   radio: {
-    marginTop: '10px',
+    marginTop: "10px",
   },
-})
+});
 
 export const MuiRadioButton = (props) => {
-  const classes = useStyles()
+  const classes = useStyles();
 
   const handleChange = (event) => {
-    props.onChange(props.id, event.target.value)
-  }
+    props.onChange(props.id, event.target.value);
+  };
   return (
     <FormControl component="fieldset" className={classes.radio}>
       <RadioGroup
@@ -28,6 +28,7 @@ export const MuiRadioButton = (props) => {
       >
         {props.options.map((value) => (
           <FormControlLabel
+            key={value.value}
             value={value.value}
             control={<Radio color="primary" disabled={props.disabled} />}
             label={value.label}
@@ -35,5 +36,5 @@ export const MuiRadioButton = (props) => {
         ))}
       </RadioGroup>
     </FormControl>
-  )
-}
+  );
+};

@@ -1,16 +1,16 @@
-import React, { useState } from 'react'
-import Cropper from 'react-easy-crop'
+import React, { useState } from "react";
+import Cropper from "react-easy-crop";
 
-import getCroppedImg from '../../../functions/function'
+import getCroppedImg from "../../../functions/function";
 /* ===================================================================== */
 export const IconCropper = ({ getBlob, inputImg }) => {
-  const [crop, setCrop] = useState({ x: 0, y: 0 })
-  const [zoom, setZoom] = useState(1)
+  const [crop, setCrop] = useState({ x: 0, y: 0 });
+  const [zoom, setZoom] = useState(1);
 
   const onCropComplete = async (_, croppedAreaPixels) => {
-    const croppedImage = await getCroppedImg(inputImg, croppedAreaPixels)
-    getBlob(croppedImage)
-  }
+    const croppedImage = await getCroppedImg(inputImg, croppedAreaPixels);
+    getBlob(croppedImage);
+  };
 
   return (
     <Cropper
@@ -24,5 +24,5 @@ export const IconCropper = ({ getBlob, inputImg }) => {
       onCropComplete={onCropComplete}
       onZoomChange={setZoom}
     />
-  )
-}
+  );
+};

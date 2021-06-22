@@ -1,12 +1,12 @@
-import React, { useState } from 'react'
+import React, { useState } from "react";
 
-import { MuiButton, MuiDialog } from '../M-ui'
-import { db } from '../../../firebase/firebase'
+import { MuiButton, MuiDialog } from "../M-ui";
+import { db } from "../../../firebase/firebase";
 
-import DialogActions from '@material-ui/core/DialogActions'
-import { makeStyles } from '@material-ui/core/styles'
-import Typography from '@material-ui/core/Typography'
-import { Avatar } from '@material-ui/core'
+import DialogActions from "@material-ui/core/DialogActions";
+import { makeStyles } from "@material-ui/core/styles";
+import Typography from "@material-ui/core/Typography";
+import { Avatar } from "@material-ui/core";
 /* ===================================================================== */
 
 const useStyles = makeStyles((theme) => ({
@@ -14,68 +14,68 @@ const useStyles = makeStyles((theme) => ({
     borderBottom: `1px solid ${theme.palette.divider}`,
   },
   icon: {
-    margin: '0 5px 0 10px',
-    border: '3px solid #90caf9',
+    margin: "0 5px 0 10px",
+    border: "3px solid #90caf9",
     width: theme.spacing(8),
     height: theme.spacing(8),
     marginRight: 30,
-    [theme.breakpoints.up('sm')]: {
+    [theme.breakpoints.up("sm")]: {
       width: theme.spacing(15),
       height: theme.spacing(15),
       marginRight: 50,
     },
   },
   flex: {
-    display: 'block',
-    padding: '10px 0',
-    [theme.breakpoints.up('sm')]: {
-      display: 'flex',
+    display: "block",
+    padding: "10px 0",
+    [theme.breakpoints.up("sm")]: {
+      display: "flex",
     },
   },
-}))
+}));
 
 export const ProfViewDialog = (props) => {
-  const classes = useStyles()
-  const [name, setName] = useState('')
-  const [prof, setProf] = useState('')
-  const [icon, setIcon] = useState('')
+  const classes = useStyles();
+  const [name, setName] = useState("");
+  const [prof, setProf] = useState("");
+  const [icon, setIcon] = useState("");
 
   // ダイアログが開いたらユーザーの情報を取得
   if (props.openDialog) {
-    db.collection('users')
+    db.collection("users")
       .doc(props.uid)
       .get()
       .then((snapshots) => {
-        const userData = snapshots.data()
-        let icon = ''
-        if (userData.user_value === 'teacher' && userData.gender === 'man') {
-          icon = '👨‍🏫'
+        const userData = snapshots.data();
+        let icon = "";
+        if (userData.user_value === "teacher" && userData.gender === "man") {
+          icon = "👨‍🏫";
         } else if (
-          userData.user_value === 'teacher' &&
-          userData.gender === 'lady'
+          userData.user_value === "teacher" &&
+          userData.gender === "lady"
         ) {
-          icon = '👩‍🏫'
-        } else if (userData.gender === 'man') {
-          icon = '👨‍🎓'
-        } else if (userData.gender === 'lady') {
-          icon = '👩‍🎓'
+          icon = "👩‍🏫";
+        } else if (userData.gender === "man") {
+          icon = "👨‍🎓";
+        } else if (userData.gender === "lady") {
+          icon = "👩‍🎓";
         }
-        setName(`${icon} ${userData.class_name} ｜ ${userData.user_name}`)
-        setIcon(userData.icon.path)
-        if (userData.prof !== '') {
-          setProf(userData.prof)
+        setName(`${icon} ${userData.class_name} ｜ ${userData.user_name}`);
+        setIcon(userData.icon.path);
+        if (userData.prof !== "") {
+          setProf(userData.prof);
         } else {
-          setProf('登録されていません。')
+          setProf("登録されていません。");
         }
       })
       .catch(() => {
-        setName('ユーザー情報が見つかりません。')
-      })
+        setName("ユーザー情報が見つかりません。");
+      });
   }
   // ダイアログを閉じる
   const handleClose = () => {
-    props.setOpenDialog(false)
-  }
+    props.setOpenDialog(false);
+  };
 
   return (
     <MuiDialog
@@ -108,7 +108,7 @@ export const ProfViewDialog = (props) => {
           </Typography>
           <Typography
             variant="body1"
-            style={{ whiteSpace: 'pre-wrap' }}
+            style={{ whiteSpace: "pre-wrap" }}
             color="textPrimary"
           >
             {prof}
@@ -126,5 +126,5 @@ export const ProfViewDialog = (props) => {
         />
       </DialogActions>
     </MuiDialog>
-  )
-}
+  );
+};

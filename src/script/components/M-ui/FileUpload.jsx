@@ -1,41 +1,41 @@
-import React from 'react'
-import Button from '@material-ui/core/Button'
-import { makeStyles } from '@material-ui/core/styles'
-import CloudUploadIcon from '@material-ui/icons/CloudUpload'
+import React from "react";
+import Button from "@material-ui/core/Button";
+import { makeStyles } from "@material-ui/core/styles";
+import CloudUploadIcon from "@material-ui/icons/CloudUpload";
 /* ===================================================================== */
 
 const useStyles = makeStyles({
   button: {
-    boxShadow: 'none',
-    fontWeight: 'bold',
+    boxShadow: "none",
+    fontWeight: "bold",
 
-    color: '#9e9e9e',
-    border: '1px solid #9e9e9e',
-    backgroundColor: '#00000000',
-    '&:hover': {
-      color: 'white',
-      backgroundColor: '#616161',
-      border: '1px solid #616161',
+    color: "#9e9e9e",
+    border: "1px solid #9e9e9e",
+    backgroundColor: "#00000000",
+    "&:hover": {
+      color: "white",
+      backgroundColor: "#616161",
+      border: "1px solid #616161",
     },
   },
   label: {
-    position: 'relative',
-    '&:hover': {
-      cursor: 'pointer',
+    position: "relative",
+    "&:hover": {
+      cursor: "pointer",
     },
   },
   input: {
-    position: 'absolute',
-    top: '-7px',
-    left: '-40px',
-    padding: '6px',
-    width: '145px',
+    position: "absolute",
+    top: "-7px",
+    left: "-40px",
+    padding: "6px",
+    width: "145px",
     opacity: 0,
   },
-})
+});
 
 export const FileUpload = (props) => {
-  const classes = useStyles()
+  const classes = useStyles();
 
   return (
     <Button
@@ -54,5 +54,5 @@ export const FileUpload = (props) => {
         {props.label}
       </label>
     </Button>
-  )
-}
+  );
+};

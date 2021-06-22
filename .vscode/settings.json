@@ -1,4 +1,13 @@
 {
+  // "editor.codeActionsOnSave": {
+  //   "source.fixAll.eslint": true
+  // },
+  // "eslint.validate": [
+  //   "javascript"
+  // ],
   "editor.defaultFormatter": "esbenp.prettier-vscode",
-  "workbench.colorTheme": "Dracula"
+  "editor.formatOnSave": true,
+  "[json]": {
+    "editor.defaultFormatter": "vscode.json-language-features"
+  }
 }

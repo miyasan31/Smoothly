@@ -1,6 +1,6 @@
-import React, { useState, useCallback } from 'react'
-import { push } from 'connected-react-router'
-import { useDispatch } from 'react-redux'
+import React, { useState, useCallback } from "react";
+import { push } from "connected-react-router";
+import { useDispatch } from "react-redux";
 
 import {
   AppBarSubHeader,
@@ -8,72 +8,72 @@ import {
   MuiSelectBox,
   MuiButton,
   MuiErrorBar,
-} from '../components/M-ui'
-import { updateEmail, updatePassword } from '../../reducks/users/operations'
+} from "../components/M-ui";
+import { updateEmail, updatePassword } from "../../reducks/users/operations";
 
-import Paper from '@material-ui/core/Paper'
-import Typography from '@material-ui/core/Typography'
+import Paper from "@material-ui/core/Paper";
+import Typography from "@material-ui/core/Typography";
 /* ===================================================================== */
 
 export const AuthEdit = () => {
-  const dispatch = useDispatch()
-  const [choice, setChoice] = useState('email')
-  const [email, seteEail] = useState('')
-  const [newEmail, setNewEmail] = useState('')
-  const [password, setePassword] = useState('')
-  const [newPassword, setNewPassword] = useState('')
-  const [openAlert, setOpenAlert] = useState(false)
+  const dispatch = useDispatch();
+  const [choice, setChoice] = useState("email");
+  const [email, seteEail] = useState("");
+  const [newEmail, setNewEmail] = useState("");
+  const [password, setePassword] = useState("");
+  const [newPassword, setNewPassword] = useState("");
+  const [openAlert, setOpenAlert] = useState(false);
 
   // 登録メールアドレス入力イベント
   const inputEmail = useCallback(
     (event) => {
-      seteEail(event.target.value)
+      seteEail(event.target.value);
     },
     [seteEail]
-  )
+  );
   // 新規メールアドレス入力イベント
   const inputNewEmail = useCallback(
     (event) => {
-      setNewEmail(event.target.value)
+      setNewEmail(event.target.value);
     },
     [setNewEmail]
-  )
+  );
   // 登録パスワード入力イベント
   const inputPassword = useCallback(
     (event) => {
-      setePassword(event.target.value)
+      setePassword(event.target.value);
     },
     [setePassword]
-  )
+  );
   // 新規パスワード入力イベント
   const inputNewPassword = useCallback(
     (event) => {
-      setNewPassword(event.target.value)
+      setNewPassword(event.target.value);
     },
     [setNewPassword]
-  )
+  );
   // キャンセルボタンクリック
   const backHandleClick = () => {
-    dispatch(push('/setting'))
-  }
+    dispatch(push("/setting"));
+  };
   // 変更ボタンクリック
   const authUpdateHandleClick = () => {
-    if (choice === 'password' && !(email && password && newPassword)) {
-      setOpenAlert(true)
-    } else if (choice === 'password') {
-      setOpenAlert(false)
-      dispatch(updatePassword(email, password, newPassword))
-    } else if (choice === 'email' && !(email && newEmail && password)) {
-      setOpenAlert(true)
-    } else if (choice === 'email') {
-      setOpenAlert(false)
-      dispatch(updateEmail(email, password, newEmail))
+    if (choice === "password" && !(email && password && newPassword)) {
+      setOpenAlert(true);
+    } else if (choice === "password") {
+      setOpenAlert(false);
+      dispatch(updatePassword(email, password, newPassword));
+    } else if (choice === "email" && !(email && newEmail && password)) {
+      setOpenAlert(true);
+    } else if (choice === "email") {
+      setOpenAlert(false);
+      dispatch(updateEmail(email, password, newEmail));
     }
-  }
+  };
 
   return (
     <section className="main">
-      <AppBarSubHeader subtitle={'メールアドレス・パスワード変更'} />
+      <AppBarSubHeader subtitle={"メールアドレス・パスワード変更"} />
 
       <div className="contents_style">
         {openAlert ? <MuiErrorBar setOpenAlert={setOpenAlert} /> : null}
@@ -100,7 +100,7 @@ export const AuthEdit = () => {
             error={!email && openAlert ? true : false}
           />
 
-          {choice === 'email' && (
+          {choice === "email" && (
             <>
               <Typography className="pd_top_10px" color="textSecondary">
                 新しいメールアドレス
@@ -126,7 +126,7 @@ export const AuthEdit = () => {
             error={!password && openAlert ? true : false}
           />
 
-          {choice === 'password' && (
+          {choice === "password" && (
             <>
               <Typography className="pd_top_10px" color="textSecondary">
                 新しいパスワード
@@ -160,10 +160,10 @@ export const AuthEdit = () => {
         </Paper>
       </div>
     </section>
-  )
-}
+  );
+};
 
 const choiceData = [
-  { id: 'email', name: 'メールアドレス' },
-  { id: 'password', name: 'パスワード' },
-]
+  { id: "email", name: "メールアドレス" },
+  { id: "password", name: "パスワード" },
+];

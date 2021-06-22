@@ -1,1 +1,1 @@
-export { IconCropper } from './IconCropper'
+export { IconCropper } from "./IconCropper";

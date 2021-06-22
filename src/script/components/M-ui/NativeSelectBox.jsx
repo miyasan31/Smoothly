@@ -1,52 +1,52 @@
-import { makeStyles, withStyles } from '@material-ui/core/styles'
-import MenuItem from '@material-ui/core/MenuItem'
-import FormControl from '@material-ui/core/FormControl'
-import Select from '@material-ui/core/Select'
-import InputBase from '@material-ui/core/InputBase'
+import { makeStyles, withStyles } from "@material-ui/core/styles";
+import MenuItem from "@material-ui/core/MenuItem";
+import FormControl from "@material-ui/core/FormControl";
+import Select from "@material-ui/core/Select";
+import InputBase from "@material-ui/core/InputBase";
 /* ===================================================================== */
 
 const BootstrapInput = withStyles((theme) => ({
   root: {
-    'label + &': {
+    "label + &": {
       marginTop: theme.spacing(3),
     },
   },
   input: {
     borderRadius: 4,
-    position: 'relative',
+    position: "relative",
     backgroundColor: theme.palette.background.paper,
-    border: '1px solid #ced4da',
+    border: "1px solid #ced4da",
     fontSize: 16,
-    padding: '8px 26px 8px 12px',
-    transition: theme.transitions.create(['border-color', 'box-shadow']),
+    padding: "8px 26px 8px 12px",
+    transition: theme.transitions.create(["border-color", "box-shadow"]),
     fontFamily: [
-      '-apple-system',
-      'BlinkMacSystemFont',
-      '"Segoe UI"',
-      'Roboto',
-      '"Helvetica Neue"',
-      'Arial',
-      'sans-serif',
-      '"Apple Color Emoji"',
-      '"Segoe UI Emoji"',
-      '"Segoe UI Symbol"',
-    ].join(','),
-    '&:focus': {
+      "-apple-system",
+      "BlinkMacSystemFont",
+      "\"Segoe UI\"",
+      "Roboto",
+      "\"Helvetica Neue\"",
+      "Arial",
+      "sans-serif",
+      "\"Apple Color Emoji\"",
+      "\"Segoe UI Emoji\"",
+      "\"Segoe UI Symbol\"",
+    ].join(","),
+    "&:focus": {
       borderRadius: 4,
-      borderColor: '#80bdff',
-      boxShadow: '0 0 0 0.2rem rgba(0,123,255,.25)',
+      borderColor: "#80bdff",
+      boxShadow: "0 0 0 0.2rem rgba(0,123,255,.25)",
     },
   },
-}))(InputBase)
+}))(InputBase);
 
 const useStyles = makeStyles((theme) => ({
   margin: {
     margin: theme.spacing(1),
   },
-}))
+}));
 
 export const NativeSelectBox = (props) => {
-  const classes = useStyles()
+  const classes = useStyles();
   return (
     <FormControl fullWidth={props.fullWidth} className={classes.margin}>
       <Select
@@ -59,9 +59,9 @@ export const NativeSelectBox = (props) => {
             <MenuItem key={value.id} value={value.id} className={classes.label}>
               {value.name}
             </MenuItem>
-          )
+          );
         })}
       </Select>
     </FormControl>
-  )
-}
+  );
+};

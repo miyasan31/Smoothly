@@ -1,39 +1,33 @@
-import React, { useEffect } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
-
-import { readAnswers } from '../../../reducks/questions/operations'
-import { getAnswerLists } from '../../../reducks/questions/selectors'
-
-import { withStyles, makeStyles } from '@material-ui/core/styles'
-import Table from '@material-ui/core/Table'
-import TableBody from '@material-ui/core/TableBody'
-import TableCell from '@material-ui/core/TableCell'
-import TableContainer from '@material-ui/core/TableContainer'
-import TableHead from '@material-ui/core/TableHead'
-import TableRow from '@material-ui/core/TableRow'
-import Typography from '@material-ui/core/Typography'
-import Paper from '@material-ui/core/Paper'
+import { withStyles, makeStyles } from "@material-ui/core/styles";
+import Table from "@material-ui/core/Table";
+import TableBody from "@material-ui/core/TableBody";
+import TableCell from "@material-ui/core/TableCell";
+import TableContainer from "@material-ui/core/TableContainer";
+import TableHead from "@material-ui/core/TableHead";
+import TableRow from "@material-ui/core/TableRow";
+import Typography from "@material-ui/core/Typography";
+import Paper from "@material-ui/core/Paper";
 /* ===================================================================== */
 
 const StyledTableCell = withStyles((theme) => ({
   head: {
     backgroundColor: theme.palette.primary,
     color: theme.palette.text,
-    fontWeight: 'bold',
+    fontWeight: "bold",
   },
   body: {
     fontSize: 14,
   },
-}))(TableCell)
+}))(TableCell);
 
 const StyledTableRow = withStyles((theme) => ({
   root: {
     backgroundColor: theme.palette.action.selected,
-    '&:nth-of-type(odd)': {
+    "&:nth-of-type(odd)": {
       backgroundColor: theme.palette.action.hover,
     },
   },
-}))(TableRow)
+}))(TableRow);
 
 const useStyles = makeStyles((theme) => ({
   title: {
@@ -43,7 +37,7 @@ const useStyles = makeStyles((theme) => ({
   name: {
     width: 100,
     minWidth: 30,
-    paddingRight: '0',
+    paddingRight: "0",
     fontSize: 12,
   },
   item: {
@@ -52,13 +46,13 @@ const useStyles = makeStyles((theme) => ({
   },
   symbol: {
     width: 1,
-    paddingLeft: '0',
+    paddingLeft: "0",
     fontSize: 12,
   },
-}))
+}));
 
 export const CollectList = (props) => {
-  const classes = useStyles()
+  const classes = useStyles();
 
   return (
     <TableContainer className="mg_btm_20px" component={Paper}>
@@ -107,5 +101,5 @@ export const CollectList = (props) => {
         </TableBody>
       </Table>
     </TableContainer>
-  )
-}
+  );
+};

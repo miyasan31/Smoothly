@@ -1,1 +1,1 @@
-export { PostList } from './PostList.jsx'
+export { PostList } from "./PostList.jsx";

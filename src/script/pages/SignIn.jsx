@@ -1,33 +1,33 @@
-import React, { useState, useCallback } from 'react'
-import { useDispatch } from 'react-redux'
-import { push } from 'connected-react-router'
+import React, { useState, useCallback } from "react";
+import { useDispatch } from "react-redux";
+import { push } from "connected-react-router";
 
-import { MuiTextField, MuiButton } from '../components/M-ui'
-import { signIn } from '../../reducks/users/operations'
+import { MuiTextField, MuiButton } from "../components/M-ui";
+import { signIn } from "../../reducks/users/operations";
 
-import Grid from '@material-ui/core/Grid'
-import PersonIcon from '@material-ui/icons/Person'
-import LockIcon from '@material-ui/icons/Lock'
+import Grid from "@material-ui/core/Grid";
+import PersonIcon from "@material-ui/icons/Person";
+import LockIcon from "@material-ui/icons/Lock";
 /* ===================================================================== */
 export const SignIn = () => {
-  const dispatch = useDispatch()
-  const [email, setEmail] = useState('guest@gmail.com')
-  const [password, setPassword] = useState('halnagoya')
+  const dispatch = useDispatch();
+  const [email, setEmail] = useState("guest@gmail.com");
+  const [password, setPassword] = useState("halnagoya");
 
   // メールアドレス入力イベント
   const inputEmail = useCallback(
     (event) => {
-      setEmail(event.target.value)
+      setEmail(event.target.value);
     },
     [setEmail]
-  )
+  );
   // パスワード入力イベント
   const inputPassword = useCallback(
     (event) => {
-      setPassword(event.target.value)
+      setPassword(event.target.value);
     },
     [setPassword]
-  )
+  );
 
   return (
     <section className="top_main signin_theme">
@@ -37,7 +37,8 @@ export const SignIn = () => {
             ようこそ！
             <span
               className="pointer"
-              onClick={() => dispatch(push('./signin'))}
+              onClick={() => dispatch(push("./signin"))}
+              role="presentation"
             >
               Smoothly
             </span>
@@ -65,7 +66,6 @@ export const SignIn = () => {
                   multiline={false}
                   label="メールアドレス"
                   value={email}
-                  autoFocus={false}
                   onChange={inputEmail}
                 />
               </Grid>
@@ -83,7 +83,6 @@ export const SignIn = () => {
                   multiline={false}
                   label="パスワード"
                   value={password}
-                  autoFocus={false}
                   onChange={inputPassword}
                 />
               </Grid>
@@ -103,7 +102,7 @@ export const SignIn = () => {
               variant="outlined"
               color="orange"
               label="新規登録"
-              onClick={() => dispatch(push('./signup'))}
+              onClick={() => dispatch(push("./signup"))}
             />
             <div className="space_15px"></div>
             <MuiButton
@@ -111,11 +110,11 @@ export const SignIn = () => {
               variant="outlined"
               color="green"
               label="パスワード再発行"
-              onClick={() => dispatch(push('./reissue'))}
+              onClick={() => dispatch(push("./reissue"))}
             />
           </div>
         </div>
       </div>
     </section>
-  )
-}
+  );
+};

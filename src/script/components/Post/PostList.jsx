@@ -1,40 +1,41 @@
-import React, { useState, useEffect } from 'react'
-import { format } from 'date-fns'
-import { ja } from 'date-fns/locale'
+import React, { useState, useEffect } from "react";
+import { format } from "date-fns";
+import { ja } from "date-fns/locale";
 
-import { MuiCard } from '../M-ui'
-import { db } from '../../../firebase/firebase'
+import { MuiCard } from "../M-ui";
+import { db } from "../../../firebase/firebase";
 /* ===================================================================== */
 
 export const PostList = (props) => {
-  const [userName, setUserName] = useState('')
-  const [className, setClassName] = useState('')
-  const [userIcon, setUserIcon] = useState('')
+  const [userName, setUserName] = useState("");
+  const [className, setClassName] = useState("");
+  const [userIcon, setUserIcon] = useState("");
 
   // 時間を正規表現
-  const updateTime = props.updateTime.toDate()
-  const updateDateTime = format(updateTime, 'yyyy年M月dd日 H:mm', {
+  const updateTime = props.updateTime.toDate();
+  const updateDateTime = format(updateTime, "yyyy年M月dd日 H:mm", {
     locale: ja,
-  })
+  });
 
   // 投稿者の情報を取得
   useEffect(() => {
     if (props.createrUid) {
-      db.collection('users')
+      db.collection("users")
         .doc(props.createrUid)
         .get()
         .then((snapshots) => {
-          const userData = snapshots.data()
+          const userData = snapshots.data();
           if (userData) {
-            setUserName(userData.user_name)
-            setClassName(userData.class_name)
-            setUserIcon(userData.icon.path)
+            setUserName(userData.user_name);
+            setClassName(userData.class_name);
+            setUserIcon(userData.icon.path);
           } else {
-            setUserName('退会済みのユーザー')
+            setUserName("退会済みのユーザー");
           }
-        })
+        });
     }
-  }, [])
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return (
     <div className="mg_btm_20px">
@@ -43,9 +44,9 @@ export const PostList = (props) => {
         userName={userName}
         userIcon={userIcon}
         className={className}
-        editPath={'/post/edit/' + props.pid}
+        editPath={"/post/edit/" + props.pid}
         updateDateTime={updateDateTime}
       />
     </div>
-  )
-}
+  );
+};

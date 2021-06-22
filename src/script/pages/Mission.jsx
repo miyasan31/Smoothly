@@ -1,38 +1,39 @@
-import React, { useEffect } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
-import { push } from 'connected-react-router'
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { push } from "connected-react-router";
 
-import { MissionList } from '../components/Mission'
-import { AppBarSubHeader, MuiTooltip } from '../components/M-ui'
-import { readMissions } from '../../reducks/missions/operations'
-import { getUserValue } from '../../reducks/users/selectors'
-import { getUserId } from '../../reducks/users/selectors'
-import { getMissionLists } from '../../reducks/missions/selectors'
+import { MissionList } from "../components/Mission";
+import { AppBarSubHeader, MuiTooltip } from "../components/M-ui";
+import { readMissions } from "../../reducks/missions/operations";
+import { getUserValue } from "../../reducks/users/selectors";
+import { getUserId } from "../../reducks/users/selectors";
+import { getMissionLists } from "../../reducks/missions/selectors";
 
-import EditIcon from '@material-ui/icons/Edit'
+import EditIcon from "@material-ui/icons/Edit";
 /* ===================================================================== */
 
 export const Mission = () => {
-  const dispatch = useDispatch()
-  const selector = useSelector((state) => state)
-  const current_uid = getUserId(selector)
-  const current_value = getUserValue(selector)
-  const missions = getMissionLists(selector)
+  const dispatch = useDispatch();
+  const selector = useSelector((state) => state);
+  const current_uid = getUserId(selector);
+  const current_value = getUserValue(selector);
+  const missions = getMissionLists(selector);
 
   // 課題作成ボタンクリック
   const pushHandleClick = () => {
-    dispatch(push('/mission/edit'))
-  }
+    dispatch(push("/mission/edit"));
+  };
   // 全投稿を取得
   useEffect(() => {
-    dispatch(readMissions())
-  }, [])
+    dispatch(readMissions());
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return (
     <section className="main">
-      <AppBarSubHeader subtitle={'課題一覧'} />
+      <AppBarSubHeader subtitle={"課題一覧"} />
 
-      {current_value === 'teacher' && (
+      {current_value === "teacher" && (
         <MuiTooltip
           title="連絡作成"
           icon={<EditIcon />}
@@ -60,5 +61,5 @@ export const Mission = () => {
         ) : null}
       </div>
     </section>
-  )
-}
+  );
+};

@@ -3,23 +3,23 @@ import {
   combineReducers,
   applyMiddleware,
   // compose
-} from 'redux'
-import { createLogger } from 'redux-logger'
-import { connectRouter, routerMiddleware } from 'connected-react-router'
-import { UsersReducter } from '../users/reducers.js'
-import { PostsReducter } from '../posts/reducers.js'
-import { ChatRoomsReducter } from '../chats/reducers.js'
+} from "redux";
+import { createLogger } from "redux-logger";
+import { connectRouter, routerMiddleware } from "connected-react-router";
+import { UsersReducter } from "../users/reducers.js";
+import { PostsReducter } from "../posts/reducers.js";
+import { ChatRoomsReducter } from "../chats/reducers.js";
 import {
   doingTasksReducter,
   completedTasksReducter,
-} from '../tasks/reducers.js'
+} from "../tasks/reducers.js";
 import {
   QuestionsReducter,
   AnswersReducter,
   QuestionItemReducter,
-} from '../questions/reducers.js'
-import { MissionsReducter } from '../missions/reducers.js'
-import thunk from 'redux-thunk'
+} from "../questions/reducers.js";
+import { MissionsReducter } from "../missions/reducers.js";
+import thunk from "redux-thunk";
 /* ===================================================================== */
 
 // const composeEnhancer = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
@@ -32,13 +32,13 @@ export default function createStore(history) {
   //   }),
   //   composeEnhancer(applyMiddleware(routerMiddleware(history), thunk))
   // )
-  let middleWares = [routerMiddleware(history), thunk]
-  if (process.env.NODE_ENV === 'development') {
+  let middleWares = [routerMiddleware(history), thunk];
+  if (process.env.NODE_ENV === "development") {
     const logger = createLogger({
       collapsed: true,
       diff: true,
-    })
-    middleWares.push(logger)
+    });
+    middleWares.push(logger);
   }
   return reduxCreateStore(
     // オリジナル createStore の別名
@@ -55,5 +55,5 @@ export default function createStore(history) {
       missions: MissionsReducter,
     }),
     applyMiddleware(...middleWares)
-  )
+  );
 }

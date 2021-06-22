@@ -57,9 +57,9 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "format": "prettier --write \"./src/**/*.{js,jsx}\"",
     "firebasedeploy": "firebase deploy",
-    "firebaserules": "firebase deploy --only firestore:rules"
+    "firebaserules": "firebase deploy --only firestore:rules",
+    "format": "prettier --write \"./src/**/*.{js,jsx}\""
   },
   "eslintConfig": {
     "extends": [
@@ -80,10 +80,16 @@
     ]
   },
   "devDependencies": {
-    "eslint-config-prettier": "^7.1.0",
+    "eslint": "^7.29.0",
+    "eslint-config-airbnb": "^18.2.1",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-import": "^2.23.4",
+    "eslint-plugin-jsx-a11y": "^6.4.1",
+    "eslint-plugin-node": "^11.1.0",
     "eslint-plugin-prettier": "^3.3.0",
-    "eslint-plugin-react": "^7.22.0",
+    "eslint-plugin-react": "^7.24.0",
+    "eslint-plugin-react-hooks": "^4.2.0",
     "nodemon": "^2.0.6",
-    "prettier": "^2.2.1"
+    "prettier": "^2.3.1"
   }
 }

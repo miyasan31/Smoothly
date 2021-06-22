@@ -1,36 +1,36 @@
-import React, { useState } from 'react'
-import PropTypes from 'prop-types'
+import React, { useState } from "react";
+import PropTypes from "prop-types";
 
-import { TaskList } from './index'
+import { TaskList } from "./index";
 
-import { makeStyles } from '@material-ui/core/styles'
-import AppBar from '@material-ui/core/AppBar'
-import Tabs from '@material-ui/core/Tabs'
-import Tab from '@material-ui/core/Tab'
-import Typography from '@material-ui/core/Typography'
-import Box from '@material-ui/core/Box'
+import { makeStyles } from "@material-ui/core/styles";
+import AppBar from "@material-ui/core/AppBar";
+import Tabs from "@material-ui/core/Tabs";
+import Tab from "@material-ui/core/Tab";
+import Typography from "@material-ui/core/Typography";
+import Box from "@material-ui/core/Box";
 /* ===================================================================== */
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(() => ({
   root: {
     flexGrow: 1,
   },
   appBar: {
-    boxShadow: 'none',
+    boxShadow: "none",
     borderRadius: 10,
   },
   label: {
-    fontWeight: 'bold',
+    fontWeight: "bold",
   },
-}))
+}));
 
 export const TaskTab = (props) => {
-  const classes = useStyles()
-  const [value, setValue] = useState(0)
+  const classes = useStyles();
+  const [value, setValue] = useState(0);
 
   const handleChange = (event, newValue) => {
-    setValue(newValue)
-  }
+    setValue(newValue);
+  };
 
   return (
     <div className={classes.root}>
@@ -58,18 +58,18 @@ export const TaskTab = (props) => {
         ) : null}
       </TabPanel>
     </div>
-  )
-}
+  );
+};
 
 const a11yProps = (index) => {
   return {
     id: `simple-tab-${index}`,
-    'aria-controls': `simple-tabpanel-${index}`,
-  }
-}
+    "aria-controls": `simple-tabpanel-${index}`,
+  };
+};
 
 const TabPanel = (props) => {
-  const { children, value, index, ...other } = props
+  const { children, value, index, ...other } = props;
 
   return (
     <div
@@ -85,11 +85,11 @@ const TabPanel = (props) => {
         </Box>
       )}
     </div>
-  )
-}
+  );
+};
 
 TabPanel.propTypes = {
   children: PropTypes.node,
   index: PropTypes.any.isRequired,
   value: PropTypes.any.isRequired,
-}
+};

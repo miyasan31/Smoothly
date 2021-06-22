@@ -1,5 +1,5 @@
-import * as Action from './actions'
-import { initialState } from '../store/initialState.js'
+import * as Action from "./actions";
+import { initialState } from "../store/initialState.js";
 /* ===================================================================== */
 
 export const QuestionsReducter = (state = initialState.questions, action) => {
@@ -8,16 +8,16 @@ export const QuestionsReducter = (state = initialState.questions, action) => {
       return {
         ...state,
         list: [...action.payload],
-      }
+      };
     case Action.DELETE_QUESTIONS:
       return {
         ...state,
         list: action.payload,
-      }
+      };
     default:
-      return state
+      return state;
   }
-}
+};
 
 export const QuestionItemReducter = (
   state = initialState.addquestions,
@@ -25,17 +25,17 @@ export const QuestionItemReducter = (
 ) => {
   switch (action.type) {
     case Action.ADD_QUESTIONITEM:
-      return [...state, action.payload]
+      return [...state, action.payload];
     case Action.DELETE_QUESTIONITEM:
-      return state.filter((state, index) => index !== action.payload)
+      return state.filter((state, index) => index !== action.payload);
     case Action.READ_QUESTIONITEM:
-      return action.payload
+      return action.payload;
     case Action.CLEAR_QUESTIONITEM:
-      return state, action.payload
+      return state, action.payload;
     default:
-      return state
+      return state;
   }
-}
+};
 
 export const AnswersReducter = (state = initialState.answers, action) => {
   switch (action.type) {
@@ -43,8 +43,8 @@ export const AnswersReducter = (state = initialState.answers, action) => {
       return {
         ...state,
         list: action.payload,
-      }
+      };
     default:
-      return state
+      return state;
   }
-}
+};

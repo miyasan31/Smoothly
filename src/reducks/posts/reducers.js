@@ -1,5 +1,5 @@
-import * as Action from './actions'
-import { initialState } from '../store/initialState.js'
+import * as Action from "./actions";
+import { initialState } from "../store/initialState.js";
 /* ===================================================================== */
 
 export const PostsReducter = (state = initialState.posts, action) => {
@@ -8,13 +8,13 @@ export const PostsReducter = (state = initialState.posts, action) => {
       return {
         ...state,
         list: [...action.payload],
-      }
+      };
     case Action.DELETE_POSTS:
       return {
         ...state,
         list: [...action.payload],
-      }
+      };
     default:
-      return state
+      return state;
   }
-}
+};

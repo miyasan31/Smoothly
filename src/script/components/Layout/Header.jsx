@@ -1,78 +1,77 @@
-import React, { useState, useCallback, useEffect } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
-import { push } from 'connected-react-router'
+import React, { useState, useCallback, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { push } from "connected-react-router";
 
-import { ClosableDrawer, ActionCheckDialog } from '../M-ui'
-import { signOut, updateTheme } from '../../../reducks/users/operations'
-import { getUserId } from '../../../reducks/users/selectors'
-import { db } from '../../../firebase/firebase'
+import { ClosableDrawer, ActionCheckDialog } from "../M-ui";
+import { signOut, updateTheme } from "../../../reducks/users/operations";
+import { getUserId } from "../../../reducks/users/selectors";
+import { db } from "../../../firebase/firebase";
 
-import { makeStyles } from '@material-ui/core/styles'
-import AppBar from '@material-ui/core/AppBar'
-import Toolbar from '@material-ui/core/Toolbar'
-import IconButton from '@material-ui/core/IconButton'
-import Typography from '@material-ui/core/Typography'
-import MenuItem from '@material-ui/core/MenuItem'
-import Menu from '@material-ui/core/Menu'
-import MenuIcon from '@material-ui/icons/Menu'
-import Avatar from '@material-ui/core/Avatar'
-import Switch from '@material-ui/core/Switch'
+import { makeStyles } from "@material-ui/core/styles";
+import AppBar from "@material-ui/core/AppBar";
+import Toolbar from "@material-ui/core/Toolbar";
+import IconButton from "@material-ui/core/IconButton";
+import Typography from "@material-ui/core/Typography";
+import MenuItem from "@material-ui/core/MenuItem";
+import Menu from "@material-ui/core/Menu";
+import MenuIcon from "@material-ui/icons/Menu";
+import Avatar from "@material-ui/core/Avatar";
+import Switch from "@material-ui/core/Switch";
 /* ===================================================================== */
 
 const useStyles = makeStyles((theme) => ({
   appbar: {
-    boxShadow: 'none',
+    boxShadow: "none",
     borderBottom: `1px solid ${theme.palette.divider}`,
-    height: '55px',
-    [theme.breakpoints.up('sm')]: {
-      height: '70px',
+    height: "55px",
+    [theme.breakpoints.up("sm")]: {
+      height: "70px",
     },
   },
   title: {
-    fontWeight: 'bold',
-    fontSize: '25px',
-    color: '#2196f3',
-    [theme.breakpoints.up('sm')]: {
-      fontSize: '30px',
-      paddingLeft: '25px',
+    fontWeight: "bold",
+    fontSize: "25px",
+    color: "#2196f3",
+    [theme.breakpoints.up("sm")]: {
+      fontSize: "30px",
+      paddingLeft: "25px",
     },
   },
   icon: {
     width: theme.spacing(5),
     height: theme.spacing(5),
-    color: '#ffffff',
-    backgroundColor: '#2196f3',
+    color: "#ffffff",
+    backgroundColor: "#2196f3",
     // border: '2px solid #90caf9',
-    boxSizing: 'border-box',
-    [theme.breakpoints.up('sm')]: {
+    boxSizing: "border-box",
+    [theme.breakpoints.up("sm")]: {
       width: theme.spacing(5.5),
       height: theme.spacing(5.5),
     },
   },
   menu: {
-    color: 'white',
-    fontSize: '25px',
-    color: '#2196f3',
-    [theme.breakpoints.up('sm')]: {
-      fontSize: '30px',
+    fontSize: "25px",
+    color: "#2196f3",
+    [theme.breakpoints.up("sm")]: {
+      fontSize: "30px",
     },
   },
   menuButton: {
-    display: 'block',
-    [theme.breakpoints.up('md')]: {
-      display: 'none',
+    display: "block",
+    [theme.breakpoints.up("md")]: {
+      display: "none",
     },
   },
   sectionDesktop: {
-    display: 'none',
-    [theme.breakpoints.up('md')]: {
-      display: 'flex',
+    display: "none",
+    [theme.breakpoints.up("md")]: {
+      display: "flex",
     },
   },
   sectionMobile: {
-    display: 'flex',
-    [theme.breakpoints.up('md')]: {
-      display: 'none',
+    display: "flex",
+    [theme.breakpoints.up("md")]: {
+      display: "none",
     },
   },
   grow: {
@@ -80,93 +79,94 @@ const useStyles = makeStyles((theme) => ({
   },
   grow_sm: {
     flexGrow: 1,
-    [theme.breakpoints.up('md')]: {
+    [theme.breakpoints.up("md")]: {
       flexGrow: 0,
     },
   },
-}))
+}));
 
 export const Header = () => {
-  const classes = useStyles()
-  const dispatch = useDispatch()
-  const selector = useSelector((state) => state)
-  const current_uid = getUserId(selector)
-  const [icon, setIcon] = useState('')
-  const [themeType, setThemeType] = useState(false)
-  const [anchorEl, setAnchorEl] = useState(null)
-  const [sideBarOpen, setSideBarOpen] = useState(false)
-  const [openCheckDialog, setOpenCheckDialog] = useState(false)
-  const isMenuOpen = Boolean(anchorEl)
+  const classes = useStyles();
+  const dispatch = useDispatch();
+  const selector = useSelector((state) => state);
+  const current_uid = getUserId(selector);
+  const [icon, setIcon] = useState("");
+  const [themeType, setThemeType] = useState(false);
+  const [anchorEl, setAnchorEl] = useState(null);
+  const [sideBarOpen, setSideBarOpen] = useState(false);
+  const [openCheckDialog, setOpenCheckDialog] = useState(false);
+  const isMenuOpen = Boolean(anchorEl);
 
   const handleToggle = () => {
-    dispatch(updateTheme(current_uid, !themeType))
-  }
+    dispatch(updateTheme(current_uid, !themeType));
+  };
 
   const handleProfileMenuOpen = (event) => {
-    setAnchorEl(event.currentTarget)
-  }
+    setAnchorEl(event.currentTarget);
+  };
 
   const handleMenuClose = () => {
-    setAnchorEl(null)
-  }
+    setAnchorEl(null);
+  };
 
   const handleProfEditPush = () => {
-    handleMenuClose()
-    dispatch(push('/setting/prof'))
-  }
+    handleMenuClose();
+    dispatch(push("/setting/prof"));
+  };
 
   const handleSettingPush = () => {
-    handleMenuClose()
-    dispatch(push('/setting'))
-  }
+    handleMenuClose();
+    dispatch(push("/setting"));
+  };
 
   const handleSignOut = () => {
-    handleMenuClose()
-    setOpenCheckDialog(false)
-    dispatch(signOut())
-  }
+    handleMenuClose();
+    setOpenCheckDialog(false);
+    dispatch(signOut());
+  };
 
   const checkHandleClick = () => {
-    handleMenuClose()
-    setOpenCheckDialog(true)
-  }
+    handleMenuClose();
+    setOpenCheckDialog(true);
+  };
 
   const handleDrawerToggle = useCallback(
     (event, isOpen) => {
       if (
-        event.type === 'keydown' &&
-        (event.key === 'Tab' || event.key === 'Shift')
+        event.type === "keydown" &&
+        (event.key === "Tab" || event.key === "Shift")
       ) {
-        return
+        return;
       }
-      setSideBarOpen(isOpen)
+      setSideBarOpen(isOpen);
     },
     [setSideBarOpen]
-  )
+  );
 
   useEffect(() => {
     const unsubscribe = db
-      .collection('users')
+      .collection("users")
       .doc(current_uid)
       .onSnapshot((snapshots) => {
-        const userData = snapshots.data()
+        const userData = snapshots.data();
         if (userData.icon) {
-          const icon = userData.icon.path
-          setIcon(icon)
+          const icon = userData.icon.path;
+          setIcon(icon);
         }
-        setThemeType(userData.dark_mode)
-      })
-    return () => unsubscribe()
-  }, [])
+        setThemeType(userData.dark_mode);
+      });
+    return () => unsubscribe();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
-  const menuId = 'primary-search-account-menu'
+  const menuId = "primary-search-account-menu";
   const renderMenu = (
     <Menu
       anchorEl={anchorEl}
-      anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
+      anchorOrigin={{ vertical: "top", horizontal: "right" }}
       id={menuId}
       keepMounted
-      transformOrigin={{ vertical: 'top', horizontal: 'right' }}
+      transformOrigin={{ vertical: "top", horizontal: "right" }}
       open={isMenuOpen}
       onClose={handleMenuClose}
     >
@@ -174,14 +174,14 @@ export const Header = () => {
       <MenuItem onClick={handleSettingPush}>ユーザー設定</MenuItem>
       <MenuItem onClick={checkHandleClick}>サインアウト</MenuItem>
     </Menu>
-  )
+  );
 
   return (
     <div className="header">
       <AppBar className={classes.appbar} position="static" color="inherit">
         <ActionCheckDialog
-          text={'サインアウトしてもよろしいですか？'}
-          buttonLabel={'サインアウト'}
+          text={"サインアウトしてもよろしいですか？"}
+          buttonLabel={"サインアウト"}
           openDialog={openCheckDialog}
           setOpenDialog={setOpenCheckDialog}
           actionHandleClick={handleSignOut}
@@ -239,5 +239,5 @@ export const Header = () => {
       <ClosableDrawer open={sideBarOpen} onClose={handleDrawerToggle} />
       {renderMenu}
     </div>
-  )
-}
+  );
+};

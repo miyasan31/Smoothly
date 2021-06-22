@@ -1,6 +1,6 @@
-import React, { useState, useCallback } from 'react'
-import { push } from 'connected-react-router'
-import { useDispatch } from 'react-redux'
+import React, { useState, useCallback } from "react";
+import { push } from "connected-react-router";
+import { useDispatch } from "react-redux";
 
 import {
   AppBarSubHeader,
@@ -8,60 +8,60 @@ import {
   MuiButton,
   MuiErrorBar,
   ActionCheckDialog,
-} from '../components/M-ui'
-import { userDelete } from '../../reducks/users/operations'
+} from "../components/M-ui";
+import { userDelete } from "../../reducks/users/operations";
 
-import Paper from '@material-ui/core/Paper'
-import Typography from '@material-ui/core/Typography'
+import Paper from "@material-ui/core/Paper";
+import Typography from "@material-ui/core/Typography";
 /* ===================================================================== */
 
 export const UserDelete = () => {
-  const dispatch = useDispatch()
-  const [email, seteEail] = useState('')
-  const [password, setePassword] = useState('')
-  const [openCheckDialog, setOpenCheckDialog] = useState(false)
-  const [openAlert, setOpenAlert] = useState(false)
+  const dispatch = useDispatch();
+  const [email, seteEail] = useState("");
+  const [password, setePassword] = useState("");
+  const [openCheckDialog, setOpenCheckDialog] = useState(false);
+  const [openAlert, setOpenAlert] = useState(false);
 
   // メールアドレス入力イベント
   const inputEmail = useCallback(
     (event) => {
-      seteEail(event.target.value)
+      seteEail(event.target.value);
     },
     [seteEail]
-  )
+  );
   // パスワード入力イベント
   const inputPassword = useCallback(
     (event) => {
-      setePassword(event.target.value)
+      setePassword(event.target.value);
     },
     [setePassword]
-  )
+  );
   // キャンセルボタンクリック
   const backHandleClick = () => {
-    dispatch(push('/setting'))
-  }
+    dispatch(push("/setting"));
+  };
   // 退会するボタンクリック
   const handleUserDeleteClick = () => {
-    setOpenAlert(false)
-    dispatch(userDelete(email, password))
-  }
+    setOpenAlert(false);
+    dispatch(userDelete(email, password));
+  };
   // 確認ダイアログ表示
   const checkHandleClick = () => {
     if (email && password) {
-      setOpenAlert(false)
-      setOpenCheckDialog(true)
+      setOpenAlert(false);
+      setOpenCheckDialog(true);
     } else {
-      setOpenAlert(true)
+      setOpenAlert(true);
     }
-  }
+  };
 
   return (
     <section className="main">
-      <AppBarSubHeader subtitle={'退会'} />
+      <AppBarSubHeader subtitle={"退会"} />
 
       <ActionCheckDialog
-        text={'退会してもよろしいですか？'}
-        buttonLabel={'退会'}
+        text={"退会してもよろしいですか？"}
+        buttonLabel={"退会"}
         openDialog={openCheckDialog}
         setOpenDialog={setOpenCheckDialog}
         actionHandleClick={handleUserDeleteClick}
@@ -112,5 +112,5 @@ export const UserDelete = () => {
         </Paper>
       </div>
     </section>
-  )
-}
+  );
+};

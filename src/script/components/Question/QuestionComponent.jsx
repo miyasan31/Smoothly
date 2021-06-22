@@ -1,64 +1,75 @@
-import React, { useState, useEffect, useCallback } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
+import React, { useState, useEffect, useCallback } from 'react';
+import { useDispatch, useSelector } from "react-redux";
 
-import { MuiTextField, MuiSelectBox, MuiRadioButton, MuiButton } from '../M-ui'
+import { MuiTextField, MuiSelectBox, MuiRadioButton, MuiButton } from "../M-ui";
 import {
   addQuestionItem,
-  deleteQuestionItem,
-} from '../../../reducks/questions/operations'
-import { addQuestionList } from '../../../reducks/questions/selectors'
 
-import Card from '@material-ui/core/Card'
-import CardHeader from '@material-ui/core/CardHeader'
-import Typography from '@material-ui/core/Typography'
-import IconButton from '@material-ui/core/IconButton'
-import DeleteIcon from '@material-ui/icons/Delete'
-import { makeStyles } from '@material-ui/core/styles'
+
+
+  
+
+
+
+
+
+
+  deleteQuestionItem,
+} from "../../../reducks/questions/operations";
+import { addQuestionList } from "../../../reducks/questions/selectors";
+
+import Card from "@material-ui/core/Card";
+import CardHeader from "@material-ui/core/CardHeader";
+import Typography from "@material-ui/core/Typography";
+import IconButton from "@material-ui/core/IconButton";
+import DeleteIcon from "@material-ui/icons/Delete";
+import { makeStyles } from "@material-ui/core/styles";
 /* ===================================================================== */
 
 const useStyles = makeStyles((theme) => ({
   card: {
-    marginTop: '20px',
-    padding: '5px 20px 20px 20px',
+    marginTop: "20px",
+    padding: "5px 20px 20px 20px",
     backgroundColor: theme.palette.action.hover,
   },
   flex: {
-    display: 'flex',
-    justifyContent: 'space-between',
+    display: "flex",
+    justifyContent: "space-between",
   },
   icon: {
-    opacity: '0.7',
+    opacity: "0.7",
   },
-}))
+}));
 
 export const QuestionComponent = (props) => {
-  const classes = useStyles()
-  const dispatch = useDispatch()
-  const selector = useSelector((state) => state)
-  const add = addQuestionList(selector)
-  const [datas, setDatas] = useState([])
-  const [questionItem, setQuestionItem] = useState('')
-  const [questionType, setQuestionType] = useState('')
+  const classes = useStyles();
+  const dispatch = useDispatch();
+  const selector = useSelector((state) => state);
+  const add = addQuestionList(selector);
+  const [datas, setDatas] = useState([]);
+  const [questionItem, setQuestionItem] = useState("");
+  const [questionType, setQuestionType] = useState("");
 
-  //　作成した質問を取得する
+  // 作成した質問を取得する
   useEffect(() => {
     if (add) {
-      setDatas(add)
-      props.setQuestionData(add)
-      setQuestionItem('')
+      setDatas(add);
+      props.setQuestionData(add);
+      setQuestionItem("");
     }
-  }, [add])
+  }, [add, props]);
+  
   // 質問内容入力イベント
   const inputItem = useCallback(
     (event) => {
-      setQuestionItem(event.target.value)
+      setQuestionItem(event.target.value);
     },
     [setQuestionItem]
-  )
+  );
   // 作成ボタンクリック
   const questionAddHnadleClick = () => {
-    dispatch(addQuestionItem(questionItem, questionType))
-  }
+    dispatch(addQuestionItem(questionItem, questionType));
+  };
 
   return (
     <div>
@@ -83,7 +94,7 @@ export const QuestionComponent = (props) => {
             <Typography variant="h6" color="textSecondary">
               {data.item}
             </Typography>
-            {data.type === '1' ? (
+            {data.type === "1" ? (
               <MuiTextField
                 id={index}
                 type="text"
@@ -91,7 +102,7 @@ export const QuestionComponent = (props) => {
                 disabled={true}
                 label="テキストを入力"
               />
-            ) : data.type === '2' ? (
+            ) : data.type === "2" ? (
               <MuiRadioButton id={index} options={radio1} disabled={true} />
             ) : (
               <MuiRadioButton id={index} options={radio2} disabled={true} />
@@ -128,26 +139,26 @@ export const QuestionComponent = (props) => {
         onClick={questionAddHnadleClick}
       />
     </div>
-  )
-}
+  );
+};
 
 const sent = [
-  { id: '1', name: 'テキスト' },
-  { id: '2', name: '２択（はい・いいえ）' },
+  { id: "1", name: "テキスト" },
+  { id: "2", name: "２択（はい・いいえ）" },
   {
-    id: '3',
-    name: '３択（そう思う・どちらでもない・そう思わない）',
+    id: "3",
+    name: "３択（そう思う・どちらでもない・そう思わない）",
   },
-]
+];
 const radio1 = [
-  { value: '1', label: 'はい' },
-  { value: '2', label: 'いいえ' },
-]
+  { value: "1", label: "はい" },
+  { value: "2", label: "いいえ" },
+];
 const radio2 = [
-  { value: '10', label: 'そう思う' },
-  { value: '20', label: 'どちらでもない' },
+  { value: "10", label: "そう思う" },
+  { value: "20", label: "どちらでもない" },
   {
-    value: '30',
-    label: 'そう思わない',
+    value: "30",
+    label: "そう思わない",
   },
-]
+];

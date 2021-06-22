@@ -1,7 +1,7 @@
-import React, { useState } from 'react'
-import { push } from 'connected-react-router'
-import { useDispatch } from 'react-redux'
-import clsx from 'clsx'
+import React, { useState } from "react";
+import { push } from "connected-react-router";
+import { useDispatch } from "react-redux";
+import clsx from "clsx";
 
 import {
   MuiTextField,
@@ -9,96 +9,96 @@ import {
   MuiRadioButton,
   ProfViewDialog,
   ActionCheckDialog,
-} from '../M-ui'
-import { deletePost } from '../../../reducks/posts/operations'
-import { deleteMission } from '../../../reducks/missions/operations'
-import { deleteQuestion } from '../../../reducks/questions/operations'
-import { checkExt } from '../../../functions/function'
+} from "../M-ui";
+import { deletePost } from "../../../reducks/posts/operations";
+import { deleteMission } from "../../../reducks/missions/operations";
+import { deleteQuestion } from "../../../reducks/questions/operations";
+import { checkExt } from "../../../functions/function";
 
-import Card from '@material-ui/core/Card'
-import CardHeader from '@material-ui/core/CardHeader'
-import CardMedia from '@material-ui/core/CardMedia'
-import CardContent from '@material-ui/core/CardContent'
-import CardActions from '@material-ui/core/CardActions'
-import Collapse from '@material-ui/core/Collapse'
-import Typography from '@material-ui/core/Typography'
-import ExpandMoreIcon from '@material-ui/icons/ExpandMore'
-import Avatar from '@material-ui/core/Avatar'
-import { makeStyles } from '@material-ui/core/styles'
+import Card from "@material-ui/core/Card";
+import CardHeader from "@material-ui/core/CardHeader";
+import CardMedia from "@material-ui/core/CardMedia";
+import CardContent from "@material-ui/core/CardContent";
+import CardActions from "@material-ui/core/CardActions";
+import Collapse from "@material-ui/core/Collapse";
+import Typography from "@material-ui/core/Typography";
+import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
+import Avatar from "@material-ui/core/Avatar";
+import { makeStyles } from "@material-ui/core/styles";
 /* ===================================================================== */
 const useStyles = makeStyles((theme) => ({
   media: {
-    height: '0',
-    padding: '50%',
-    backgroundSize: 'contain',
+    height: "0",
+    padding: "50%",
+    backgroundSize: "contain",
   },
   expand: {
-    transform: 'rotate(0deg)',
-    marginLeft: 'auto',
-    transition: theme.transitions.create('transform', {
+    transform: "rotate(0deg)",
+    marginLeft: "auto",
+    transition: theme.transitions.create("transform", {
       duration: theme.transitions.duration.shortest,
     }),
   },
   expandOpen: {
-    transform: 'rotate(-90deg)',
+    transform: "rotate(-90deg)",
   },
   card: {
-    marginTop: '20px',
-    padding: '5px 20px 20px 20px',
+    marginTop: "20px",
+    padding: "5px 20px 20px 20px",
     backgroundColor: theme.palette.action.hover,
   },
-}))
+}));
 
 export const MuiCard = (props) => {
-  const classes = useStyles()
-  const dispatch = useDispatch()
-  const [expanded, setExpanded] = useState(false)
-  const [openProfDialog, setOpenProfDialog] = useState(false)
-  const [openDeleteCheckDialog, setOpenDeleteCheckDialog] = useState(false)
+  const classes = useStyles();
+  const dispatch = useDispatch();
+  const [expanded, setExpanded] = useState(false);
+  const [openProfDialog, setOpenProfDialog] = useState(false);
+  const [openDeleteCheckDialog, setOpenDeleteCheckDialog] = useState(false);
 
   // 編集ボタンクリック
   const editHandleClick = () => {
-    dispatch(push(props.editPath))
-  }
+    dispatch(push(props.editPath));
+  };
   // 削除ボタンクリック
   const deleteHandleClick = () => {
     if (props.pid) {
-      dispatch(deletePost(props.pid))
+      dispatch(deletePost(props.pid));
     } else if (props.mid) {
-      dispatch(deleteMission(props.pid))
+      dispatch(deleteMission(props.pid));
     } else if (props.qid) {
-      dispatch(deleteQuestion(props.pid))
+      dispatch(deleteQuestion(props.pid));
     }
-    setOpenDeleteCheckDialog(false)
-  }
+    setOpenDeleteCheckDialog(false);
+  };
   // 回答/提出ボタンクリック
   const answerHandleClick = () => {
     if (props.qid) {
-      dispatch(push('/question/answer/' + props.qid))
+      dispatch(push("/question/answer/" + props.qid));
     } else if (props.mid) {
-      dispatch(push('/mission/submit/' + props.mid))
+      dispatch(push("/mission/submit/" + props.mid));
     }
-  }
+  };
   // 結果/集計ボタンクリック
   const analyticsHandleClick = () => {
     if (props.qid) {
-      dispatch(push('/question/analytics/' + props.qid))
+      dispatch(push("/question/analytics/" + props.qid));
     } else if (props.mid) {
-      dispatch(push('/mission/collect/' + props.mid))
+      dispatch(push("/mission/collect/" + props.mid));
     }
-  }
+  };
   // プロフの表示
   const IconViewHandleClick = () => {
-    setOpenProfDialog(true)
-  }
+    setOpenProfDialog(true);
+  };
   // 確認ダイアログ表示
   const deleteCheckHandleClick = () => {
-    setOpenDeleteCheckDialog(true)
-  }
+    setOpenDeleteCheckDialog(true);
+  };
   // ファイル表示ボタンクリック&矢印アイコンの向き変更
   const expandHandleClick = () => {
-    setExpanded(!expanded)
-  }
+    setExpanded(!expanded);
+  };
 
   return (
     <div className="mg_btm_20px">
@@ -111,8 +111,8 @@ export const MuiCard = (props) => {
                 src={props.userIcon}
                 className={
                   props.currentUid === props.createrUid
-                    ? 'pointer icon_circle_blue'
-                    : 'pointer'
+                    ? "pointer icon_circle_blue"
+                    : "pointer"
                 }
                 onClick={IconViewHandleClick}
               />
@@ -120,8 +120,8 @@ export const MuiCard = (props) => {
               <Avatar
                 className={
                   props.currentUid === props.createrUid
-                    ? 'pointer icon_circle_blue'
-                    : 'pointer'
+                    ? "pointer icon_circle_blue"
+                    : "pointer"
                 }
                 onClick={IconViewHandleClick}
               >
@@ -162,7 +162,7 @@ export const MuiCard = (props) => {
             variant="body1"
             className="pd_10px"
             color="textPrimary"
-            style={{ whiteSpace: 'pre-wrap' }}
+            style={{ whiteSpace: "pre-wrap" }}
           >
             {props.item}
           </Typography>
@@ -287,7 +287,7 @@ export const MuiCard = (props) => {
             />
             <Typography variant="h6">{data.item}</Typography>
             <Typography variant="body1">
-              {data.type === '1' ? (
+              {data.type === "1" ? (
                 <MuiTextField
                   id={index}
                   type="text"
@@ -295,7 +295,7 @@ export const MuiCard = (props) => {
                   disabled={true}
                   label="テキストを入力"
                 />
-              ) : data.type === '2' ? (
+              ) : data.type === "2" ? (
                 <MuiRadioButton id={index} options={radio1} disabled={true} />
               ) : (
                 <MuiRadioButton
@@ -317,7 +317,7 @@ export const MuiCard = (props) => {
             setOpenDialog={setOpenProfDialog}
           />
           <ActionCheckDialog
-            text={'削除してもよろしいですか？'}
+            text={"削除してもよろしいですか？"}
             openDialog={openDeleteCheckDialog}
             setOpenDialog={setOpenDeleteCheckDialog}
             actionHandleClick={deleteHandleClick}
@@ -325,18 +325,18 @@ export const MuiCard = (props) => {
         </>
       )}
     </div>
-  )
-}
+  );
+};
 
 const radio1 = [
-  { value: '1', label: 'はい' },
-  { value: '2', label: 'いいえ' },
-]
+  { value: "1", label: "はい" },
+  { value: "2", label: "いいえ" },
+];
 const radio2 = [
-  { value: '10', label: 'そう思う' },
-  { value: '20', label: 'どちらでもない' },
+  { value: "10", label: "そう思う" },
+  { value: "20", label: "どちらでもない" },
   {
-    value: '30',
-    label: 'そう思わない',
+    value: "30",
+    label: "そう思わない",
   },
-]
+];

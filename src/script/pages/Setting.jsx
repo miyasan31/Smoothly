@@ -1,29 +1,29 @@
-import React, { useState, useEffect } from 'react'
-import { push } from 'connected-react-router'
-import { useDispatch, useSelector } from 'react-redux'
+import React, { useState, useEffect } from "react";
+import { push } from "connected-react-router";
+import { useDispatch, useSelector } from "react-redux";
 
 import {
   AppBarSubHeader,
   MuiButton,
   ActionCheckDialog,
-} from '../components/M-ui'
-import { signOut } from '../../reducks/users/operations'
-import { getUserId } from '../../reducks/users/selectors'
-import { db } from '../../firebase/firebase'
+} from "../components/M-ui";
+import { signOut } from "../../reducks/users/operations";
+import { getUserId } from "../../reducks/users/selectors";
+import { db } from "../../firebase/firebase";
 
-import { makeStyles } from '@material-ui/core/styles'
-import Paper from '@material-ui/core/Paper'
-import Typography from '@material-ui/core/Typography'
-import { Avatar } from '@material-ui/core'
+import { makeStyles } from "@material-ui/core/styles";
+import Paper from "@material-ui/core/Paper";
+import Typography from "@material-ui/core/Typography";
+import { Avatar } from "@material-ui/core";
 /* ===================================================================== */
 const useStyles = makeStyles((theme) => ({
   icon: {
-    margin: '0 5px 0 10px',
-    border: '3px solid #90caf9',
+    margin: "0 5px 0 10px",
+    border: "3px solid #90caf9",
     width: theme.spacing(8),
     height: theme.spacing(8),
     marginRight: 30,
-    [theme.breakpoints.up('sm')]: {
+    [theme.breakpoints.up("sm")]: {
       width: theme.spacing(15),
       height: theme.spacing(15),
       marginRight: 80,
@@ -33,55 +33,56 @@ const useStyles = makeStyles((theme) => ({
     borderBottom: `1px solid ${theme.palette.divider}`,
   },
   flex: {
-    display: 'block',
-    padding: '25px 0',
-    [theme.breakpoints.up('sm')]: {
-      display: 'flex',
+    display: "block",
+    padding: "25px 0",
+    [theme.breakpoints.up("sm")]: {
+      display: "flex",
     },
   },
-}))
+}));
 
 export const Setting = () => {
-  const classes = useStyles()
-  const dispatch = useDispatch()
-  const selector = useSelector((state) => state)
-  const current_uid = getUserId(selector)
-  const [prof, setProf] = useState('')
-  const [icon, setIcon] = useState('')
-  const [mail, setMail] = useState('')
-  const [openCheckDialog, setOpenCheckDialog] = useState(false)
+  const classes = useStyles();
+  const dispatch = useDispatch();
+  const selector = useSelector((state) => state);
+  const current_uid = getUserId(selector);
+  const [prof, setProf] = useState("");
+  const [icon, setIcon] = useState("");
+  const [mail, setMail] = useState("");
+  const [openCheckDialog, setOpenCheckDialog] = useState(false);
 
   // サインアウトボタンクリック
   const signOutHandleClick = () => {
-    setOpenCheckDialog(false)
-    dispatch(signOut())
-  }
+    setOpenCheckDialog(false);
+    dispatch(signOut());
+  };
   // 確認ダイアログ表示
   const checkHandleClick = () => {
-    setOpenCheckDialog(true)
-  }
+    setOpenCheckDialog(true);
+  };
   // ユーザー情報を取得
   useEffect(() => {
-    db.collection('users')
+    db.collection("users")
       .doc(current_uid)
       .get()
       .then((snapshots) => {
-        const userData = snapshots.data()
-        setMail(userData.email)
-        setIcon(userData.icon.path)
-        if (userData.prof !== '') {
-          setProf(userData.prof)
+        const userData = snapshots.data();
+        setMail(userData.email);
+        setIcon(userData.icon.path);
+        if (userData.prof !== "") {
+          setProf(userData.prof);
         }
-      })
-  }, [])
+      });
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return (
     <section className="main">
-      <AppBarSubHeader subtitle={'設定'} />
+      <AppBarSubHeader subtitle={"設定"} />
 
       <ActionCheckDialog
-        text={'サインアウトしてもよろしいですか？'}
-        buttonLabel={'サインアウト'}
+        text={"サインアウトしてもよろしいですか？"}
+        buttonLabel={"サインアウト"}
         openDialog={openCheckDialog}
         setOpenDialog={setOpenCheckDialog}
         actionHandleClick={signOutHandleClick}
@@ -115,8 +116,8 @@ export const Setting = () => {
               >
                 自己紹介文
               </Typography>
-              <Typography variant="body2" style={{ whiteSpace: 'pre-wrap' }}>
-                {prof !== '' ? prof : 'プロフィールを登録しましょう！'}
+              <Typography variant="body2" style={{ whiteSpace: "pre-wrap" }}>
+                {prof !== "" ? prof : "プロフィールを登録しましょう！"}
               </Typography>
             </div>
           </div>
@@ -126,7 +127,7 @@ export const Setting = () => {
               variant="outlined"
               color="blue"
               label="編集"
-              onClick={() => dispatch(push('/setting/prof'))}
+              onClick={() => dispatch(push("/setting/prof"))}
             />
           </div>
         </Paper>
@@ -159,7 +160,7 @@ export const Setting = () => {
               variant="outlined"
               color="blue"
               label="変更"
-              onClick={() => dispatch(push('/setting/auth'))}
+              onClick={() => dispatch(push("/setting/auth"))}
             />
           </div>
         </Paper>
@@ -197,11 +198,11 @@ export const Setting = () => {
               variant="outlined"
               color="pink"
               label="退会手続きへ"
-              onClick={() => dispatch(push('/setting/delete'))}
+              onClick={() => dispatch(push("/setting/delete"))}
             />
           </div>
         </Paper>
       </div>
     </section>
-  )
-}
+  );
+};

@@ -1,26 +1,26 @@
-import React, { useState, useCallback } from 'react'
-import { useDispatch } from 'react-redux'
-import { push } from 'connected-react-router'
+import React, { useState, useCallback } from "react";
+import { useDispatch } from "react-redux";
+import { push } from "connected-react-router";
 
-import { MuiTextField, MuiButton } from '../components/M-ui'
-import { reIssue } from '../../reducks/users/operations'
+import { MuiTextField, MuiButton } from "../components/M-ui";
+import { reIssue } from "../../reducks/users/operations";
 /* ===================================================================== */
 
 export const ReIssue = () => {
-  const dispatch = useDispatch()
-  const [email, setEmail] = useState('')
+  const dispatch = useDispatch();
+  const [email, setEmail] = useState("");
 
   // メールアドレス入力イベント
   const inputEmail = useCallback(
     (event) => {
-      setEmail(event.target.value)
+      setEmail(event.target.value);
     },
     [setEmail]
-  )
+  );
   // パスワード再発行ボタンクリック
   const handleClick = () => {
-    dispatch(reIssue(email))
-  }
+    dispatch(reIssue(email));
+  };
 
   return (
     <section className="top_main reissue_theme">
@@ -30,7 +30,7 @@ export const ReIssue = () => {
             ようこそ！
             <span
               className="pointer"
-              onClick={() => dispatch(push('./signin'))}
+              onClick={() => dispatch(push("./signin"))}  role="presentation"
             >
               Smoothly
             </span>
@@ -44,7 +44,7 @@ export const ReIssue = () => {
 
         <div className="form_box reissue_form">
           <div className="form">
-            <h1 className="pointer" onClick={() => dispatch(push('./signin'))}>
+            <h1 className="pointer" onClick={() => dispatch(push("./signin"))}  role="presentation">
               Smoothly
             </h1>
             <div>
@@ -56,7 +56,6 @@ export const ReIssue = () => {
                 multiline={false}
                 label="登録済みのメールアドレス"
                 value={email}
-                autoFocus={true}
                 onChange={inputEmail}
               />
             </div>
@@ -73,5 +72,5 @@ export const ReIssue = () => {
         </div>
       </div>
     </section>
-  )
-}
+  );
+};
