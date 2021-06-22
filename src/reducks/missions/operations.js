@@ -1,6 +1,9 @@
 import { push } from "connected-react-router";
-import { db, FirebaseTimestamp, storage } from "../../firebase/firebase";
-import { readMissionsAction, deleteMissionsAction } from "./actions.js";
+import { db, FirebaseTimestamp, storage } from "src/firebase/firebase";
+import {
+  readMissionsAction,
+  deleteMissionsAction,
+} from "src/reducks/missions/actions";
 /* ===================================================================== */
 
 const missionsRef = db.collection("missions");

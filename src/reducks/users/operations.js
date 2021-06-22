@@ -1,15 +1,14 @@
 import { push } from "connected-react-router";
+import { auth, storage, db, FirebaseTimestamp } from "src/firebase/firebase";
 import {
-  auth,
-  storage,
-  db,
-  FirebaseTimestamp,
-} from "../../firebase/firebase.js";
-import { signInAction, signOutAction, updateThemeAction } from "./actions";
+  signInAction,
+  signOutAction,
+  updateThemeAction,
+} from "src/reducks/users/actions";
 import {
   isValidEmailFormat,
   isValidRequiredInput,
-} from "../../functions/function.js";
+} from "src/functions/function";
 /* ===================================================================== */
 
 const usersRef = db.collection("users");

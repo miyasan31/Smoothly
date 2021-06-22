@@ -6,19 +6,19 @@ import {
 } from "redux";
 import { createLogger } from "redux-logger";
 import { connectRouter, routerMiddleware } from "connected-react-router";
-import { UsersReducter } from "../users/reducers.js";
-import { PostsReducter } from "../posts/reducers.js";
-import { ChatRoomsReducter } from "../chats/reducers.js";
+import { UsersReducter } from "src/reducks/users/reducers";
+import { PostsReducter } from "src/reducks/posts/reducers";
+import { ChatRoomsReducter } from "src/reducks/chats/reducers";
 import {
   doingTasksReducter,
   completedTasksReducter,
-} from "../tasks/reducers.js";
+} from "src/reducks/tasks/reducers";
 import {
   QuestionsReducter,
   AnswersReducter,
   QuestionItemReducter,
-} from "../questions/reducers.js";
-import { MissionsReducter } from "../missions/reducers.js";
+} from "src/reducks/questions/reducers";
+import { MissionsReducter } from "src/reducks/missions/reducers";
 import thunk from "redux-thunk";
 /* ===================================================================== */
 

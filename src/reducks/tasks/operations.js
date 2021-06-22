@@ -1,12 +1,12 @@
 import { push } from "connected-react-router";
 
-import { db } from "../../firebase/firebase";
+import { db } from "src/firebase/firebase";
 import {
   readDoingTasksAction,
   readCompletedTasksAction,
   updateDoingTaskAction,
   updateCompletedTaskAction,
-} from "./actions.js";
+} from "src/reducks/tasks/actions";
 /* ===================================================================== */
 
 const usersRef = db.collection("users");
@@ -140,7 +140,9 @@ export const updateDoingTask = (tid) => {
         );
         dispatch(updateDoingTaskAction(nextDoingTasks));
         const completedTasks = getState().completed_tasks.list;
-        const checkedTasks = doingTasks.filter((product) => product.tid === tid);
+        const checkedTasks = doingTasks.filter(
+          (product) => product.tid === tid
+        );
         completedTasks.unshift(checkedTasks[0]);
         dispatch(updateCompletedTaskAction(completedTasks));
       })

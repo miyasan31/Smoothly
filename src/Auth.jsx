@@ -1,8 +1,8 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import CircularProgress from "@material-ui/core/CircularProgress";
-import { getIsLogin } from "./reducks/users/selectors.js";
-import { listenAuthState } from "./reducks/users/operations.js";
+import { getIsLogin } from "src/reducks/users/selectors";
+import { listenAuthState } from "src/reducks/users/operations";
 /* ===================================================================== */
 
 const Auth = ({ children }) => {
@@ -15,7 +15,7 @@ const Auth = ({ children }) => {
     if (!isSignedIn) {
       dispatch(listenAuthState());
     }
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isSignedIn]);
 
   if (!isSignedIn) {
