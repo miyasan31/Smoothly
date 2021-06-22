@@ -158,12 +158,11 @@ body {
   align-items: flex-end;
 
   width: calc(100% - 231px);
-  background-color: #ffffff;
   border-top: 1px solid #00000022;
 }
 .chat_textarea {
   width: 95%;
-  padding: 8px 3px 8px 8px;
+  padding: 0px 3px 10px 8px;
 }
 /* height============================================ */
 .space_5px {

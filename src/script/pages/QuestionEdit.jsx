@@ -1,8 +1,8 @@
-import React, { useState, useCallback, useEffect } from 'react'
-import { useDispatch } from 'react-redux'
-import { push } from 'connected-react-router'
+import React, { useState, useCallback, useEffect } from "react";
+import { useDispatch } from "react-redux";
+import { push } from "connected-react-router";
 
-import { QuestionComponent } from '../components/Question'
+import { QuestionComponent } from "../components/Question";
 import {
   AppBarSubHeader,
   MuiTextField,
@@ -11,80 +11,81 @@ import {
   MuiErrorBar,
   MuiDateTimePicker,
   CreateViewDialog,
-} from '../components/M-ui'
+} from "../components/M-ui";
 import {
   createQuestions,
   readQuestionItem,
-} from '../../reducks/questions/operations'
-import { db } from '../../firebase/firebase'
+} from "../../reducks/questions/operations";
+import { db } from "../../firebase/firebase";
 
-import Paper from '@material-ui/core/Paper'
-import Typography from '@material-ui/core/Typography'
+import Paper from "@material-ui/core/Paper";
+import Typography from "@material-ui/core/Typography";
 /* ===================================================================== */
 
 export const QuestionEdit = () => {
-  const dispatch = useDispatch()
-  const [qid, setQid] = useState('')
-  const [destination, setDestination] = useState('')
-  const [title, setTitle] = useState('')
-  const [item, setItem] = useState('')
-  const [limitTime, setLimitTime] = useState('')
-  const [questionData, setQuestionData] = useState('')
-  const [openDialog, setOpenDialog] = useState(false)
-  const [openAlert, setOpenAlert] = useState(false)
+  const dispatch = useDispatch();
+  const [qid, setQid] = useState("");
+  const [destination, setDestination] = useState("");
+  const [title, setTitle] = useState("");
+  const [item, setItem] = useState("");
+  const [limitTime, setLimitTime] = useState("");
+  const [questionData, setQuestionData] = useState("");
+  const [openDialog, setOpenDialog] = useState(false);
+  const [openAlert, setOpenAlert] = useState(false);
 
   useEffect(() => {
     // URLからqidを取得
-    const id = window.location.pathname.split('/question/edit')[1]
-    if (id !== '') {
-      setQid(id.split('/')[1])
+    const id = window.location.pathname.split("/question/edit")[1];
+    if (id !== "") {
+      setQid(id.split("/")[1]);
     }
     // qidが存在すれば投稿情報を取得する
-    if (qid !== '') {
-      db.collection('questions')
+    if (qid !== "") {
+      db.collection("questions")
         .doc(qid)
         .get()
         .then((snapshot) => {
-          const question = snapshot.data()
-          setDestination(question.destination)
-          setTitle(question.title)
-          setItem(question.item)
-          const limit = question.limit_time.toDate()
-          setLimitTime(limit)
-          const questionData = question.question_data
-          dispatch(readQuestionItem(questionData))
-        })
+          const question = snapshot.data();
+          setDestination(question.destination);
+          setTitle(question.title);
+          setItem(question.item);
+          const limit = question.limit_time.toDate();
+          setLimitTime(limit);
+          const questionData = question.question_data;
+          dispatch(readQuestionItem(questionData));
+        });
     }
-  }, [qid])
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [qid]);
   // タイトル入力イベント
   const inputTitle = useCallback(
     (event) => {
-      setTitle(event.target.value)
+      setTitle(event.target.value);
     },
     [setTitle]
-  )
+  );
   // 内容入力イベント
   const inputItem = useCallback(
     (event) => {
-      setItem(event.target.value)
+      setItem(event.target.value);
     },
     [setItem]
-  )
+  );
   // 回答期限入力イベント
   const inputDate = (date) => {
-    setLimitTime(date)
-  }
+    setLimitTime(date);
+  };
   // キャンセルボタンクリック
   const backHandleClick = () => {
-    dispatch(push('/question'))
-  }
+    dispatch(push("/question"));
+  };
   // 投稿ボタンクリック
   const updateHandleClick = () => {
     dispatch(
       createQuestions(qid, destination, title, item, limitTime, questionData)
-    )
-    setOpenDialog(false)
-  }
+    );
+    setOpenDialog(false);
+  };
   // 確認ダイアログ表示
   const checkHandleClick = () => {
     if (
@@ -94,17 +95,17 @@ export const QuestionEdit = () => {
       limitTime &&
       questionData.length !== 0
     ) {
-      setOpenAlert(false)
-      setOpenDialog(true)
+      setOpenAlert(false);
+      setOpenDialog(true);
     } else {
-      setOpenAlert(true)
+      setOpenAlert(true);
     }
-  }
+  };
 
   return (
     <section className="main">
       <AppBarSubHeader
-        subtitle={qid ? 'アンケート　ー編集ー' : 'アンケート　ー新規ー'}
+        subtitle={qid ? "アンケート　ー編集ー" : "アンケート　ー新規ー"}
       />
 
       <div className="contents_style">
@@ -198,13 +199,13 @@ export const QuestionEdit = () => {
         updateHandleClick={updateHandleClick}
       />
     </section>
-  )
-}
+  );
+};
 
 const send = [
-  { id: 'all', name: '全体' },
-  { id: 'teacher', name: '全教官' },
-  { id: 'student', name: '全学生' },
-  { id: 'PI-11A-172', name: 'PI-11A-172' },
-  { id: 'PW-11A-172', name: 'PW-11A-172' },
-]
+  { id: "all", name: "全体" },
+  { id: "teacher", name: "全教官" },
+  { id: "student", name: "全学生" },
+  { id: "PI-11A-172", name: "PI-11A-172" },
+  { id: "PW-11A-172", name: "PW-11A-172" },
+];

@@ -1,5 +1,5 @@
-import * as Action from './actions'
-import { initialState } from '../store/initialState.js'
+import * as Action from "./actions";
+import { initialState } from "../store/initialState.js";
 /* ===================================================================== */
 
 export const doingTasksReducter = (
@@ -11,16 +11,16 @@ export const doingTasksReducter = (
       return {
         ...state,
         list: action.payload,
-      }
+      };
     case Action.UPDATE_DOING_TASK:
       return {
         ...state,
         list: action.payload,
-      }
+      };
     default:
-      return state
+      return state;
   }
-}
+};
 
 export const completedTasksReducter = (
   state = initialState.completed_tasks,
@@ -31,13 +31,13 @@ export const completedTasksReducter = (
       return {
         ...state,
         list: action.payload,
-      }
+      };
     case Action.UPDATE_COMPLETED_TASK:
       return {
         ...state,
         list: action.payload,
-      }
+      };
     default:
-      return state
+      return state;
   }
-}
+};

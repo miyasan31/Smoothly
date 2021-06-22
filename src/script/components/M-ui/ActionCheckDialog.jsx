@@ -1,14 +1,14 @@
-import { MuiButton, MuiDialog } from '../M-ui'
+import { MuiButton, MuiDialog } from "../M-ui";
 
-import DialogActions from '@material-ui/core/DialogActions'
-import Typography from '@material-ui/core/Typography'
+import DialogActions from "@material-ui/core/DialogActions";
+import Typography from "@material-ui/core/Typography";
 /* ===================================================================== */
 
 export const ActionCheckDialog = (props) => {
   // ダイアログを閉じる
   const handleClose = () => {
-    props.setOpenDialog(false)
-  }
+    props.setOpenDialog(false);
+  };
 
   return (
     <MuiDialog
@@ -29,10 +29,10 @@ export const ActionCheckDialog = (props) => {
           fullWidth={false}
           variant="outlined"
           color="blue"
-          label={props.buttonLabel ? props.buttonLabel : '削除'}
+          label={props.buttonLabel ? props.buttonLabel : "削除"}
           onClick={props.actionHandleClick}
         />
       </DialogActions>
     </MuiDialog>
-  )
-}
+  );
+};

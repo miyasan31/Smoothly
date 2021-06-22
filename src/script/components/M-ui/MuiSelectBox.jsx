@@ -1,29 +1,29 @@
-import { makeStyles } from '@material-ui/core/styles'
-import InputLabel from '@material-ui/core/InputLabel'
-import MenuItem from '@material-ui/core/MenuItem'
-import FormControl from '@material-ui/core/FormControl'
-import Select from '@material-ui/core/Select'
+import { makeStyles } from "@material-ui/core/styles";
+import InputLabel from "@material-ui/core/InputLabel";
+import MenuItem from "@material-ui/core/MenuItem";
+import FormControl from "@material-ui/core/FormControl";
+import Select from "@material-ui/core/Select";
 /* ===================================================================== */
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(() => ({
   label: {
-    paddingLeft: '20px',
+    paddingLeft: "20px",
   },
   full: {
-    width: '100%',
+    width: "100%",
   },
   half: {
-    marginTop: '15px',
-    width: '30%',
+    marginTop: "15px",
+    width: "30%",
   },
-}))
+}));
 
 export const MuiSelectBox = (props) => {
-  const classes = useStyles()
+  const classes = useStyles();
 
-  let style = [classes.full]
+  let style = [classes.full];
   if (!props.fullWidth) {
-    style = [...style, classes.half]
+    style = [...style, classes.half];
   }
 
   return (
@@ -42,9 +42,9 @@ export const MuiSelectBox = (props) => {
             <MenuItem key={value.id} value={value.id} className={classes.label}>
               {value.name}
             </MenuItem>
-          )
+          );
         })}
       </Select>
     </FormControl>
-  )
-}
+  );
+};

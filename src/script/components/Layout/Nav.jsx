@@ -1,19 +1,19 @@
-import React, { useState } from 'react'
-import { NavLink } from 'react-router-dom'
+import React, { useState } from "react";
+import { NavLink } from "react-router-dom";
 
-import { makeStyles } from '@material-ui/core/styles'
-import List from '@material-ui/core/List'
-import Typography from '@material-ui/core/Typography'
-import ListItem from '@material-ui/core/ListItem'
-import ListItemIcon from '@material-ui/core/ListItemIcon'
+import { makeStyles } from "@material-ui/core/styles";
+import List from "@material-ui/core/List";
+import Typography from "@material-ui/core/Typography";
+import ListItem from "@material-ui/core/ListItem";
+import ListItemIcon from "@material-ui/core/ListItemIcon";
 
-import SchoolSharpIcon from '@material-ui/icons/SchoolSharp'
-import DescriptionSharpIcon from '@material-ui/icons/DescriptionSharp'
-import ForumSharpIcon from '@material-ui/icons/ForumSharp'
-import FormatListBulletedSharpIcon from '@material-ui/icons/FormatListBulletedSharp'
-import CategorySharpIcon from '@material-ui/icons/CategorySharp'
-import AppsSharpIcon from '@material-ui/icons/AppsSharp'
-import TuneSharpIcon from '@material-ui/icons/TuneSharp'
+import SchoolSharpIcon from "@material-ui/icons/SchoolSharp";
+import DescriptionSharpIcon from "@material-ui/icons/DescriptionSharp";
+import ForumSharpIcon from "@material-ui/icons/ForumSharp";
+import FormatListBulletedSharpIcon from "@material-ui/icons/FormatListBulletedSharp";
+import CategorySharpIcon from "@material-ui/icons/CategorySharp";
+import AppsSharpIcon from "@material-ui/icons/AppsSharp";
+import TuneSharpIcon from "@material-ui/icons/TuneSharp";
 
 /* ===================================================================== */
 
@@ -21,25 +21,25 @@ const useStyles = makeStyles((theme) => ({
   root: {
     minWidth: 230,
     backgroundColor: theme.palette.background.paper,
-    display: 'none',
+    display: "none",
     borderRight: `1px solid ${theme.palette.divider}`,
-    [theme.breakpoints.up('md')]: {
-      display: 'block',
+    [theme.breakpoints.up("md")]: {
+      display: "block",
     },
   },
   btn: {
     maxWidth: 240,
     paddingLeft: 30,
   },
-}))
+}));
 
 export const Nav = () => {
-  const classes = useStyles()
+  const classes = useStyles();
 
-  const [selectedIndex, setSelectedIndex] = useState(1)
+  const [selectedIndex, setSelectedIndex] = useState(1);
   const handleListItemClick = (event, index) => {
-    setSelectedIndex(index)
-  }
+    setSelectedIndex(index);
+  };
 
   return (
     <List component="nav" className={classes.root}>
@@ -52,12 +52,12 @@ export const Nav = () => {
         >
           <ListItemIcon>
             <SchoolSharpIcon
-              color={selectedIndex === 1 ? 'primary' : 'textPrimary'}
+              color={selectedIndex === 1 ? "primary" : "textPrimary"}
             />
           </ListItemIcon>
           <Typography
             variant="body2"
-            color={selectedIndex === 1 ? 'primary' : 'textPrimary'}
+            color={selectedIndex === 1 ? "primary" : "textPrimary"}
           >
             掲示板
           </Typography>
@@ -73,12 +73,12 @@ export const Nav = () => {
         >
           <ListItemIcon>
             <DescriptionSharpIcon
-              color={selectedIndex === 2 ? 'primary' : 'textPrimary'}
+              color={selectedIndex === 2 ? "primary" : "textPrimary"}
             />
           </ListItemIcon>
           <Typography
             variant="body2"
-            color={selectedIndex === 2 ? 'primary' : 'textPrimary'}
+            color={selectedIndex === 2 ? "primary" : "textPrimary"}
           >
             課題
           </Typography>
@@ -94,12 +94,12 @@ export const Nav = () => {
         >
           <ListItemIcon>
             <ForumSharpIcon
-              color={selectedIndex === 3 ? 'primary' : 'textPrimary'}
+              color={selectedIndex === 3 ? "primary" : "textPrimary"}
             />
           </ListItemIcon>
           <Typography
             variant="body2"
-            color={selectedIndex === 3 ? 'primary' : 'textPrimary'}
+            color={selectedIndex === 3 ? "primary" : "textPrimary"}
           >
             チャット
           </Typography>
@@ -115,12 +115,12 @@ export const Nav = () => {
         >
           <ListItemIcon>
             <FormatListBulletedSharpIcon
-              color={selectedIndex === 4 ? 'primary' : 'textPrimary'}
+              color={selectedIndex === 4 ? "primary" : "textPrimary"}
             />
           </ListItemIcon>
           <Typography
             variant="body2"
-            color={selectedIndex === 4 ? 'primary' : 'textPrimary'}
+            color={selectedIndex === 4 ? "primary" : "textPrimary"}
           >
             タスク
           </Typography>
@@ -136,12 +136,12 @@ export const Nav = () => {
         >
           <ListItemIcon>
             <CategorySharpIcon
-              color={selectedIndex === 5 ? 'primary' : 'textPrimary'}
+              color={selectedIndex === 5 ? "primary" : "textPrimary"}
             />
           </ListItemIcon>
           <Typography
             variant="body2"
-            color={selectedIndex === 5 ? 'primary' : 'textPrimary'}
+            color={selectedIndex === 5 ? "primary" : "textPrimary"}
           >
             アンケート
           </Typography>
@@ -157,12 +157,12 @@ export const Nav = () => {
         >
           <ListItemIcon>
             <AppsSharpIcon
-              color={selectedIndex === 6 ? 'primary' : 'textPrimary'}
+              color={selectedIndex === 6 ? "primary" : "textPrimary"}
             />
           </ListItemIcon>
           <Typography
             variant="body2"
-            color={selectedIndex === 6 ? 'primary' : 'textPrimary'}
+            color={selectedIndex === 6 ? "primary" : "textPrimary"}
           >
             スケジュール
           </Typography>
@@ -178,17 +178,17 @@ export const Nav = () => {
         >
           <ListItemIcon>
             <TuneSharpIcon
-              color={selectedIndex === 7 ? 'primary' : 'textPrimary'}
+              color={selectedIndex === 7 ? "primary" : "textPrimary"}
             />
           </ListItemIcon>
           <Typography
             variant="body2"
-            color={selectedIndex === 7 ? 'primary' : 'textPrimary'}
+            color={selectedIndex === 7 ? "primary" : "textPrimary"}
           >
             設定
           </Typography>
         </ListItem>
       </NavLink>
     </List>
-  )
-}
+  );
+};

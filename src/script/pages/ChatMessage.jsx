@@ -1,11 +1,11 @@
-import React, { useState } from 'react'
+import React, { useState } from "react";
 
-import { ChatMessageList } from '../components/Chat'
-import { AppBarSubHeader } from '../components/M-ui'
+import { ChatMessageList } from "../components/Chat";
+import { AppBarSubHeader } from "../components/M-ui";
 /* ===================================================================== */
 
 export const ChatMessage = () => {
-  const [roomName, setRoomName] = useState('')
+  const [roomName, setRoomName] = useState("");
 
   return (
     <section className="main">
@@ -13,5 +13,5 @@ export const ChatMessage = () => {
 
       <ChatMessageList setRoomName={setRoomName} />
     </section>
-  )
-}
+  );
+};

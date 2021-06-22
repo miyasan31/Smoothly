@@ -1,8 +1,8 @@
-import { createSelector } from 'reselect'
+import { createSelector } from "reselect";
 /* ===================================================================== */
 
-const missionsSelector = (state) => state.missions
+const missionsSelector = (state) => state.missions;
 export const getMissionLists = createSelector(
   [missionsSelector],
   (state) => state.list
-)
+);

@@ -1,43 +1,43 @@
-import React, { useState, useEffect } from 'react'
-import { useDispatch } from 'react-redux'
-import { push } from 'connected-react-router'
+import React, { useState, useEffect } from "react";
+import { useDispatch } from "react-redux";
+import { push } from "connected-react-router";
 
-import { ActionCheckDialog } from '../M-ui'
-import { deleteChatRoom } from '../../../reducks/chats/operations.js'
+import { ActionCheckDialog } from "../M-ui";
+import { deleteChatRoom } from "../../../reducks/chats/operations.js";
 
-import { makeStyles } from '@material-ui/core/styles'
-import AppBar from '@material-ui/core/AppBar'
-import Toolbar from '@material-ui/core/Toolbar'
-import Typography from '@material-ui/core/Typography'
-import MenuItem from '@material-ui/core/MenuItem'
-import Menu from '@material-ui/core/Menu'
-import IconButton from '@material-ui/core/IconButton'
-import SettingsIcon from '@material-ui/icons/Settings'
+import { makeStyles } from "@material-ui/core/styles";
+import AppBar from "@material-ui/core/AppBar";
+import Toolbar from "@material-ui/core/Toolbar";
+import Typography from "@material-ui/core/Typography";
+import MenuItem from "@material-ui/core/MenuItem";
+import Menu from "@material-ui/core/Menu";
+import IconButton from "@material-ui/core/IconButton";
+import SettingsIcon from "@material-ui/icons/Settings";
 /* ===================================================================== */
 
 const useStyles = makeStyles((theme) => ({
   appbar: {
-    top: '55px',
-    height: '35px',
-    position: 'fixed',
-    display: 'flex',
+    top: "55px",
+    height: "35px",
+    position: "fixed",
+    display: "flex",
     zIndex: 50,
-    width: '100%',
-    boxShadow: 'none',
+    width: "100%",
+    boxShadow: "none",
     borderBottom: `1px solid ${theme.palette.divider}`,
-    [theme.breakpoints.up('sm')]: {
-      height: '48px',
-      top: '70px',
+    [theme.breakpoints.up("sm")]: {
+      height: "48px",
+      top: "70px",
     },
-    [theme.breakpoints.up('md')]: {
-      width: 'calc(100% - 230px)',
+    [theme.breakpoints.up("md")]: {
+      width: "calc(100% - 230px)",
     },
   },
   title: {
     color: theme.palette.text.primary,
     fontSize: 16,
     marginBottom: 14,
-    [theme.breakpoints.up('sm')]: {
+    [theme.breakpoints.up("sm")]: {
       fontSize: 20,
       marginBottom: 0,
     },
@@ -46,22 +46,22 @@ const useStyles = makeStyles((theme) => ({
     flexGrow: 1,
   },
   chat_menu: {
-    display: 'none',
+    display: "none",
   },
   menuButtonTrue: {
-    display: 'block',
+    display: "block",
   },
   menuButtonFalse: {
-    display: 'none',
+    display: "none",
   },
   none: {
-    display: 'none',
+    display: "none",
   },
   icon: {
     color: theme.palette.common,
     width: theme.spacing(2.8),
     height: theme.spacing(2.8),
-    [theme.breakpoints.up('sm')]: {
+    [theme.breakpoints.up("sm")]: {
       width: theme.spacing(3),
       height: theme.spacing(3),
     },
@@ -69,52 +69,52 @@ const useStyles = makeStyles((theme) => ({
   menuButton: {
     marginBottom: 14,
     marginRight: -3,
-    [theme.breakpoints.up('sm')]: {
+    [theme.breakpoints.up("sm")]: {
       marginRight: 0,
       marginBottom: 0,
     },
   },
-}))
+}));
 
 export const AppBarSubHeader = (props) => {
-  const classes = useStyles()
-  const dispatch = useDispatch()
-  const [rid, setRid] = useState('')
-  const [anchorEl, setAnchorEl] = useState(null)
-  const [openCheckDialog, setOpenCheckDialog] = useState(false)
-  const open = Boolean(anchorEl)
+  const classes = useStyles();
+  const dispatch = useDispatch();
+  const [rid, setRid] = useState("");
+  const [anchorEl, setAnchorEl] = useState(null);
+  const [openCheckDialog, setOpenCheckDialog] = useState(false);
+  const open = Boolean(anchorEl);
 
   useEffect(() => {
     if (props.view === true) {
-      const id = window.location.pathname.split('/chat/room')[1]
-      if (id !== '') {
-        const path = id.split('/')[1]
-        setRid(path)
+      const id = window.location.pathname.split("/chat/room")[1];
+      if (id !== "") {
+        const path = id.split("/")[1];
+        setRid(path);
       }
     }
-  }, [rid])
+  }, [props.view, rid]);
 
   const handleMenuOpen = (event) => {
-    setAnchorEl(event.currentTarget)
-  }
+    setAnchorEl(event.currentTarget);
+  };
   const handleRoomEdit = (rid) => {
-    setAnchorEl(null)
-    dispatch(push('/chat/edit/' + rid))
-  }
+    setAnchorEl(null);
+    dispatch(push("/chat/edit/" + rid));
+  };
   const handleRoomDelete = () => {
-    setAnchorEl(null)
-    dispatch(deleteChatRoom(rid))
-  }
+    setAnchorEl(null);
+    dispatch(deleteChatRoom(rid));
+  };
   const checkHandleClick = () => {
-    setAnchorEl(null)
-    setOpenCheckDialog(true)
-  }
+    setAnchorEl(null);
+    setOpenCheckDialog(true);
+  };
 
   return (
     <AppBar position="static" className={classes.appbar} color="inherit">
       <ActionCheckDialog
-        text={'ルームを削除してもよろしいですか？'}
-        buttonLabel={'削除'}
+        text={"ルームを削除してもよろしいですか？"}
+        buttonLabel={"削除"}
         openDialog={openCheckDialog}
         setOpenDialog={setOpenCheckDialog}
         actionHandleClick={handleRoomDelete}
@@ -146,13 +146,13 @@ export const AppBarSubHeader = (props) => {
             id="menu-appbar"
             anchorEl={anchorEl}
             anchorOrigin={{
-              vertical: 'top',
-              horizontal: 'right',
+              vertical: "top",
+              horizontal: "right",
             }}
             keepMounted
             transformOrigin={{
-              vertical: 'top',
-              horizontal: 'right',
+              vertical: "top",
+              horizontal: "right",
             }}
             open={open}
             onClose={() => setAnchorEl(null)}
@@ -165,5 +165,5 @@ export const AppBarSubHeader = (props) => {
         </div>
       </Toolbar>
     </AppBar>
-  )
-}
+  );
+};

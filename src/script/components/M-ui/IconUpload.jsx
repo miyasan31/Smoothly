@@ -1,40 +1,40 @@
-import { makeStyles } from '@material-ui/core/styles'
-import Button from '@material-ui/core/Button'
+import { makeStyles } from "@material-ui/core/styles";
+import Button from "@material-ui/core/Button";
 /* ===================================================================== */
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(() => ({
   blue: {
-    boxShadow: 'none',
-    backgroundColor: '#00000000',
-    color: '#2196f3',
-    border: '1px solid #2196f3',
-    '&:hover': {
-      color: 'white',
-      backgroundColor: '#2196f3',
+    boxShadow: "none",
+    backgroundColor: "#00000000",
+    color: "#2196f3",
+    border: "1px solid #2196f3",
+    "&:hover": {
+      color: "white",
+      backgroundColor: "#2196f3",
     },
   },
   input: {
-    display: 'none',
+    display: "none",
   },
-}))
+}));
 
 export const IconUpload = (props) => {
-  const classes = useStyles()
+  const classes = useStyles();
 
   const onInputChange = (e) => {
-    const file = e.target.files[0]
-    const reader = new FileReader()
+    const file = e.target.files[0];
+    const reader = new FileReader();
     reader.addEventListener(
-      'load',
+      "load",
       () => {
-        props.setInputImg(reader.result)
+        props.setInputImg(reader.result);
       },
       false
-    )
+    );
     if (file) {
-      reader.readAsDataURL(file)
+      reader.readAsDataURL(file);
     }
-  }
+  };
 
   return (
     <div className="flex_center_absolute">
@@ -59,5 +59,5 @@ export const IconUpload = (props) => {
         </Button>
       </label>
     </div>
-  )
-}
+  );
+};
