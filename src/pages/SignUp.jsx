@@ -112,7 +112,7 @@ export const SignUp = () => {
               fullWidth={true}
               variant="standard"
               multiline={false}
-              label="メールアドレス"
+              label="ユーザー名"
               value={userName}
               onChange={inputUserName}
             />
